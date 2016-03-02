@@ -1,0 +1,176 @@
+<div class="container main-container headerOffset">
+  <div class="row">
+    <div class="breadcrumbDiv col-lg-12">
+      <ul class="breadcrumb">
+        <li> <a href="<?php echo $this->basePath('') ?>">Inicio</a> </li>
+        <li> <a href="<?php echo $this->url('account', array('controller' => 'index', 'action' => 'index')) ?>">Mi Cuenta</a> </li>
+        <li class="active">Ordenes</li>
+      </ul>
+    </div>
+
+  
+  <div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-10">
+      <div class="row userInfo">
+        <?php if (isset($this->orders) && sizeof($this->orders) > 0 ): ?>
+        <div class="col-lg-12">
+          <h2 class="block-title-2"><span><i class="fa fa-list-alt"></i> Ordenes </span></h2>
+        </div>
+        
+        <div class="">
+          <table class="footable">
+            <thead>
+              <tr>
+                <th data-class="expand" data-sort-initial="true"> <span title="table sorted by this column on load">Factura</span> </th>
+                <th data-hide="phone,tablet,default" data-sort-ignore="true">Factura</th>
+                <th data-hide="phone,tablet,default"><strong>Forma de Pago</strong></th>
+                <th data-hide="phone,tablet,default"><strong>Estado de Pago</strong></th>
+                <th> Total</th>
+                <th data-hide='phone,tablet'><strong>Cantidad de productos</strong></th>
+                <th data-hide='phone' data-type="numeric"> Fecha y Hora</th>
+                <th data-hide="expand" data-type="numeric">Estado</th>
+                <th data-hide="expand" data-type="numeric">Acciones</th>
+               
+              </tr>
+            </thead>
+            <tbody>
+            <?php foreach($this->orders as $order): ?>
+                <tr data-id="<?php echo $order->order_id ?>">
+                    <td><?php echo $this->escapeHtml($order->invoice_number); ?></td>
+                    <td><a href="<?php echo $this->url('account', array('controller' => 'OrderHistory', 'action' => 'detail', 'id' => $order->order_id)) ?>" target="_blank">#<?php echo $this->escapeHtml($order->invoice_number); ?></a></td>
+                    <td> <?php echo $this->escapeHtml(is_null($order->tdc)? 'N/A': $order->tdc); ?></td>
+                    <td> <?php echo $this->escapeHtml(
+                            is_null($order->cod) ? 'No Emitido': ($order->cod === '00'? 'Aprobado': 'Rechazado')
+                         ); ?>
+                    </td>
+                    <td>Bs. <?php echo $this->escapeHtml($order->total_payment); ?> </td>
+                    <td><small><?php echo $this->escapeHtml($order->sum_products); ?></small> Items</td>
+                    <td >
+                        <?php echo $this->escapeHtml($order->date_modified) ?>
+                    </td>
+                   
+                    <td>
+                       
+                        <div class="btn-group text-center" data-id="12" data-whatever="1">
+                            
+                                        <?php  switch($order->order_status): 
+                                            case 1: ?>
+                            
+                                                <button type="button" class="btn btn-warning br2 btn-xs fs12 dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> 
+                                                 Por Pagar
+                                                  <span class="caret ml5"></span>
+                                                </button> 
+                                               
+                                            <?php break; ?>
+                                            <?php case 2: ?>
+                                                  <button type="button" class="btn btn-success br2 btn-xs fs12 dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> 
+                                                Aprobado
+                                                  <span class="caret ml5"></span>
+                                                </button> 
+                                               
+                                            <?php break; ?>
+                                            <?php case 3: ?>
+                                                 <button type="button" class="btn btn-danger br2 btn-xs fs12 dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> 
+                                                Negado
+                                                  <span class="caret ml5"></span>
+                                                </button>
+                                            <?php break; ?>
+                                        <?php endswitch; ?>
+                                        
+                                        
+                                    
+                                    <ul class="dropdown-menu" role="menu">
+                                        
+                                        <li>
+                                            <a class="btn-delete" href="#">Archivar</a>
+                                        </li>          
+                                                
+                                    </ul>
+                                </div>
+                    </td>
+                    <td>
+                       
+                        <a href='<?php echo $this->url('account', array('controller' => 'OrderHistory', 'action' => 'detail', 'id' => $order->order_id)) ?>'>Detalle</a>
+                                        
+                    </td>
+                    
+                </tr>
+            <?php endforeach; ?>
+            </tbody>
+          </table>
+        </div>
+        <?php else: ?>
+            <h1>No existen ordenes realizadas</h1>
+        <?php endif; ?>
+        
+        <div class=" row col-lg-12 clearfix">
+          <ul class="pager">
+            <li class="previous pull-right"><a href="<?php echo $this->url('catalog', array('controller' => 'franchise', 'action' => 'list')) ?>"><i class="fa fa-home"></i> ir a la tienda</a></li>
+            <li class="next pull-left"><a href="<?php echo $this->url('account', array('controller' => 'index', 'action' => 'index')) ?>"> &larr; volver a mi cuenta</a></li>
+          </ul>
+        </div>
+      </div>
+      <!--/row end--> 
+      
+    </div>
+  </div>
+  <!--/row-->
+  
+  <div style="clear:both"></div>
+</div>
+<!-- /main-container -->
+
+<div class="gap"> </div>
+
+<!-- include footable plugin --> 
+<?php $this->inlineScript()->appendFile($this->basePath('/assets/js/footable.js')); ?>
+
+<?php $this->inlineScript()->captureStart();
+
+ echo <<<JS
+
+   $('.btn-delete').click(function(e){
+
+           e.preventDefault();
+            var row = $(this).closest('tr');
+           
+            var id = row.data('id');
+          bootbox.confirm("Desea archivar el registro ??", function(e) {
+
+                // e returns true if user clicks "accept"
+                // false if "cancel" or dismiss icon are clicked
+                if (e) {  
+                  
+
+                      $.ajax({
+                            url: '../account/OrderHistory/statusOrder/'+id,
+                            type: 'post',
+                            data: 'id='+id,
+                            dataType: 'json',
+                            beforeSend: function() {
+
+                                    },
+                            complete: function() {
+
+                            },
+                            success: function(json) {
+                                row.fadeOut();
+                            },
+                            error: function(xhr, ajaxOptions, thrownError) {
+                                alert(thrownError + "-" + xhr.status );
+                            }
+                     });
+               } else {
+                   return;
+               }    
+           });
+        });
+
+
+    $(function() {
+      $('.footable').footable();
+    });
+JS;
+
+$this->inlineScript()->captureEnd(); 
+?>

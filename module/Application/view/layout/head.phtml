@@ -1,0 +1,29 @@
+
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Fav and touch icons -->
+
+<link rel="shortcut icon" href="<?php echo $this->basePath() ?>/img/favicon1.png">
+<title>PideRápido - Tu aplicación de ventas online</title>
+
+<?php 
+/* CSS Autoload whit Javascript in Production Mode */
+if (getenv('APPLICATION_ENV') == 'development') : ?>
+    <!-- Bootstrap core CSS -->
+    <link href="<?php echo $this->basePath('assets') ?>/css/bootstrap.css" rel="stylesheet">
+    <!-- Custom styles for this template-->
+    <link href="<?php echo $this->basePath('assets') ?>/css/style.css" rel="stylesheet"> 
+ 
+    <?php elseif ($this->cssAuto == 1): ?>
+     <!-- CSS Autoload whit Javascript in Production Mode-->
+    <?php else: ?>
+    
+    <!-- Bootstrap core CSS -->
+    <link href="<?php echo $this->basePath() ?>/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom styles for this template-->
+    <link href="<?php echo $this->basePath() ?>/css/style.min.css" rel="stylesheet"> 
+ 
+    
+<?php endif;?>
+</head>

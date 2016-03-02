@@ -1,0 +1,393 @@
+<?php
+$this->headlink()
+        ->prependStylesheet($this->basePath() . '/vendor/plugins/select2/css/core.css');
+?>
+<section id="content" class="animated fadeIn">
+    <section id="content" class=" pnanimated fadeIn"> 
+        <form id="form"  action="<?php echo $this->basePath($this->form->getAttribute('action')); ?>" method="post" enctype="multipart/form-data" >   
+            <?php echo $this->formHidden($this->form->get('branch_contact_id')); ?>
+            <h2 class="lh30 mt15">
+                Ajustes generales
+                <b class="text-primary"><?php echo $this->branch->name ?></b>
+            </h2>                 
+            <!-- Admin-panels -->
+            <div class="fade-onload">
+                <div class="row">
+                    <div class="tray tray-center p25 va-t posr">
+                        <div class="col-xs-6">
+                            <!-- Store Owner Details -->
+                            <div class="panel">
+                                <div class="panel-heading">
+                                    <span class="panel-title">Datos de Sucursal</span>
+                                </div>
+                                <div class="panel-body bg-light dark">
+                                    <div class="admin-form">
+                                        <div class="section row mb10">
+                                            <label for="sucursal-rif" class="field-label col-md-4 text-center">RIF:</label>
+                                            <div class="col-md-8">
+                                                <label for="account-name" class="field prepend-icon">
+                                                    <?php echo $this->formInput($this->form->get('rif')); ?>
+                                                    <label for="account-name" class="field-icon"><i class="fa fa-folder-open-o"></i>
+                                                    </label>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="section row mb10">
+                                            <label for="account-email" class="field-label col-md-4 text-center">Persona de contacto</label>
+                                            <div class="col-md-8">
+                                                <label for="account-email" class="field prepend-icon">
+                                                    <?php echo $this->formInput($this->form->get('contact')); ?>
+                                                    <label for="account-email" class="field-icon"><i class="fa fa-envelope-o"></i>
+                                                    </label>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="section row mb10">
+                                            <label for="account-phone" class="field-label col-md-4 text-center">Nombre de la Sucursal</label>
+                                            <div class="col-md-8">
+                                                <label for="account-phone" class="field prepend-icon">
+                                                    <?php echo $this->formInput($this->form->get('name')); ?>
+                                                    <label for="account-phone" class="field-icon"><i class="fa fa-phone"></i>
+                                                    </label>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="section row mb10">
+                                            <label for="account-phone" class="field-label col-md-4 text-center">Número - Franquiciado</label>
+                                            <div class="col-md-8">
+                                                <label for="account-phone" class="field prepend-icon">
+                                                    <?php echo $this->formInput($this->form->get('phone')); ?>
+                                                    <label for="account-phone" class="field-icon"><i class="fa fa-phone"></i>
+                                                    </label>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="section row mb10">
+                                            <label for="account-phone" class="field-label col-md-4 text-center">Direccion Fiscal</label>
+                                            <div class="col-md-8">
+                                                <label for="account-phone" class="field prepend-icon">
+                                                    <?php echo $this->formInput($this->form->get('address')); ?>
+                                                    <label for="account-phone" class="field-icon"><i class="fa fa-building"></i>
+                                                    </label>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="section row mb10">
+                                            <label for="account-phone" class="field-label col-md-4 text-center">Direccion Local</label>
+                                            <div class="col-md-8">
+                                                <label for="account-phone" class="field prepend-icon">
+                                                    <?php echo $this->formInput($this->form->get('address_tax')); ?>
+                                                    <label for="account-phone" class="field-icon"><i class="fa fa-building"></i>
+                                                    </label>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="section row mb10">
+                                            <label for="account-phone" class="field-label col-md-4 text-center">Horario</label>
+                                            <div class="col-md-8">
+                                                <label for="account-phone" class="field prepend-icon">
+                                                    <?php echo $this->formInput($this->form->get('opening_time')); ?>
+                                                    <label for="account-phone" class="field-icon"><i class="fa fa-clock-o"></i>
+                                                    </label>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <!--                                            <div class="section row mb10">
+                                                                                        <label for="account-phone" class="field-label col-md-4 text-center">Referencia</label>
+                                                                                        <div class="col-md-8">
+                                                                                            <label for="account-phone" class="field prepend-icon">
+                                        <?php // echo $this->formSelect($this->form->get('state_id')); ?>
+                                                                                                <label for="account-phone" class="field-icon"><i class="fa fa-envelope-o"></i>
+                                                                                                </label>
+                                                                                            </label>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="section row mb10">
+                                                                                        <label for="account-phone" class="field-label col-md-4 text-center">ID</label>
+                                                                                        <div class="col-md-8">
+                                                                                            <label for="account-phone" class="field prepend-icon">
+                                        <?php // echo $this->formSelect($this->form->get('municipality_id')); ?>
+                                                                                                <label for="account-phone" class="field-icon"><i class="fa fa-clipboard"></i>
+                                                                                                </label>
+                                                                                            </label>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="section row mb10">
+                                                                                        <label for="account-phone" class="field-label col-md-4 text-center">ID Dispositivo</label>
+                                                                                        <div class="col-md-8">
+                                                                                            <label for="account-phone" class="field prepend-icon">
+                                        <?php // echo $this->formSelect($this->form->get('city_id')); ?>
+                                                                                                <label for="account-phone" class="field-icon"><i class="fa fa-clipboard"></i>
+                                                                                                </label>
+                                                                                            </label>
+                                                                                        </div>
+                                                                                    </div>-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            <div class="col-xs-12">
+                                <!-- Store Information -->
+                                <div class="panel">
+                                    <div class="panel-heading">
+                                        <span class="panel-title">Correo(s) Electrónico(s)</span>
+                                    </div>
+                                    <div class="panel-body bg-light dark">
+                                        <div class="admin-form">
+                                            <div class="section row mb10">
+                                                <label for="account-name" class="field-label col-md-4 text-center">Correo Adm: </label>
+                                                <div class="col-md-8">
+                                                    <label for="account-name" class="field prepend-icon">
+                                                        <?php echo $this->formInput($this->form->get('email')); ?>
+                                                        <label for="account-name" class="field-icon"><i class="fa fa-envelope"></i>
+                                                        </label>
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                            <div class="section row mb10">
+                                                <label for="account-name" class="field-label col-md-4 text-center">Usuario operativo: </label>
+                                                <div class="col-md-8">
+                                                    <label for="account-name" class="field prepend-icon">
+                                                        <?php echo $this->formInput($this->form->get('user')); ?>
+                                                        <label for="account-name" class="field-icon"><i class="fa fa-male"></i>
+                                                        </label>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="section row mb10">
+                                                <label for="account-name" class="field-label col-md-4 text-center">Correo Franquicia: </label>
+                                                <div class="col-md-8">
+                                                    <label for="account-name" class="field prepend-icon">
+                                                        <?php echo $this->formInput($this->form->get('email_franchise')); ?>
+                                                        <label for="account-name" class="field-icon"><i class="fa fa-envelope"></i>
+                                                        </label>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="panel">
+                                    <div class="panel-heading">
+                                        <span class="panel-title">Contraseña</span>
+                                    </div>
+                                    <div class="panel-body bg-light dark">
+                                        <div class="admin-form">
+<!--                                            <div class="section row mb10">
+                                                <label for="account-name" class="field-label col-md-4 text-center">Contraseña Actual: </label>
+                                                <div class="col-md-8">
+                                                    <label for="account-name" class="field prepend-icon">
+                                                        <?php // echo $this->formInput($this->form->get('password_now')); ?>
+                                                        <label for="account-name" class="field-icon"><i class="fa fa-unlock-alt"></i>
+                                                        </label>
+                                                    </label>
+                                                </div>
+                                            </div>-->
+                                            <div class="section row mb10">
+                                                <label for="account-name" class="field-label col-md-4 text-center">Nueva Contraseña: </label>
+                                                <div class="col-md-8">
+                                                    <label for="account-name" class="field prepend-icon">
+                                                        <?php echo $this->formInput($this->form->get('password')); ?>
+                                                        <label for="account-name" class="field-icon"><i class="fa fa-unlock-alt"></i>
+                                                        </label>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="section row mb10">
+                                                <label for="account-name" class="field-label col-md-4 text-center">Repetir Contraseña nueva: </label>
+                                                <div class="col-md-8">
+                                                    <label for="account-name" class="field prepend-icon">
+                                                        <?php echo $this->formInput($this->form->get('password_confirm')); ?>
+                                                        <label for="city" class="field-icon"><i class="fa fa-unlock-alt"></i>
+                                                        </label>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div>
+                                <center>
+                                    <button class="btn btn-primary notification1" type="submit" data-note-style="success">Guardar Cambios</button>
+                                    <a href="home.php">
+                                        <button class="btn btn-danger notification2" type="button" type="submit" data-note-style="danger">Cancelar</button>
+                                    </a>
+                                </center>
+                            </div>
+                        </div>
+                    </div>                        
+                </div>        
+            </div>
+        </form>
+    </section>
+</section>
+
+<?php
+$this->headScript()
+        // Admin Panels
+        ->prependFile($this->basePath('vendor') . '/plugins/datepicker/js/moment.js')
+        ->prependFile($this->basePath('assets_admin') . '/admin-tools/admin-plugins/admin-panels/json2.js')
+        ->prependFile($this->basePath('assets_admin') . '/admin-tools/admin-plugins/admin-panels/jquery.ui.touch-punch.min.js')
+        ->prependFile($this->basePath('assets_admin') . '/admin-tools/admin-plugins/admin-panels/adminpanels.js')
+        // Page Plugins via CDN 
+        ->prependFile('http://cdnjs.cloudflare.com/ajax/libs/globalize/0.1.1/globalize.min.js')
+
+        // Sparklines CDN
+        ->prependFile('http://cdnjs.cloudflare.com/ajax/libs/jquery-sparklines/2.1.2/jquery.sparkline.min.js')
+        //Page Plugins
+        ->prependFile($this->basePath() . '/assets/js/bootstrap.js')
+        ->prependFile($this->basePath('vendor') . '/plugins/datepicker/js/moment.js')
+        ->prependFile($this->basePath('vendor') . '/plugins/daterange/daterangepicker.js')
+        ->prependFile($this->basePath('vendor') . '/plugins/datepicker/js/bootstrap-datetimepicker.min.js')
+        ->prependFile($this->basePath('vendor') . '/plugins/tagmanager/tagmanager.js')
+        // Chart Plugins
+        ->prependFile($this->basePath('vendor') . '/plugins/highcharts/highcharts.js')
+        ->prependFile($this->basePath('vendor') . '/plugins/circles/circles.js')
+        ->prependFile($this->basePath('vendor') . '/plugins/raphael/raphael.js')
+        // Holder js
+        ->prependFile($this->basePath() . '/vendor/plugins/select2/select2.min.js')
+        ->prependFile($this->basePath() . '/vendor/plugins/fileupload/fileupload.js')
+        ->prependFile($this->basePath('assets_admin') . '/js/bootstrap/holder.min.js')
+;
+;
+$this->inlineScript()->captureStart();
+$url = $this->basePath();
+echo <<<JS
+
+ jQuery(document).ready(function() {
+var URL = '$url';
+                
+            $('.admin-panels').adminpanel({
+                grid: '.admin-grid',
+                draggable: true,
+                preserveGrid: true,
+                mobile: false,
+                callback: function() {
+                    bootbox.confirm('<h3>A Custom Callback!</h3>', function() {});
+                },
+                onFinish: function() {
+                    $('.admin-panels').addClass('animated fadeIn').removeClass('fade-onload');
+                    // Init the rest of the plugins now that the panels
+                    // have had a chance to be moved and organized.
+                    // It's less taxing to organize empty panels
+                    demoHighCharts.init();
+                    runVectorMaps();
+                    // We also refresh any "in-view" waypoints to ensure
+                    // the correct position is being calculated after the 
+                    // Admin Panels plugin moved everything
+                    Waypoint.refreshAll();
+                },
+                onSave: function() {
+                    $(window).trigger('resize');
+                }
+            });
+          
+            // Init custom page animation
+            setTimeout(function() {
+                $('.custom-nav-animation li').each(function(i, e) {
+                    var This = $(this);
+                    var timer = setTimeout(function() {
+                        This.addClass('animated animated-short zoomIn');
+                    }, 50 * i);
+                });
+            }, 500);
+            // Init tray navigation smooth scroll
+            $('.tray-nav a').smoothScroll({
+                offset: -145
+            });
+            // Init Select2 - Basic Multiple
+            $("#multiselect3").select2({
+              placeholder: "Select Categories",
+               allowClear: true,
+               style: "bg-primary light"
+            });
+        
+        
+        
+            // Init Select2 - Basic Multiple
+            $("#related_id").select2({
+              placeholder: "Select Related",
+               allowClear: true,
+               style: "bg-primary light"
+            });
+        
+//         Init Select2 - Basic Multiple
+            $("#country_id").select2({
+              placeholder: "Selecciona un Pais",
+               allowClear: true,
+               style: "bg-primary light"
+            });
+//          Init Select2 - Basic Multiple
+            $("#state_id").select2({
+              placeholder: "Selecciona un Estado",
+               allowClear: true,
+               style: "bg-primary light"
+            });
+//          Init Select2 - Basic Multiple
+            $("#municipality_id").select2({
+              placeholder: "Selecciona un Estado",
+               allowClear: true,
+               style: "bg-primary light"
+            });
+//          Init Select2 - Basic Multiple
+            $("#city_id").select2({
+              placeholder: "Selecciona un Estado",
+               allowClear: true,
+               style: "bg-primary light"
+            });
+        
+        
+            // select dropdowns - placeholder like creation
+            var selectList = $('.admin-form select');
+            selectList.each(function(i, e) {
+                $(e).on('change', function() {
+                    if ($(e).val() == "0") $(e).addClass("empty");
+                    else $(e).removeClass("empty")
+                });
+            });
+        
+            selectList.each(function(i, e) {
+                $(e).change();
+            });
+            
+            $('#form').on('change','select.location-select',function(e){
+                    var location_id = $(this).val();
+                    var data_location = $(this).data('location');
+                    var data_select = $(this).data('select');
+        
+                    console.log(location_id,data_location, data_select);
+        
+                    $.get(URL+"/api/"+data_select+"/"+location_id,function(entities){
+                         var options = "";
+                         console.log(entities);
+                            if(data_select == "state"){
+                            $.each(entities, function(i, state) {
+                                options += "<option value='" + state.state_id + "'>" + state.name + "</option>";
+                            });$("."+data_select).html(options);
+                            }                            
+                            if(data_select == "municipality"){
+                                $.each(entities, function(i, municipality) {
+                                    options += "<option value='" + municipality.municipality_id + "'>" + municipality.name + "</option>";
+                                });$("."+data_select).html(options);
+                                $.get(URL+"/api/city/"+location_id,function(entities){
+                                var options = "";
+                                console.log(entities);
+                                   $.each(entities, function(i, city) {
+                                       options += "<option value='" + city.city_id + "'>" + city.name + "</option>";
+                                   });$(".city").html(options);
+                                },"json");
+                                }
+                        },"json");
+                });
+
+            
+
+});
+
+JS;
+$this->inlineScript()->captureEnd();

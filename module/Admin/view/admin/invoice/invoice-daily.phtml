@@ -1,0 +1,220 @@
+<!-- Begin: Content -->
+<section id="content">
+    <h2 class="lh30 mt15 text-center">
+        Facturas
+        <b class="text-primary">Diarias</b>
+    </h2>
+
+    <div class="row">
+        <div class="admin-form">
+            <div id="p1" class="panel heading-border">
+                <div class="panel-body bg-light">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="section-divider mt40 mb25" id="spy4">
+                                <span>Facturas Diarias</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">        
+                            <div class="section">
+
+                                <form class="form-horizontal" role="form">
+                                    <div class="form-group">
+                                        <div class="col-md-offset-3 col-md-6">
+                                            <center>
+                                                <h6>
+                                                    Buscar por día específico 
+                                                </h6>
+                                            </center>
+                                            <label for="datepicker1" class="field prepend-icon">
+                                                <input type="text" id="datepicker1" name="day" class="gui-input" >
+                                                <label class="field-icon"><i class="fa fa-calendar-o"></i>
+                                                </label>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 text-center">
+                                        <center>
+                                            <button class="button btn-primary" type="submit">Generar Búsqueda</button>
+                                        </center>
+                                    </div>                                    
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>                    
+    </br>                    
+    <div class="panel invoice-panel">
+        <div class="panel-heading">
+            <span class="panel-title"> Últimos Pedidos</span>
+        </div>
+        <div class="panel-body p20" id="invoice-item">
+            <div class="row" id="invoice-table">
+                <div class="col-md-12">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th><b># Factura</b></th>
+                                <th><b>Fecha</b></th>
+                                <th><b>Status</b></th>
+                                <th><b>Detalle</b></th>
+                                <th class="text-right pr10"><b>P. Unitario</b></th>
+                                <th class="text-right pr10"><b>IVA (12%)</b></th>
+                                <th class="text-right pr10"><b>Subtotal</b></th>
+                                <th class="text-right pr10"><b>Servicio (12%)</b></th>
+                                <th class="text-right pr10"><b>IVA Servicio(12%)</b></th>                                   
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($this->order as $invoice): ?>
+                                <tr>
+                                    <td># <?php echo $invoice->invoice_number ?></td>
+                                    <td><?php echo $invoice->date_added ?></td>
+                                    <td>
+                                        <?php
+                                        switch ($invoice->order_status) {
+                                            case 1:
+                                            ?>
+                                            <div class="btn-group text-center">
+                                                <button class="btn btn-dark br2 btn-xs fs12 dropdown-toggle" aria-expanded="false" type="button" disabled>
+                                                    Recibido
+                                                </button>       
+                                            </div>
+                                            <?php
+                                            break;
+                                        case 2:
+                                            ?>
+                                            <div class="btn-group text-center">
+                                                <button class="btn btn-danger br2 btn-xs fs12 dropdown-toggle" aria-expanded="false" type="button" disabled>
+                                                    Cancelado
+                                                </button>       
+                                            </div>
+                                            <?php
+                                            break;
+                                        case 3:
+                                            ?>
+                                            <div class="btn-group text-center">
+                                                <button class="btn btn-warning br2 btn-xs fs12 dropdown-toggle" aria-expanded="false" type="button" disabled>
+                                                    En Proceso
+                                                </button>       
+                                            </div>
+                                            <?php
+                                            break;
+                                        case 4:
+                                            ?>
+                                            <div class="btn-group text-center">
+                                                <button class="btn btn-info br2 btn-xs fs12 dropdown-toggle" aria-expanded="false" type="button" disabled>
+                                                    Procesado
+                                                </button>       
+                                            </div>
+                                            <?php
+                                            break;
+                                        case 5:
+                                            ?>
+                                            <div class="btn-group text-center">
+                                                <button class="btn btn-success br2 btn-xs fs12 dropdown-toggle" aria-expanded="false" type="button" disabled>
+                                                    Entregado
+                                                </button>       
+                                            </div>
+                                            <?php
+                                            break;
+                                        }
+                                        ?>             
+                                    </td>
+                                    <td><a href="<?php echo $this->basePath() . '/admin/invoice/orderDetail/' . $invoice->order_id; ?>">Ver Detalle</a></td>
+                                    <td class="text-right pr10"><?php echo $invoice->subtotal_order_branch ?> Bs</td>
+                                    <td class="text-right pr10"><?php echo $invoice->subtotal_order_branch * 0.12 ?> Bs</td>
+                                    <td class="text-right pr10"><?php echo ($invoice->subtotal_order_branch * 0.12)+$invoice->subtotal_order_branch ?> Bs</td>
+                                    <td class="text-right pr10"><?php echo number_format((float) ($invoice->subtotal_order_branch * 0.12), 2, '.','')?> Bs</td>
+                                    <td class="text-right pr10"><?php echo number_format((float) (($invoice->subtotal_order_branch * 0.12)) * 0.12, 2, '.','')?> Bs</td>                             
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <br>
+            <div class="row" id="invoice-footer">
+                <div class="col-md-12">
+                    <div class="pull-right">
+                        <table class="table" id="invoice-summary">
+                            <thead>
+                                <tr>
+                                    <th><b>P. Unitario:</b>
+                                    </th>
+                                    <th class="text-right pr10" style="width: 80px;"><?php echo number_format((float) $this->price, 2, '.', '') ?> Bs</th>
+                                </tr>
+                                <tr>
+                                    <td><b>IVA (12%):</b>
+                                    </td>
+                                    <td class="text-right pr10"><?php echo number_format((float) $this->iva, 2, '.', '') ?> Bs</td>
+                                </tr>
+                                <tr>
+                                    <td><b>Subtotal Sucursal:</b>
+                                    </td>
+                                    <td class="text-right pr10"><?php echo number_format((float) $this->subtotal_branch, 2, '.', '') ?> Bs</td>
+                                </tr>
+                                <tr>
+                                    <td><b>Servicio (12%):</b>
+                                    </td>
+                                    <td class="text-right pr10"><?php echo number_format((float) $this->comision, 2, '.', '') ?> Bs</td>
+                                </tr>
+                                <tr>
+                                    <td><b>IVA Servicio (12%):</b>
+                                    </td>
+                                    <td class="text-right pr10"><?php echo number_format((float) $this->iva_service, 2, '.', '') ?> Bs</td>
+                                </tr>
+                                <tr>
+                                    <td><b>Subtotal PR:</b>
+                                    </td>
+                                    <td class="text-right pr10"><?php echo number_format((float) $this->subtotal_pr, 2, '.', '') ?> Bs</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><h3><b>Total:</b></h3>
+                                    </td>
+                                    <td class="text-right pr10" style="width: 110px;"><h3><?php echo number_format((float) $this->total, 2, '.', '') ?></h3></td>
+                                </tr>
+                            </tbody>
+
+                        </table>
+                    </div>
+                    <div class="clearfix"></div>
+                    <br><br><br><br>
+                    <div class="invoice-buttons">
+                        <a href="javascript:window.print()" class="btn btn-default mr10"><i class="fa fa-print pr5"></i> Imprimir </a>
+                        <!--<button class="btn btn-primary btn-gradient" type="button"><i class="fa fa-floppy-o pr5"></i> Guardar </button>-->
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>              
+</section>
+
+<?php $this->inlineScript()->appendFile($this->basePath('assets/js/jquery-tcm-month.js')); ?>
+
+<?php
+$this->inlineScript()->captureStart();
+
+echo <<<JS
+    $(function() {
+        "use strict";
+        $("#datepicker1").datepicker({
+            dateFormat: "dd/mm/yy",
+            prevText: '<i class="fa fa-chevron-left"></i>',
+            nextText: '<i class="fa fa-chevron-right"></i>',
+            showButtonPanel: false
+        });
+    });
+JS;
+
+$this->inlineScript()->captureEnd();
+?>

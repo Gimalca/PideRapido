@@ -1,0 +1,175 @@
+
+
+<!-- Begin: Content -->
+<section id="content" class="animated fadeIn">
+    <?php $this->form->prepare(); ?>
+    <form class="form-horizontal" role="form"  action="<?php echo $this->basePath($this->form->getAttribute('action')); ?>" method="post" enctype="multipart/form-data">
+        <div class="panel">
+            <div class="panel-heading">
+                <span class="panel-title">
+                    <span class="glyphicons glyphicons-fast_food"></span>
+                    Producto Individual
+                </span>
+                </span>
+            </div>
+            <div class="tab-content">
+                <div class="multi-field-wrapper">                                
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <td style="width: 60.5%;"></td>
+                                <td>
+                                    <div>
+                                        <div class="col-md-1" style="margin-left: -3px;">
+                                            <center>
+                                                <button class="btn btn-success light add-field"  type="button">
+                                                    <i class="fa fa-plus-circle"></i>
+                                                </button>
+                                            </center>
+                                        </div>
+                                    </div> 
+                                </td>
+                            </tr>
+                        </thead>
+                    </table>
+                    <div class="panel-body bg-light">
+                        <div class="admin-form">
+                            <div class="section row mb10">
+                                <label for="sucursal-rif" class="field-label col-md-3 text-center">Opcion:</label>
+                                <div class="col-md-9">
+                                    <label class="field select">
+                                        <?php echo $this->formSelect($this->form->get('option_id')); ?>
+                                        <i class="arrow double"></i>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="multi-fields">
+                        <div class="multi-field"> 
+                            <div id="tab5_1" class="tab-pane active">
+                                <div class="panel-body bg-light">
+                                    <div class="col-md-8">
+                                        <div class="form-group">
+                                            <label for="inputStandard" class="col-lg-3 control-label">Valores de la Opcion
+                                            </label>
+                                            <div class="col-lg-8">
+                                                <?php echo $this->formRow($this->form->get('name')); ?>
+                                            </div>
+                                            <div class="col-lg-1">
+                                                <button class="btn btn-danger light remove-field" type="button">
+                                                    <i class="fa fa-minus-circle"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <br><br>                             
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="form-group">
+                                            <label for="inputStandard" class="col-lg-3 control-label">Valor de Ordenamiento
+                                            </label>
+                                            <div class="col-lg-8">
+                                                <?php echo $this->formRow($this->form->get('sort_order')); ?>
+                                            </div>
+                                        </div>
+                                        <br><br>                             
+                                    </div>
+                                </div>
+                            </div>                                       
+                        </div>
+                    </div>                                
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-8">
+                        <button class="btn btn-primary" type="submit">Guardar Cambios</button>
+                        <input class="btn btn-danger" type="button" value="Cancelar">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</section>
+<!-- End: Co
+<style>
+
+/*demo styles*/
+
+/*demo buttons*/
+.contextual-demo a {
+    padding: 9px 4px;
+    width: 9.5%;
+}
+.contextual-demo a + a {
+    margin-left: 0.5%;
+}
+.contextual-demo-alt a {
+    padding: 9px 4px;
+    width: 15%;
+}
+.contextual-demo-alt a + a {
+    margin-left: 0.5%;
+}
+</style>
+<?php
+$this->headScript()
+        // Admin Panels
+        ->prependFile($this->basePath('vendor') . '/plugins/datepicker/js/moment.js')
+        ->prependFile($this->basePath('assets_admin') . '/admin-tools/admin-plugins/admin-panels/json2.js')
+        ->prependFile($this->basePath('assets_admin') . '/admin-tools/admin-plugins/admin-panels/jquery.ui.touch-punch.min.js')
+        ->prependFile($this->basePath('assets_admin') . '/admin-tools/admin-plugins/admin-panels/adminpanels.js')
+        // Page Plugins via CDN 
+        ->prependFile('http://cdnjs.cloudflare.com/ajax/libs/globalize/0.1.1/globalize.min.js')
+
+        // Sparklines CDN
+        ->prependFile('http://cdnjs.cloudflare.com/ajax/libs/jquery-sparklines/2.1.2/jquery.sparkline.min.js')
+        //Page Plugins
+        ->prependFile($this->basePath() . '/assets/js/bootstrap.js')
+        ->prependFile($this->basePath('vendor') . '/plugins/datepicker/js/moment.js')
+        ->prependFile($this->basePath('vendor') . '/plugins/daterange/daterangepicker.js')
+        ->prependFile($this->basePath('vendor') . '/plugins/datepicker/js/bootstrap-datetimepicker.min.js')
+        ->prependFile($this->basePath('vendor') . '/plugins/tagmanager/tagmanager.js')
+        // Chart Plugins
+        ->prependFile($this->basePath('vendor') . '/plugins/highcharts/highcharts.js')
+        ->prependFile($this->basePath('vendor') . '/plugins/circles/circles.js')
+        ->prependFile($this->basePath('vendor') . '/plugins/raphael/raphael.js')
+        ->prependFile($this->basePath('vendor') . '/plugins/jquerymask/jquery.maskedinput.min.js')
+        ->prependFile($this->basePath('vendor') . '/plugins/tagmanager/tagmanager.js')
+        ->prependFile($this->basePath('vendor') . '/plugins/dropzone/dropzone.min.js')
+        // Holder js
+        ->prependFile($this->basePath() . '/vendor/plugins/select2/select2.min.js')
+        ->prependFile($this->basePath() . '/vendor/plugins/fileupload/fileupload.js')
+        ->prependFile($this->basePath('assets_admin') . '/js/bootstrap/holder.min.js')
+;
+;
+$this->inlineScript()->captureStart();
+echo <<<JS
+        jQuery(document).ready(function() {
+
+            "use strict";
+            
+
+            $('.multi-field-wrapper').each(function() {
+                var wrapper = $('.multi-fields ', this);
+                $(".add-field", $(this)).click(function(e) {
+                var newgroup = $('.multi-field:last-child', wrapper).clone(true);
+                newgroup.find('input, select').each(function(){ 
+                    
+                 //code increment name Array
+                 this.name = this.name.replace(/\[(\d+)\]/,function(str,p1){return '[' + (parseInt(p1,10)+1) + ']'});
+ 
+                 }).end().appendTo(wrapper).find('input, select, file, hide').val('').focus();
+                
+                  
+            });
+            $('.multi-field .remove-field', wrapper).click(function() {
+                if ($('.multi-field', wrapper).length > 1)
+                $(this).closest('.multi-field').remove();
+                });
+            });
+
+
+        });
+    </script>
+JS;
+$this->inlineScript()->captureEnd();

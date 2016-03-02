@@ -1,0 +1,340 @@
+
+<?php $this->form->prepare() ?>
+<!-- Begin: Content -->
+<section id="content" class="animated fadeIn">
+    <form class="form-horizontal" role="form"  action="<?php echo $this->basePath($this->form->getAttribute('action')); ?>" method="post" enctype="multipart/form-data">
+        <input value="1" hidden="true"  name="validationEdit">
+        <?php echo $this->formHidden($form->get('product_id')); ?>
+        <div class="panel">
+            <div class="panel-heading">
+                <span class="panel-title">
+                    <span class="glyphicons glyphicons-fast_food"></span>
+                    Producto Individual
+                </span>
+                </span>
+            </div>
+            <div id="p1" class="panel heading-border panel-primary">
+                <div class="tab-block mb25">
+                    <ul class="nav nav-tabs nav-tabs-right">
+                        <li class="">
+                            <a href="#tab5_2" data-toggle="tab" aria-expanded="true">Opciones</a>
+                        </li>
+                        <li class="active">
+                            <a href="#tab5_1" data-toggle="tab" aria-expanded="true">General</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div id="tab5_1" class="tab-pane active">
+                            <div class="panel-body bg-light">
+
+                                <div class="col-md-4">
+                                    <div class="tray-bin pl10 mb10" style="min-height: 250px;">
+                                        <br>
+                                        <div class="fileupload fileupload-new admin-form" data-provides="fileupload">
+                                            <div class="fileupload-new thumbnail" style="">
+                                                <img src="<?php echo $this->basePath() . '/img/catalog/product/' . $this->image ?>" alt="holder">
+                                            </div>
+                                            <div class="fileupload-preview fileupload-exists thumbnail" style=""></div>
+                                            <div class="row">
+                                                <div class="col-xs-12">
+                                                    <span class="button btn-system btn-file btn-block">
+                                                        <span class="fileupload-new">Select</span>
+                                                        <span class="fileupload-exists">Change</span>
+                                                        <?php echo $this->formFile($this->form->get('image')); ?>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-8">
+
+                                    <div class="form-group">
+                                        <label for="inputStandard" class="col-lg-3 control-label">Nombre del producto
+                                        </label>
+                                        <div class="col-lg-9">
+                                            <?php echo $this->formInput($this->form->get('name')); ?>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-3 control-label" for="textArea2">Descripción</label>
+                                        <div class="col-lg-9">
+                                            <?php echo $this->formTextarea($this->form->get('description')); ?>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-3 control-label" for="textArea2">Precio</label>
+                                        <div class="col-lg-9">
+                                            <?php echo $this->formInput($this->form->get('price')); ?>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-3 control-label" for="category_id">Tipo:</label>
+                                        <div class="col-lg-9">
+                                            <label class="field select">
+                                                <?php echo $this->formSelect($this->form->get('type')); ?>
+                                                <i class="arrow double"></i>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-3 control-label" for="productsku">SKU</label>
+                                        <div class="col-lg-9">
+                                            <?php echo $this->formInput($this->form->get('sku')); ?>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-3 control-label" for="category_id">Categoria:</label>
+                                        <div class="col-lg-9">
+                                            <label class="field select">
+                                                <?php echo $this->formSelect($this->form->get('category_id')); ?>
+                                                <i class="arrow double"></i>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-3 control-label" for="franchise_id">Franquicia:</label>
+                                        <div class="col-lg-9">
+                                            <label class="field select">
+                                                <?php echo $this->formSelect($this->form->get('franchise_id')); ?>
+                                                <i class="arrow double"></i>
+                                            </label>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+                        </div>
+                        <div id="tab5_2" class="tab-pane">
+                            <div class="multi-field-wrapper">                                
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <td style="width: 60.5%;"></td>
+                                            <td>
+                                                <div>
+                                                    <div class="col-md-1" style="margin-left: -3px;">
+                                                        <center>
+                                                            <button class="btn btn-success light add-field"  type="button">
+                                                                <i class="fa fa-plus-circle"></i>
+                                                            </button>
+                                                        </center>
+                                                    </div>
+                                                </div> 
+                                            </td>
+                                        </tr>
+                                    </thead>
+                                </table>
+                                <div class="multi-fields">
+                                    <div class="multi-field"> 
+                                        <table class="table table-bordered">
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <div class="section admin-form">
+                                                            <b>Opcion</b>
+                                                            <label class="field select">
+
+                                                                <?php echo $this->formRow($this->form->get('option_id')); ?>
+                                                                <i class="arrow double"></i>
+                                                            </label>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="section admin-form">
+                                                            <b>Requerido</b>
+                                                            <label class="field select">
+
+                                                                <?php echo $this->formRow($this->form->get('required')); ?>
+                                                                <i class="arrow double"></i>
+                                                            </label>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="row">
+                                                            &nbsp;
+                                                            <div class="col-md-2">
+                                                                <center>
+                                                                    <button class="btn btn-danger light remove-field" type="button">
+                                                                        <i class="fa fa-minus-circle"></i>
+                                                                    </button>
+                                                                </center>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>                                        
+                                    </div>
+                                </div>                                
+                            </div>    
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-8">
+                    <button class="btn btn-primary" type="submit">Guardar Cambios</button>
+                    <input class="btn btn-danger" type="button" value="Cancelar">
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class="panel">
+
+        <div class="panel-heading">
+            <span class="panel-title">
+                <span class="glyphicons glyphicons-fast_food"></span>
+                Opciones del producto
+            </span>
+        </div>
+
+
+        <div id="p1" class="panel heading-border panel-primary">
+
+            <div class="panel-body bg-light">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Tipo</th>
+                            <th>Requerido</th>
+                            <th>Valores</th>
+                            <th>Orden</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($this->options as $option) : ?>
+                            <tr>
+                                <th><?php echo $option->name_option ?></th>
+                                <td><?php echo $option->name_type ?></td>
+                                <td><?php echo ($option->required == 1) ? 'SI' : 'NO' ?></td>
+                                <td><a href="<?php echo $this->url('admin', array('controller' => 'product', 'action' => 'optionValue', 'id' => $option->product_option_id)) ?>">Valores</a></td>
+
+                                <td><?php echo $option->sort_order ?></td>
+
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</div>
+
+
+</section>
+<!-- End: Co
+<style>
+
+/*demo styles*/
+
+/*demo buttons*/
+.contextual-demo a {
+    padding: 9px 4px;
+    width: 9.5%;
+}
+.contextual-demo a + a {
+    margin-left: 0.5%;
+}
+.contextual-demo-alt a {
+    padding: 9px 4px;
+    width: 15%;
+}
+.contextual-demo-alt a + a {
+    margin-left: 0.5%;
+}
+</style>
+<?php
+$this->headScript()
+        // Admin Panels
+        ->prependFile($this->basePath('vendor') . '/plugins/datepicker/js/moment.js')
+        ->prependFile($this->basePath('assets_admin') . '/admin-tools/admin-plugins/admin-panels/json2.js')
+        ->prependFile($this->basePath('assets_admin') . '/admin-tools/admin-plugins/admin-panels/jquery.ui.touch-punch.min.js')
+        ->prependFile($this->basePath('assets_admin') . '/admin-tools/admin-plugins/admin-panels/adminpanels.js')
+        // Page Plugins via CDN 
+        ->prependFile('http://cdnjs.cloudflare.com/ajax/libs/globalize/0.1.1/globalize.min.js')
+
+        // Sparklines CDN
+        ->prependFile('http://cdnjs.cloudflare.com/ajax/libs/jquery-sparklines/2.1.2/jquery.sparkline.min.js')
+        //Page Plugins
+        ->prependFile($this->basePath() . '/assets/js/bootstrap.js')
+        ->prependFile($this->basePath('vendor') . '/plugins/datepicker/js/moment.js')
+        ->prependFile($this->basePath('vendor') . '/plugins/daterange/daterangepicker.js')
+        ->prependFile($this->basePath('vendor') . '/plugins/datepicker/js/bootstrap-datetimepicker.min.js')
+        ->prependFile($this->basePath('vendor') . '/plugins/tagmanager/tagmanager.js')
+        // Chart Plugins
+        ->prependFile($this->basePath('vendor') . '/plugins/highcharts/highcharts.js')
+        ->prependFile($this->basePath('vendor') . '/plugins/circles/circles.js')
+        ->prependFile($this->basePath('vendor') . '/plugins/raphael/raphael.js')
+        ->prependFile($this->basePath('vendor') . '/plugins/jquerymask/jquery.maskedinput.min.js')
+        ->prependFile($this->basePath('vendor') . '/plugins/tagmanager/tagmanager.js')
+        ->prependFile($this->basePath('vendor') . '/plugins/dropzone/dropzone.min.js')
+        // Holder js
+        ->prependFile($this->basePath() . '/vendor/plugins/select2/select2.min.js')
+        ->prependFile($this->basePath() . '/vendor/plugins/fileupload/fileupload.js')
+        ->prependFile($this->basePath('assets_admin') . '/js/bootstrap/holder.min.js')
+;
+;
+$this->inlineScript()->captureStart();
+echo <<<JS
+        jQuery(document).ready(function() {
+
+            $('.admin-panels').adminpanel({
+                grid: '.admin-grid',
+                draggable: true,
+                preserveGrid: true,
+                mobile: false,
+                callback: function() {
+                    bootbox.confirm('<h3>A Custom Callback!</h3>', function() {});
+                },
+                onFinish: function() {
+                    $('.admin-panels').addClass('animated fadeIn').removeClass('fade-onload');
+
+                    // Init the rest of the plugins now that the panels
+                    // have had a chance to be moved and organized.
+                    // It's less taxing to organize empty panels
+                    demoHighCharts.init();
+                    runVectorMaps();
+
+                    // We also refresh any "in-view" waypoints to ensure
+                    // the correct position is being calculated after the 
+                    // Admin Panels plugin moved everything
+                    Waypoint.refreshAll();
+
+                },
+                onSave: function() {
+                    $(window).trigger('resize');
+                }
+            });
+
+          
+            // Init custom page animation
+            setTimeout(function() {
+                $('.custom-nav-animation li').each(function(i, e) {
+                    var This = $(this);
+                    var timer = setTimeout(function() {
+                        This.addClass('animated animated-short zoomIn');
+                    }, 50 * i);
+                });
+            }, 500);
+
+            // Init tray navigation smooth scroll
+            $('.tray-nav a').smoothScroll({
+                offset: -145
+            });
+            
+
+        });
+    </script>
+JS;
+$this->inlineScript()->captureEnd();

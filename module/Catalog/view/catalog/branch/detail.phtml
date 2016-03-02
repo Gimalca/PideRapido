@@ -1,0 +1,200 @@
+
+<div class="parallax-section parallax-fx parallax-image-aboutus parallaxOffset" style="margin:0px;">
+    <div class="w100"style="margin-top:-19px">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="parallax-content clearfix animated ">
+                        <h1 class="x2large"><?php echo $this->branch->name_franchise ?></h1>
+                        <h5 class="parallaxSubtitle">Aquí tendrás detalle de como funciona nuestra plataforma</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container main-container ">
+    <div class="row innerPage">
+        <div class="col-lg-6 col-md-6 col-sm-12">
+            <div class="row userInfo">
+                <br>
+                <img class="img-responsive" src="<?php echo $this->basePath() . '/img/franchise/branch/' . $this->branch->logo ?> ">
+            </div>
+        </div>
+        <div class="col-md-offset-1 col-lg-5">
+            <div class="row userInfo">
+                <br>      			
+                <h1 class="product-title"><?php echo $this->branch->name ?></h1>    			
+                <h3 class="product-code">Franquicia: <a href="<?php echo $this->url('catalog', array('controller' => 'branch', 'action' => 'list', 'id' => $this->branch->franchise_id )) ?>"><?php echo $this->branch->name_franchise ?></a></h3>
+                <h3 class="product-code">Dirección: <?php echo $this->branch->address ?></h3>
+                <h3 class="product-code">Telefono: <?php echo $this->branch->phone ?></h3>    				
+                <h3 class="product-code">Horario: <?php echo $this->branch->opening_time ?></h3>   				
+                <h3 class="incaps"><i class="fa fa fa-check-circle-o color-in"></i> Abierto</h3>
+                
+                <h3 class="incaps"><i class="fa fa fa-check-circle-o color-in"></i> Disponible</h3>
+            </div>
+           
+        </div>
+    </div>
+    <div class="row innerPage">		  
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#combos" data-toggle="tab">Combos Principales</a></li>
+            <li> <a href="#padicionales" data-toggle="tab">Productos Adicionales</a></li>
+            <li> <a href="#ppostres" data-toggle="tab">Postres</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active" id="combos">    
+                <!--/.productFilter-->                
+                <div class="row  categoryProduct xsResponse clearfix">
+                    <?php foreach ($this->combos as $combo) : ?>
+                        <div class="item col-sm-4 col-lg-4 col-md-4 col-xs-6">
+                            <div class="product">
+                                <div class="image">  
+                                    <div class="quickview">
+                                        <!--a title="Quick View" class="btn btn-xs  btn-quickview" data-target="#product-details-modal" data-toggle="modal"> Quick View </a-->
+                                    </div>
+                                    <a href="<?php echo $this->url('catalog', array('controller' => 'branch', 'action' => 'product', 'id' =>  $combo->product_has_branch_id)); ?>"><img src="<?php echo $this->basePath() . '/img/catalog/product/' . $combo->image ?> " alt="img" class="img-responsive"></a>
+                                    <div class="promotion">
+                                        <span class="new-product"> Nuevo </span>
+                                        <!--span class="discount">15% Descuento</span-->
+                                    </div>
+                                </div>
+                                <div class="description">
+                                    <h4><a href="#"><?php echo $combo->name ?></a></h4>
+                                    <div class="grid-description">
+                                        <p><?php echo $combo->description ?> </p>
+                                    </div>
+                                    <!--span class="size">XL / XXL / S </span-->
+                                </div>
+                                <!--div class="price"> <span>$25</span> </div-->
+                                <div class="action-control">
+                                    <a class="btn btn-primary" href="<?php echo $this->url('catalog', array('controller' => 'branch', 'action' => 'product', 'id' =>  $combo->product_has_branch_id)); ?>">
+                                        <span class="add2cart"><i class="glyphicon glyphicon-shopping-cart"></i> Comprar</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+
+                <!--/.categoryProduct || product content end-->
+            </div>
+            <div class="tab-pane" id="padicionales">
+                <h3 class="product-code">Visualización de productos adicionales<span> (podrán ser elegidos con la compra de un combo) </span></h3><br>
+                <div class="row categoryProduct xsResponse clearfix">
+                    <?php foreach ($this->products as $product) : ?>
+                        <div class="item col-sm-4 col-lg-4 col-md-4 col-xs-6">
+                            <div class="product">
+                                <div class="image">
+                                    <div class="quickview">
+                                        <!--a title="Quick View" class="btn btn-xs  btn-quickview" data-target="#product-details-modal" data-toggle="modal"> Quick View </a-->
+                                    </div>
+                                    <a href="<?php echo $this->url('catalog', array('controller' => 'branch', 'action' => 'product', 'id' =>  $product->product_has_branch_id)); ?>"><img src="<?php echo $this->basePath() . '/img/catalog/product/' . $product->image ?>" alt="img" class="img-responsive"></a>
+                                    <div class="promotion">
+                                        <span class="new-product"> Nuevo </span>
+                                    </div>
+                                </div>
+                                <div class="description">
+                                    <h4><a href="#"><?php echo $product->name ?></a></h4>
+                                    <div class="grid-description">
+                                        <p><?php echo $product->description ?></p>
+                                    </div>
+                                </div>
+                                <div class="action-control">
+                                    <a class="btn btn-primary" href="<?php echo $this->url('catalog', array('controller' => 'cart', 'action' => 'add', 'id' =>  $product->product_has_branch_id)); ?>">
+                                        <span class="add2cart"><i class="glyphicon glyphicon-shopping-cart"></i> Añadir al carrito</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>   
+                    <?php endforeach; ?>
+                </div>
+            </div>
+            <div class="tab-pane" id="ppostres">
+                <h3 class="product-code">Visualización de postres <span> (podrán ser elegidos con la compra de un combo) </span></h3><br>
+                <div class="row  categoryProduct xsResponse clearfix">
+                    <?php foreach ($this->postres as $postre) : ?>
+                        <div class="item col-sm-4 col-lg-4 col-md-4 col-xs-6">
+                            <div class="product">
+                                <div class="image">
+                                    <div class="quickview">
+                                        <!--a title="Quick View" class="btn btn-xs  btn-quickview" data-target="#product-details-modal" data-toggle="modal"> Quick View </a-->
+                                    </div>
+                                    <a href="<?php echo $this->url('catalog', array('controller' => 'branch', 'action' => 'product', 'id' =>  $postre->product_has_branch_id)); ?>"><img src="<?php echo $this->basePath() . '/img/catalog/product/' . $postre->image ?>" alt="img" class="img-responsive"></a>
+                                    <div class="promotion">
+                                        <span class="new-product"> Nuevo </span>
+                                    </div>
+                                </div>
+                                <div class="description">
+                                    <h4><a href="#"><?php echo $postre->name ?></a></h4>
+                                    <div class="grid-description">
+                                        <p><?php echo $postre->description ?></p>
+                                    </div>
+                                </div>
+                                <div class="action-control">
+                                    <a class="btn btn-primary" href="<?php echo $this->url('catalog', array('controller' => 'cart', 'action' => 'add', 'id' =>  $postre->product_has_branch_id)); ?>">
+                                        <span class="add2cart"><i class="glyphicon glyphicon-shopping-cart"></i> Añadir al carrito</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>   
+                    <?php endforeach; ?>
+                    <!--/.item-->
+                     
+                </div>
+            </div>
+        </div>
+        <!--/.categoryFooter--> 
+    </div>
+
+<!--    <div class="row recommended">
+        <h1> Productos Relacionados </h1>
+        <div id="SimilarProductSlider">
+            <div class="item">
+                <div class="product"> <a class="product-image"> <img src="images/product/combo1.jpg" alt="img"> </a>
+                    <div class="description">
+                        <h4><a  href="#">Combo #1</a></h4>            
+                    </div>
+                </div>
+            </div>
+            /.item
+            <div class="item">
+                <div class="product"> <a class="product-image"> <img src="images/product/combo2.jpg" alt="img"> </a>
+                    <div class="description">
+                        <h4><a  href="#">Combo #2</a></h4>            
+                    </div>
+                </div>
+            </div>
+            /.item        
+            <div class="item">
+                <div class="product"> <a class="product-image"> <img src="images/product/combo3.jpg" alt="img"> </a>
+                    <div class="description">
+                        <h4><a  href="#">Combo #3</a></h4>
+                    </div>
+                </div>
+            </div>
+            /.item        
+            <div class="item">
+                <div class="product"> <a class="product-image"> <img src="images/product/combo4.jpg" alt="img"> </a>
+                    <div class="description">
+                        <h4><a  href="#">Combo #4</a></h4>
+                    </div>
+                </div>
+            </div>
+            /.item      
+            <div class="item">
+                <div class="product"> <a class="product-image"> <img src="images/product/combo5.jpg" alt="img"> </a>
+                    <div class="description">
+                        <h4><a  href="#">Combo #5</a></h4>
+                    </div>
+                </div>
+            </div>
+            /.item       
+        </div>
+        /.SimilarProductSlider 
+    </div>-->
+    <!--/.recommended-->  
+    <div style="clear:both"></div>  
+</div>  
+<!-- /main container -->
+<div class="gap"></div>

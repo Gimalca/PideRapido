@@ -1,0 +1,242 @@
+<div class="panel">
+    <div class="col-md-12">
+        <div class="panel">
+            <div class="panel-heading">
+                <span class="panel-title">
+                    <span class="glyphicons glyphicons-fast_food"></span>Crear Productos</span>
+            </div>
+            <div class="panel-body">
+                <div class="clearfix"></div>
+                <div class="tab-content br-n pn">
+                    <div id="tab17_1" class="tab-pane active">
+                        <div class="row">
+
+                            <div class="col-md-12 text-center">
+                                <a href="<?php echo $this->url('admin', array('controller' => 'product', 'action' => 'add')); ?>" class="holder-style p15" data-steps-style="steps-tabs">
+                                    <span class="fa fa-plus holder-icon"></span>
+                                    <br> Crear Producto
+                                </a>
+                                <div class="btn-group text-right">
+                                </div>   
+                            </div>
+                        </div>
+                    </div>                                    
+                </div>
+            </div>
+        </div>
+    </div> 
+</div>
+<section id="content" class="animated fadeIn">
+
+    <h2 class="lh30 mtn text-center">Lista de <b class="text-primary">Productos</b></h2>
+    <br>
+
+    <div class="panel">
+        <div class="panel-heading">
+            <span class="panel-title">
+                <span class="glyphicons glyphicons-fast_food"></span>
+                Elementos Creados
+            </span>
+            </span>
+        </div>
+        <div class="admin-form theme-primary">
+
+            <div class="panel-menu">
+                <div class="chart-legend" >
+                    <a class="legend-item btn btn-sm btn-primary mr10" href="<?php echo $this->url('admin', array('controller' => 'product', 'action' => 'list-franchise')); ?>"><span class="fa fa-list pr5"></span>Ver por Franquicias</a>
+
+                    <div class=" mr10 right legend-item" style=" float: right">   Cantidad de Productos:  <b><?php print_r($this->products->Count()) ?></b></div></a>
+                </div>
+            </div>
+            <div id="p1" class="panel  panel-primary">
+
+                <div class="panel-body bg-light">
+                    <div class="tab-content">
+                        <div id="tab15_1" class="tab-pane active">
+                            <table class="table admin-form theme-warning tc-checkbox-1 fs13">
+
+                                <thead>
+                                    <tr class="bg-light">
+                                        <th class="text-center">Seleccionar</th>
+                                        <th class="">Imagen</th>
+                                        <th class="">Nombre</th>
+                                        <th class="">Franquicia</th>
+                                        <th class="">Sku</th>
+                                        <th class="">Precio</th>
+                                        <th class="text-center">Estatus</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach ($this->products as $product) : ?>
+                                        <tr data-id="<?php echo $product->product_id; ?>">
+                                            <td class="text-center">
+                                                <label class="option block mn">
+                                                    <input type="checkbox" name="mobileos" value="FR">
+                                                    <span class="checkbox mn"></span>
+                                                </label>
+                                            </td>
+
+                                            <td class="">
+                                                <img src="<?php echo $this->basePath() . '/img/catalog/product/' . $product->image ?>" class="img-responsive thumbnail mr25 w75">
+
+                                            </td>
+                                            <td class=""><?php echo $product->name ?></td>
+                                            <td class=""><a href="<?php echo $this->url('admin', array('controller' => 'product', 'action' => 'list', 'id' => $product->franchise_id)) ?>"<b class="text-primary"><?php echo $product->name_franchise ?></b></td>
+                                            <td class=""><?php echo $product->sku ?></td>
+                                            <td class=""><?php echo $product->price ?> Bs.</td>
+                                            <td class="text-center">
+                                                <div class="btn-group text-right"  data-id="<?php echo $product->product_id; ?>" data-whatever="<?php echo $product->status; ?>">
+                                                    <?php
+                                                    $status = $product->status;
+                                                    if ($status == 0) {
+                                                        ?>
+                                                        <button type="button" class="btn btn-danger br2 btn-xs fs12 dropdown-toggle" data-toggle="dropdown" aria-expanded="true"> 
+                                                            Deshabilitado
+                                                            <span class="caret ml5"></span>
+                                                        </button> 
+                                                        <?php
+                                                    }
+                                                    if ($status == 1) {
+                                                        ?>
+                                                        <button type="button" class="btn btn-success br2 btn-xs fs12 dropdown-toggle" data-toggle="dropdown" aria-expanded="true"> 
+                                                            Active
+                                                            <span class="caret ml5"></span>
+                                                        </button> 
+                                                    <?php }
+                                                    ?>
+
+                                                    <ul class="dropdown-menu" role="menu">
+                                                        <li>
+                                                            <a href="<?php echo $this->basePath() . '/admin/product/edit/' . $product->product_id; ?>">Edit</a>
+                                                        </li>
+                                                        <li class="divider"></li>
+                                                        <?php
+                                                        switch ($status) {
+                                                            case 0:
+                                                                ?>
+                                                                <li>
+                                                                    <a class="status" data-whatever="1" data-note-style="success" data-note-shadow="true" href = "#">Activo</a>
+                                                                </li>
+                                                                <li class = "" >
+                                                                    <a class="status" data-whatever="0" data-note-style="success" data-note-shadow="true" href = "#" >Deshabilitado</a>
+                                                                </li>
+                                                                <?php
+                                                                break;
+                                                            case 1:
+                                                                ?>
+                                                                <li  class = "">
+                                                                    <a class="status" data-whatever="1" data-note-style="success" data-note-shadow="true" href = "#">Activo</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a class="status" data-whatever="0" data-note-style="success" data-note-shadow="true" href = "#">Deshabilitado</a>
+                                                                </li>
+                                                                <?php
+                                                                break;
+                                                        }
+                                                        ?>
+                                                    </ul>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>      
+</section>
+
+<?php
+$this->inlineScript()->captureStart();
+echo <<<JS
+    jQuery(document).ready(function () {
+
+        $('.status').click(function(e){
+            e.preventDefault();
+            var row = $(this).closest('div');
+            var oldStatus = row.data('whatever');            
+            var status = $(this).data('whatever');
+            var id = row.data('id');
+
+                      $.ajax({
+                            url: '../admin/product/status/'+id,
+                            type: 'post',
+                            data: {"id":id,"status":status},
+                            dataType: 'json',
+                            beforeSend: function() {
+
+                                    },
+                            complete: function() {
+
+                            },
+                            success: function(json) {
+                                var _class = '';
+                                var statusName = json.statusName;
+                                switch (json.status) {
+                                    case '1':
+                                       _class = 'btn btn-success br2 btn-xs fs12 dropdown-toggle';
+                                        
+                                        break;
+                                    case '0':
+                                        _class = 'btn btn-danger br2 btn-xs fs12 dropdown-toggle';
+                                        break;
+                                    case '2':
+                                        _class = 'btn btn-warning br2 btn-xs fs12 dropdown-toggle';
+                                        row.fadeOut();
+                                        var noteStyle = $(this).data('note-style');
+                                        var noteShadow = $(this).data('note-shadow');
+                                        var noteOpacity = $(this).data('note-opacity');
+                                        var noteStack = $(this).data('note-stack');
+                                        var width = "390px";
+
+                                        var noteStack = noteStack ? noteStack : "stack_top_right";
+                                        var noteOpacity = noteOpacity ? noteOpacity : "1";
+
+                                        function findWidth() {
+                                            if (noteStack == "stack_bar_top") {
+                                                return "100%";
+                                            }
+                                        }
+
+                                        new PNotify({
+                                            title: 'Succefully Archived',
+                                            shadow: noteShadow,
+                                            opacity: noteOpacity,
+                                            addclass: noteStack,
+                                            type: 'noteStyle',
+                                            stack: Stacks[noteStack],
+                                            width: findWidth(),
+                                            delay: 1400
+                                        });
+                                        break;
+
+                                }
+                                
+                                var button = $(row).find('button');
+                                button.html(statusName+'<span class="caret ml5"></span>');
+
+                                var oldClass = button.attr('class');
+                                button.removeClass(oldClass); 
+                                button.addClass(_class);
+
+                                var newStatus = $(row).find('a[data-whatever='+status+']').parent('li');               
+                                var old = $(row).find('a[data-whatever='+oldStatus+']').parent('li');
+                                  
+
+                                
+
+                            },
+                            error: function(xhr, ajaxOptions, thrownError) {
+                                alert(thrownError + "-" + xhr.status );
+                            }
+                     });
+        });
+        
+   });
+
+</script>
+JS;
+$this->inlineScript()->captureEnd();

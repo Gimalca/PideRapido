@@ -1,0 +1,171 @@
+<style>
+    .CartDescription {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .information {
+    }
+
+    .information .name {
+        display: block;
+    }
+
+    .options {
+        max-width: 49%;
+    }
+</style>
+
+<div class="container main-container headerOffset">  
+  <div class="row">
+    <div class="breadcrumbDiv col-lg-12">
+      <ul class="breadcrumb">
+        <li> <a href="<?php echo $this->basePath('') ?>">Inicio</a> </li>
+        <li> <a href="<?php echo $this->url('account', array('controller' => 'index', 'action' => 'index')) ?>">Mi Cuenta</a> </li>
+        <li class="active"><a href="<?php echo $this->url('account', array('controller' => 'OrderHistory', 'action' => 'index')) ?>">Ordenes</a></li>
+        <li class="active">Orden #<?php echo $this->escapeHtml($this->order->order_id) ?> </li>
+      </ul>
+    </div>
+  </div>
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12">
+            <div class="row userInfo">        
+                <div class="col-xs-12 col-sm-12">
+                    <div class="w100 clearfix">
+                        <div class="row userInfo">                
+                        	<div class="col-xs-12 col-sm-12 col-lg-9 col-md-9">
+                                <div class="cartContent w100 checkoutReview ">
+                                    <table class="cartTable table-responsive" style="width:100%">
+                                        <tr class="CartProduct cartTableHeader">
+                                            <th style="width:15%">Productos</th>
+                                            <th class="checkoutReviewTdDetails">Detalle</th>
+                                            <th class="hidden-xs" style="width:10%">Precio Unitario</th>
+                                            <th class="hidden-xs" style="width:10%">Adicional</th>
+                                            <th style="width:15%">Total</th>
+                                        </tr>
+                                        <tbody>
+                                            <?php foreach ($this->products as $product): ?>
+                                            <tr class="CartProduct">
+                                                <td class="CartProductThumb">
+                                                    <div>
+                                                    <a href="<?php echo $this->url('catalog', array('controller' => 'branch', 'action' => 'product', 'id' =>  $product->product_has_branch_id)); ?>">
+                                                        <img src="<?php echo $this->basePath() . '/img/catalog/product/' . $product->image ?>"></a>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="CartDescription">
+                                                        <div class='information'>
+                                                    <h4> <a href="<?php echo $this->url('catalog', array('controller' => 'branch', 'action' => 'product', 'id' =>  $product->product_has_branch_id)); ?>"><?php echo $this->escapeHtml($product->name) ?></a> </h4>
+                                                    <span class="name">Franquicia: <a href="<?php echo $this->url('catalog', array('controller' => 'branch', 'action' => 'list', 'id' => $product->franchise_id)) ?>"><?php echo $this->escapeHtml($product->franchise_name); ?></a></span>
+                                                    <span class="name">Sucursal: <a href="<?php echo $this->url('catalog', array('controller' => 'branch', 'action' => 'detail', 'id' => $product->branch_id)) ?>"><?php echo $this->escapeHtml($product->branch_name); ?></a></span>
+                                                        </div>
+                                                        <?php if(!empty($product->options)): ?>
+                                                        <div class="options">
+                                                            <ul style='margin: 0px; font-size: 0.9em;'>
+                                                                <?php foreach(explode(',', $product->options) as $option): ?>
+                                                                   <li> <?php echo $this->escapeHtml($option)?></li>
+                                                                <?php endforeach; ?>
+                                                            </ul>
+                                                        </div>
+                                                        <?php endif; ?>
+                                                    </div>
+                                                </td>
+                                                <td class="delete hidden-xs">
+                                                    <div class="price ">Bs. <?php echo $this->escapeHtml($product->price)?> </div>
+                                                </td>
+                                                
+                                                <td class="price hidden-xs">Bs. <?php echo ($product->sum_opciones > 0) ? $this->escapeHtml($product->sum_opciones) : 0;  ?></td>
+                                                <td class="price">Bs. <?php echo $this->escapeHtml($product->price + $product->sum_opciones) ?></td>
+                                            </tr>
+                                            <?php endforeach; ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            <!--cartContent-->
+                            <!--/row-->
+                            </div>
+    <div class="col-lg-3 col-md-3 col-sm-12 rightSidebar"> 
+                        <div class="w100 cartMiniTable">
+                            <table id="cart-summary" class="std table">
+                                    <tbody>
+                                    <tr>
+                                      <td># Factura</td>
+                                      <td class="price"><?php echo $this->escapeHtml($this->order->invoice_number); ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Estado</td>
+                                        <td data-value="3">
+                                            <?php switch($this->order->order_status): 
+                                               
+                                                case 1: ?>
+                                                    <span class="label label-warning">
+                                                        Por Pagar
+                                                    </span>
+                                                <?php break; ?>
+                                                <?php case 2: ?>
+                                                 
+                                                        <span class="label label-success">
+                                                                Aprobado
+                                                        </span>
+                                                       
+                                                <?php break; ?>
+                                                <?php case 3: ?>
+                                                    <span class="label label-danger">
+                                                        Negado
+                                                    </span>
+                                                <?php break; ?>
+                                            <?php endswitch; ?>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                      <td>Fecha y Hora</td>
+                                      <td class="price"><?php echo $this->escapeHtml($this->order->date_modified); ?></td>
+                                    </tr>
+                                    <tr>
+                                      <td>Total productos</td>
+                                      <td class="price">Bs.<?php echo $this->escapeHtml(round($this->total->sum_product_price + $this->total->sum_options_price, 2)); ?></td>
+                                    </tr>
+                                    <tr class="cart-total-price ">
+                                      <td>Comisión</td>
+                                      <td class="price">Bs.<?php echo $this->escapeHtml($this->total->fee); ?></td>
+                                    </tr>
+                                    <tr class="cart-total-price ">
+                                      <td>Iva</td>
+                                      <td class="price">Bs.<?php echo $this->escapeHtml(round(($this->total->sum_product_price + $this->total->sum_options_price + $this->total->fee)*0.12, 2)); ?></td>
+                                    </tr>
+                                    <tr>
+                                      <td> Total </td>
+                                      <td class=" site-color" id="total-price">
+                                        Bs.<?php echo $this->escapeHtml($this->order->total_payment); ?>
+                                      </td>
+                                    </tr>
+                                    </tbody>
+                                  </table> 
+                                    <?php if ($this->order->order_status == 1): ?>
+                                        <a href="<?php echo $this->url('payment', array('controller' => 'checkout', 'action' => 'payMethod', 'id' => $this->order->order_id)) ?>" class="btn btn-primary btn-small" >
+                                            Concretar Orden &nbsp; <i class="fa fa-check"></i>
+                                        </a> 	
+                                    <?php endif; ?>
+                                  </div>
+                            </div>
+                            <!--/rightSidebar--> 
+                        </div>
+                    </div>
+                    <!--/row end-->
+                <!--/ cartFooter -->
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-12 clearfix">
+          <ul class="pager">
+            <li class="previous pull-right"><a href="<?php echo $this->url('catalog', array('controller' => 'franchise', 'action' => 'list')) ?>"><i class="fa fa-home"></i> ir a la tienda</a></li>
+            <li class="next pull-left"><a href="<?php echo $this->url('account', array('controller' => 'OrderHistory', 'action' => 'index')) ?>"> &larr; Volver</a></li>
+          </ul>
+        </div>
+    <!--/row end--> 
+    <!--/rightSidebar-->
+    </div>
+<!--/row-->  
+    <div style="clear:both"></div>
+</div>

@@ -1,0 +1,271 @@
+<!-- Begin: Content -->
+<section id="content" class="animated fadeIn">
+
+    <h2 class="lh30 mt15 text-center"> Buscar <b class="text-primary"> Sucursal </b></h2>
+    <br>
+
+    <div class="panel">
+
+        <div class="admin-form theme-primary">
+
+            <div id="p1" class="panel heading-border panel-primary">
+
+                <div class="panel-body bg-light">
+                    <form id="form"  action="<?php echo $this->basePath('admin/branch/list/'.$this->franchise_id); ?>" method="post" enctype="multipart/form-data">
+                        <div class="col-md-offset-4 col-md-4">
+                            <div class="section">
+                                <label class="field select">
+                                    <?php echo $this->formSelect($this->branch_list->get('branch_id')); ?>
+                                    <i class="arrow"></i>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-12 text-center">
+                            <center>
+                                <button class="button btn-primary" type="submit">Buscar</button>
+                            </center>
+                        </div> 
+                    </form> 
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="row">
+
+            <div class="text-center">
+
+                <h2 class="lh30 mt15 text-center"> Listado <b class="text-primary"> de Sucursales </b></h2>
+                <br>
+            </div>
+
+        </div>
+        <br>
+        <?php foreach ($this->branch as $branch) : ?>
+        <div class="col-md-4" id="fade">
+            <div class="panel">
+                <div class="panel-heading">
+                    <span class="panel-title">
+                        <span class="glyphicons glyphicons-fast_food"></span>Sucursal <?php echo $branch->name ?></span>
+                </div>
+                <div class="panel-body">
+
+                    <div class="clearfix"></div>
+                    <div class="tab-content br-n pn">
+                        <div id="tab17_1" class="tab-pane active">
+                            <div class="row">
+                                <div class="col-md-4 ">
+                                    <img  src="<?php echo $this->basePath().'/img/franchise/branch/'.$branch->logo?>" class="img-responsive thumbnail mr25 h-100" />
+                                </div>
+                                <div class="col-md-8">
+                                    <h5><?php echo $branch->contact ?></h5><?php // echo $branch->email ?><br><?php echo $branch->phone ?><br>
+                                    <div class="btn-group text-right"  data-id="<?php echo $branch->branch_id; ?>" data-whatever="<?php echo $branch->status; ?>">
+                                    <?php
+                                    $status = $branch->status;
+                                    if ($status == 0) {
+                                        ?>
+                                        <button type="button" class="btn btn-danger br2 btn-xs fs12 dropdown-toggle" data-toggle="dropdown" aria-expanded="true"> 
+                                            Deshabilitado
+                                            <span class="caret ml5"></span>
+                                        </button> 
+                                        <?php
+                                    }
+                                    if ($status == 1) {
+                                        ?>
+                                        <button type="button" class="btn btn-success br2 btn-xs fs12 dropdown-toggle" data-toggle="dropdown" aria-expanded="true"> 
+                                            Activado
+                                            <span class="caret ml5"></span>
+                                        </button> 
+                                    <?php }
+                                    if ($status == 2) {
+                                    ?>
+                                        <button type="button" class="btn btn-warning br2 btn-xs fs12 dropdown-toggle" data-toggle="dropdown" aria-expanded="true"> 
+                                            Archivado
+                                            <span class="caret ml5"></span>
+                                        </button> 
+                                    <?php }
+                                    ?>
+
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li>
+                                            <a href="<?php echo $this->basePath() . '/admin/branch/edit/' . $branch->branch_id; ?>">Edit</a>
+                                        </li>
+                                        <li>
+                                            <a href="<?php echo $this->basePath() . '/admin/branch/branchProduct/' . $branch->branch_id; ?>">Agregar Productos</a>
+                                        </li>
+                                        <li>
+                                            <a href="<?php echo $this->basePath() . '/admin/operator/add/' . $branch->branch_id; ?>">Agregar Operadores</a>
+                                        </li>
+                                        <li class="divider"></li>
+                                        <?php
+                                        switch ($status) {
+                                            case 0:
+                                                ?>
+                                                <li>
+                                                    <a class="status" data-whatever="1" data-note-style="success" data-note-shadow="true" href = "#">Activo</a>
+                                                </li>
+                                                <li class = "" >
+                                                    <a class="status" data-whatever="0" data-note-style="success" data-note-shadow="true" href = "#" >Deshabilitado</a>
+                                                </li>
+                                                <li  class = "">
+                                                    <a class="status" data-whatever="2" data-note-style="success" data-note-shadow="true" href = "#">Archivado</a>
+                                                </li>
+                                                <?php
+                                                break;
+                                            case 1:
+                                                ?>
+                                                <li  class = "">
+                                                    <a class="status" data-whatever="1" data-note-style="success" data-note-shadow="true" href = "#">Activo</a>
+                                                </li>
+                                                <li>
+                                                    <a class="status" data-whatever="0" data-note-style="success" data-note-shadow="true" href = "#">Deshabilitado</a>
+                                                </li>
+                                                <li  class = "">
+                                                    <a class="status" data-whatever="2" data-note-style="success" data-note-shadow="true" href = "#">Archivado</a>
+                                                </li>
+                                                <?php
+                                                break;
+                                            case 2:
+                                                ?>
+                                                <li  class = "">
+                                                    <a class="status" data-whatever="1" data-note-style="success" data-note-shadow="true" href = "#">Activo</a>
+                                                </li>
+                                                <li>
+                                                    <a class="status" data-whatever="0" data-note-style="success" data-note-shadow="true" href = "#">Deshabilitado</a>
+                                                </li>
+                                                <li  class = "">
+                                                    <a class="status" data-whatever="2" data-note-style="success" data-note-shadow="true" href = "#">Archivado</a>
+                                                </li>
+                                                <?php
+                                                break;
+                                        }
+                                        ?>
+
+                                    </ul>
+                                </div> 
+                                </div>
+                            </div>
+                        </div>                                    
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php endforeach; ?>
+       
+</section>
+<?php
+$this->inlineScript()->captureStart();
+echo <<<JS
+//<script type="text/javascript">
+   jQuery('document').ready(function(){
+       
+        var Stacks = {
+                stack_top_right: {
+                    "dir1": "down",
+                    "dir2": "left",
+                    "push": "top",
+                    "spacing1": 10,
+                    "spacing2": 10
+                },
+            }
+
+            // PNotify Plugin Event Init
+            
+       $('.btn-delete').click(function(e){
+           e.preventDefault();
+            var row = $(this).closest('div');
+            var rowf = $('#fade');
+            var id = row.data('id');
+          bootbox.confirm("Are You Sure?!", function(e) {
+
+                // e returns true if user clicks "accept"
+                // false if "cancel" or dismiss icon are clicked
+                if (e) {  
+                  
+
+                      $.ajax({
+                            url: '../delete/'+id,
+                            type: 'post',
+                            data: 'id='+id,
+                            dataType: 'json',
+                            beforeSend: function() {
+
+                                    },
+                            complete: function() {
+
+                            },
+                            success: function(json) {
+                                rowf.fadeOut();
+                            },
+                            error: function(xhr, ajaxOptions, thrownError) {
+                                alert(thrownError + "-" + xhr.status );
+                            }
+                     });
+               } else {
+                   return;
+               }    
+           });
+        });
+       $('.status').click(function(e){
+            e.preventDefault();
+            var row = $(this).closest('div');
+            var oldStatus = row.data('whatever');            
+            var status = $(this).data('whatever');
+            var id = row.data('id');
+
+                      $.ajax({
+                            url: '../status/'+id,
+                            type: 'post',
+                            data: {"id":id,"status":status},
+                            dataType: 'json',
+                            beforeSend: function() {
+
+                                    },
+                            complete: function() {
+
+                            },
+                            success: function(json) {
+                                var _class = '';
+                                var statusName = json.statusName;
+                                switch (json.status) {
+                                    case '1':
+                                       _class = 'btn btn-success br2 btn-xs fs12 dropdown-toggle';
+                                        
+                                        break;
+                                    case '0':
+                                        _class = 'btn btn-danger br2 btn-xs fs12 dropdown-toggle';
+                                        break;
+                                    case '2':
+                                        _class = 'btn btn-warning br2 btn-xs fs12 dropdown-toggle';                                        
+                                        break;
+
+                                }
+                                
+                                var button = $(row).find('button');
+                                button.html(statusName+'<span class="caret ml5"></span>');
+
+                                var oldClass = button.attr('class');
+                                button.removeClass(oldClass); 
+                                button.addClass(_class);
+
+                                var newStatus = $(row).find('a[data-whatever='+status+']').parent('li');               
+                                var old = $(row).find('a[data-whatever='+oldStatus+']').parent('li');
+                                  
+
+                                
+
+                            },
+                            error: function(xhr, ajaxOptions, thrownError) {
+                                alert(thrownError + "-" + xhr.status );
+                            }
+                     });
+        });
+        
+   });
+
+//</script>
+
+JS;
+$this->inlineScript()->captureEnd();

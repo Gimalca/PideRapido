@@ -1,0 +1,314 @@
+
+<?php $this->form->prepare() ?>
+<!-- Begin: Content -->
+<section id="content" class="animated fadeIn">
+    <form class="form-horizontal" role="form"  action="<?php echo $this->basePath($this->form->getAttribute('action')); ?>" method="post" enctype="multipart/form-data">
+        <input value="1" hidden="true"  name="validationEdit">
+        <?php echo $this->formHidden($form->get('product_id')); ?>
+        <div class="panel">
+            <div class="panel-heading">
+                <span class="panel-title">
+                    <span class="glyphicons glyphicons-fast_food"></span>
+                    Producto Individual
+                </span>
+                </span>
+            </div>
+            <div id="p1" class="panel heading-border panel-primary">
+                <div class="tab-block mb25">
+                    <ul class="nav nav-tabs nav-tabs-right">
+                        <li class="active">
+                            <a href="#tab5_1" data-toggle="tab" aria-expanded="true">General</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div id="tab5_1" class="tab-pane active">
+                            <div class="panel-body bg-light">
+
+                                <div class="col-md-4">
+                                    <div class="tray-bin pl10 mb10" style="min-height: 250px;">
+                                        <br>
+                                        <div class="fileupload fileupload-new admin-form" data-provides="fileupload">
+                                            <div class="fileupload-new thumbnail" style="">
+                                                <img src="<?php echo $this->basePath() . '/img/catalog/product/' . $this->image ?>" alt="holder">
+                                            </div>
+                                            <div class="fileupload-preview fileupload-exists thumbnail" style=""></div>
+                                            <div class="row">
+                                                <div class="col-xs-12">
+                                                    <span class="button btn-system btn-file btn-block">
+                                                        <span class="fileupload-new">Select</span>
+                                                        <span class="fileupload-exists">Change</span>
+                                                        <?php echo $this->formFile($this->form->get('image')); ?>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-8">
+
+                                    <div class="form-group">
+                                        <label for="inputStandard" class="col-lg-3 control-label">Nombre del producto
+                                        </label>
+                                        <div class="col-lg-9">
+                                            <?php echo $this->formInput($this->form->get('name')); ?>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-3 control-label" for="textArea2">Descripción</label>
+                                        <div class="col-lg-9">
+                                            <?php echo $this->formTextarea($this->form->get('description')); ?>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-3 control-label" for="textArea2">Precio</label>
+                                        <div class="col-lg-9">
+                                            <?php echo $this->formInput($this->form->get('price')); ?>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-3 control-label" for="category_id">Tipo:</label>
+                                        <div class="col-lg-9">
+                                            <label class="field select">
+                                                <?php echo $this->formSelect($this->form->get('type')); ?>
+                                                <i class="arrow double"></i>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-3 control-label" for="productsku">SKU</label>
+                                        <div class="col-lg-9">
+                                            <?php echo $this->formInput($this->form->get('sku')); ?>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-3 control-label" for="category_id">Categoria:</label>
+                                        <div class="col-lg-9">
+                                            <label class="field select">
+                                                <?php echo $this->formSelect($this->form->get('category_id')); ?>
+                                                <i class="arrow double"></i>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-offset-8">
+                                            <button class="btn btn-primary" type="submit">Guardar Cambios</button>
+                                            <a href="<?php echo $this->url('franchise', array('controller' => 'products', 'action' => 'products')) ?>"><button class="btn btn-danger" type="button" value="Cancelar">Cancelar</button></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>            
+        </div>
+    </form>
+    <div class="panel">
+
+        <div class="panel-heading">
+            <span class="panel-title">
+                <span class="glyphicons glyphicons-fast_food"></span>
+                Opciones del producto
+            </span>
+        </div>
+
+
+        <div id="p1" class="panel heading-border panel-primary">
+
+            <div class="panel-body bg-light">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Nombre de la Opción</th>
+                            <th>Valor de la Opción</th>
+                            <th>Precio</th>
+                            <th>Editar Precio</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($this->options as $option) : ?>
+                            <tr>
+                                <th><?php echo $option->name_option ?></th>
+                                <td><?php echo $option->name_option_value ?></td>
+                                <td><?php echo $option->price ?></td>
+
+                                <td>
+                                    <form action="<?php echo $this->basePath($this->formPrice->getAttribute('action')); ?>" method="post">
+                                        <?php echo $this->formHidden($form->get('product_id')); ?>
+                                        <div class="col-md-6">
+                                            <input name="product_option_value_id" type="hidden" id="product_option_value_id" <?php echo 'value="' . $option->product_option_value_id . '"' ?> >
+                                            <?php echo $this->formInput($this->formPrice->get('price')); ?>
+                                        </div>                                    
+                                        <button type="submit" class="btn btn-primary notification" data-note-style="success" >Guardar Cambios</button>
+                                        <?php echo $this->formInput($this->formPrice->get('csrf')); ?>
+                                    </form>
+                                </td>
+                                <td>
+                                    <div class="btn-group text-right"  data-id="<?php echo $option->product_option_value_id; ?>" data-whatever="<?php echo $option->status_option_product; ?>">
+                                        <?php
+                                        $status = $option->status_option_product;
+                                        if ($status == 0) {
+                                            ?>
+                                            <button type="button" class="btn btn-danger br2 btn-xs fs12 dropdown-toggle" data-toggle="dropdown" aria-expanded="true"> 
+                                                Deshabilitado
+                                                <span class="caret ml5"></span>
+                                            </button> 
+                                            <?php
+                                        }
+                                        if ($status == 1) {
+                                            ?>
+                                            <button type="button" class="btn btn-success br2 btn-xs fs12 dropdown-toggle" data-toggle="dropdown" aria-expanded="true"> 
+                                                Active
+                                                <span class="caret ml5"></span>
+                                            </button> 
+                                        <?php }
+                                        ?>
+
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li class="divider"></li>
+                                            <?php
+                                            switch ($status) {
+                                                case 0:
+                                                    ?>
+                                                    <li>
+                                                        <a class="status" data-whatever="1" data-note-style="success" data-note-shadow="true" href = "#">Activo</a>
+                                                    </li>
+                                                    <li class = "" >
+                                                        <a class="status" data-whatever="0" data-note-style="success" data-note-shadow="true" href = "#" >Deshabilitado</a>
+                                                    </li>
+                                                    <?php
+                                                    break;
+                                                case 1:
+                                                    ?>
+                                                    <li  class = "">
+                                                        <a class="status" data-whatever="1" data-note-style="success" data-note-shadow="true" href = "#">Activo</a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="status" data-whatever="0" data-note-style="success" data-note-shadow="true" href = "#">Deshabilitado</a>
+                                                    </li>
+                                                    <?php
+                                                    break;
+                                            }
+                                            ?>
+
+                                        </ul>
+                                    </div> 
+                                </td> 
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</div>
+
+
+</section>
+<!-- End: Co
+<style>
+
+/*demo styles*/
+
+/*demo buttons*/
+.contextual-demo a {
+    padding: 9px 4px;
+    width: 9.5%;
+}
+.contextual-demo a + a {
+    margin-left: 0.5%;
+}
+.contextual-demo-alt a {
+    padding: 9px 4px;
+    width: 15%;
+}
+.contextual-demo-alt a + a {
+    margin-left: 0.5%;
+}
+</style>
+<?php
+$this->headScript()
+        // Holder js
+        ->prependFile($this->basePath() . '/vendor/plugins/fileupload/fileupload.js')
+;
+$this->inlineScript()->captureStart();
+echo <<<JS
+//<script type="text/javascript">
+   jQuery('document').ready(function(){
+       
+        var Stacks = {
+                stack_top_right: {
+                    "dir1": "down",
+                    "dir2": "left",
+                    "push": "top",
+                    "spacing1": 10,
+                    "spacing2": 10
+                },
+            }
+
+            // PNotify Plugin Event Init
+       $('.status').click(function(e){
+            e.preventDefault();
+            var row = $(this).closest('div');
+            var oldStatus = row.data('whatever');            
+            var status = $(this).data('whatever');
+            var id = row.data('id');
+
+                      $.ajax({
+                            url: '../statusOption/'+id,
+                            type: 'post',
+                            data: {"id":id,"status":status},
+                            dataType: 'json',
+                            beforeSend: function() {
+
+                                    },
+                            complete: function() {
+
+                            },
+                            success: function(json) {
+                                var _class = '';
+                                var statusName = json.statusName;
+                                switch (json.status) {
+                                    case '1':
+                                       _class = 'btn btn-success br2 btn-xs fs12 dropdown-toggle';
+                                        break;
+                                    case '0':
+                                        _class = 'btn btn-danger br2 btn-xs fs12 dropdown-toggle';
+                                        break;
+
+                                }
+                                
+                                var button = $(row).find('button');
+                                button.html(statusName+'<span class="caret ml5"></span>');
+
+                                var oldClass = button.attr('class');
+                                button.removeClass(oldClass); 
+                                button.addClass(_class);
+
+                                var newStatus = $(row).find('a[data-whatever='+status+']').parent('li');               
+                                var old = $(row).find('a[data-whatever='+oldStatus+']').parent('li');
+                                  
+
+                                
+
+                            },
+                            error: function(xhr, ajaxOptions, thrownError) {
+                                alert(thrownError + "-" + xhr.status );
+                            }
+                     });
+        });
+        
+   });
+
+//</script>
+
+JS;
+$this->inlineScript()->captureEnd();

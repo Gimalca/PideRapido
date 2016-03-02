@@ -1,0 +1,126 @@
+<div class="main">
+    <section id="content" class="animated fadeIn">
+        <div class="panel">
+            <div class="panel-heading">
+                <span class="panel-title">
+                    Últimos 10 Pedidos realizados
+                </span>
+            </div>
+            <div class="panel-body">
+
+                <div id="tableCenter">
+                    <table class="table admin-form theme-warning tc-checkbox-1 fs13">
+                        <thead>
+                            <tr class="bg-light">
+                                <td class="text-center"># Pedidos</td>
+                                <td class="">Nombre</td>
+                                <td class="">Email</td>
+                                <td class="text-center">Estatus de la Orden</td>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($this->order as $order) : ?>
+                                <tr>
+                                    <td class=""><?php echo $order->invoice_number; ?></td>
+                                    <td class=""><?php echo $order->firstname; ?></td>
+                                    <td class=""><?php echo $order->email; ?></td>
+                                    <td class="text-center">
+
+                                        <?php
+                                        switch ($order->order_status) {
+                                            case 1:
+                                            ?>
+                                            <div class="btn-group text-center">
+                                                <button class="btn btn-dark br2 btn-xs fs12 dropdown-toggle" aria-expanded="false" type="button" disabled>
+                                                    Recibido
+                                                </button>       
+                                            </div>
+                                            <?php
+                                            break;
+                                        case 2:
+                                            ?>
+                                            <div class="btn-group text-center">
+                                                <button class="btn btn-danger br2 btn-xs fs12 dropdown-toggle" aria-expanded="false" type="button" disabled>
+                                                    Cancelado
+                                                </button>       
+                                            </div>
+                                            <?php
+                                            break;
+                                        case 3:
+                                            ?>
+                                            <div class="btn-group text-center">
+                                                <button class="btn btn-warning br2 btn-xs fs12 dropdown-toggle" aria-expanded="false" type="button" disabled>
+                                                    En Proceso
+                                                </button>       
+                                            </div>
+                                            <?php
+                                            break;
+                                        case 4:
+                                            ?>
+                                            <div class="btn-group text-center">
+                                                <button class="btn btn-info br2 btn-xs fs12 dropdown-toggle" aria-expanded="false" type="button" disabled>
+                                                    Procesado
+                                                </button>       
+                                            </div>
+                                            <?php
+                                            break;
+                                        case 5:
+                                            ?>
+                                            <div class="btn-group text-center">
+                                                <button class="btn btn-success br2 btn-xs fs12 dropdown-toggle" aria-expanded="false" type="button" disabled>
+                                                    Entregado
+                                                </button>       
+                                            </div>
+                                            <?php
+                                            break;
+                                        }
+                                        ?>             
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>  
+            </div>
+        </div>
+
+        <div class="panel">
+            <div class="panel-heading">
+                <span class="panel-title">
+                    Últimos 10 usuarios registrados
+                </span>
+            </div>
+            <div class="panel-body">
+
+                <div id="tableCenter">
+                    <table class="table admin-form theme-warning tc-checkbox-1 fs13">
+                        <thead>
+                            <tr class="bg-light">
+                                <td class="text-center">Nombre</td>
+                                <td class="">Apellido</td>
+                                <td class="">Email</td>
+                                <td class="">Telefono</td>
+                                <td class="">Cedula</td>
+                                <td class="">Fecha de Ingreso</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($this->customer as $customer) : ?>
+                                <tr>                               
+                                    <td class=""><?php echo $customer->firstname; ?></td>
+                                    <td class=""><?php echo $customer->lastname; ?></td>
+                                    <td class=""><?php echo $customer->email; ?></td>
+                                    <td class=""><?php echo $customer->telephone; ?></td>
+                                    <td class=""><?php echo $customer->document_identity; ?></td>
+                                    <td class=""><?php echo $customer->date_added; ?></td>
+
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>  
+            </div>
+        </div>
+    </section>
+</div>

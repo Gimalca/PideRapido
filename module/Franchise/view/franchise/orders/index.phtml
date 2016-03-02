@@ -1,0 +1,157 @@
+
+<!-- Begin: Content -->
+<section id="content" class="animated fadeIn">
+
+    <h2 class="lh30 mt15 text-center">
+        Sucursal
+        <b class="text-primary">Pedidos</b>
+    </h2>
+
+    <div class="row">
+        <div class="admin-form">
+            <div id="p1" class="panel heading-border">
+                <div class="panel-body bg-light">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="section-divider mt40 mb25" id="spy4">
+                                <span>Facturas Diarias</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">        
+                            <div class="section">
+
+                                <form class="form-horizontal" role="form">
+                                    <div class="form-group">
+                                        <div class="col-md-offset-3 col-md-6">
+                                            <center>
+                                                <h6>
+                                                    Buscar por día específico 
+                                                </h6>
+                                            </center>
+                                            <label for="datepicker1" class="field prepend-icon">
+                                                <input type="text" id="datepicker1" name="day" class="gui-input" >
+                                                <label class="field-icon"><i class="fa fa-calendar-o"></i>
+                                                </label>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 text-center">
+                                        <center>
+                                            <button class="button btn-primary" type="submit">Generar Búsqueda</button>
+                                        </center>
+                                    </div>                                    
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>    					
+    </br>
+    <div class="col-md-12">
+        <div class="panel">
+            <div class="panel-heading">
+                <span class="panel-title">
+                    <span></span>Resultados de la búsqueda</span>
+            </div>
+            <div class="panel-body" id="tableCenter">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th><b><center>Fecha</center></b></th>
+                            <th><b><center># Pedido</center></b></th>
+                            <th><b><center>Total</center></b></th>
+                            <th><b><center>Detalle</center></b></th>
+                            <th><b><center>Status</center></b></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($this->order as $order): ?>
+                            <tr>
+                                <td><?php echo $order->date_added ?></td>
+                                <td><?php echo $order->invoice_number_branch ?></td>                                            
+                                <td>Bs. <?php echo number_format((float)$order->subtotal_order_branch, 2, '.','') ?></td>
+                                <td><a href="<?php echo $this->basePath() . '/franchise/orders/detail/' . $order->order_id; ?>"><button type="button" class="btn btn-light" >Ver Detalle</button></a></td>
+                                <td>
+                                    <?php
+                                    switch ($order->order_status_branch) {
+                                        case 1:
+                                            ?>
+                                            <div class="btn-group text-center">
+                                                <button class="btn btn-dark br2 btn-xs fs12 dropdown-toggle" aria-expanded="false" type="button" disabled>
+                                                    Recibido
+                                                </button>       
+                                            </div>
+                                            <?php
+                                            break;
+                                        case 2:
+                                            ?>
+                                            <div class="btn-group text-center">
+                                                <button class="btn btn-danger br2 btn-xs fs12 dropdown-toggle" aria-expanded="false" type="button" disabled>
+                                                    Cancelado
+                                                </button>       
+                                            </div>
+                                            <?php
+                                            break;
+                                        case 3:
+                                            ?>
+                                            <div class="btn-group text-center">
+                                                <button class="btn btn-warning br2 btn-xs fs12 dropdown-toggle" aria-expanded="false" type="button" disabled>
+                                                    En Proceso
+                                                </button>       
+                                            </div>
+                                            <?php
+                                            break;
+                                        case 4:
+                                            ?>
+                                            <div class="btn-group text-center">
+                                                <button class="btn btn-info br2 btn-xs fs12 dropdown-toggle" aria-expanded="false" type="button" disabled>
+                                                    Procesado
+                                                </button>       
+                                            </div>
+                                            <?php
+                                            break;
+                                        case 5:
+                                            ?>
+                                            <div class="btn-group text-center">
+                                                <button class="btn btn-success br2 btn-xs fs12 dropdown-toggle" aria-expanded="false" type="button" disabled>
+                                                    Entregado
+                                                </button>       
+                                            </div>
+                                            <?php
+                                            break;
+                                    }
+                                    ?>             
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>                    
+    </div>
+
+</section>
+
+<?php $this->inlineScript()->appendFile($this->basePath('assets/js/jquery-tcm-month.js')); ?>
+
+<?php $this->inlineScript()->captureStart();
+
+ echo <<<JS
+    $(function() {
+        "use strict";
+        $("#datepicker1").datepicker({
+            dateFormat: "dd/mm/yy",
+            prevText: '<i class="fa fa-chevron-left"></i>',
+            nextText: '<i class="fa fa-chevron-right"></i>',
+            showButtonPanel: false
+        });
+    });
+JS;
+
+$this->inlineScript()->captureEnd(); 
+?>

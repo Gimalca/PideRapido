@@ -1,0 +1,53 @@
+<div class="container main-container" style="    margin-top: -50px;"> 
+  <div style="clear:both"></div>
+  <div class="col-lg-12 ">
+    <h3 class="section-title style2 text-center">
+		<span>Franquicias Populares</span>
+	</h3>
+  </div>
+  <div class="row featuredPostContainer ">
+    <div class="featuredImageLook3 col-lg-12">
+        <?php foreach ($this->franchieses as $franchies) : ?>
+      <div class="col-md-4 col-sm-6 col-xs-6 col-xs-min-12">
+        <div class="inner">
+          <div class="box-content-overly box-content-overly-white">
+            <div class="box-text-table">
+              <div class="box-text-cell ">
+                <div class="box-text-cell-inner dark">
+                  <h1 class="uppercase"><?php echo $franchies->name ?></h1>
+                  <!--p>Veggies es bonus vobis, proinde vos postulo essum magis 
+                    kohlrabi welsh onion daikon amaranth.</p>
+                  <hr class="submini"-->
+                  <a class="btn btn-inverse" href="<?php echo $this->basePath() . '/catalog/branch/list/' . $franchies->franchise_id; ?>"> Ver Franquicia</a> </div>
+              </div>
+            </div>
+          </div>
+          <div class="img-title"></div>
+          <a class="img-block" href="#"> <img class="img-responsive" src="<?php echo $this->basePath().'/img/franchise/'.$franchies->logo?>" alt="img"></a></div>
+      </div>
+        <?php endforeach; ?>
+    </div>
+    <!--/.featuredImageLook3--> 
+  </div>
+  
+  <!--/.featuredPostContainer--> 
+</div>
+<?php
+    if (getenv('APPLICATION_ENV') == 'development') {
+            $source_js = $this->basePath('assets');
+            $source_css = $source_js . '/css/style.css';
+        } else {
+            $source_js = $this->basePath();
+            $source_css_boot = $source_js . '/css/bootstrap.min.css';
+            $source_css = $source_js . '/css/style.min.css'; 
+        }
+    $this->inlineScript()->captureStart();
+            echo <<<JS
+             
+               
+                $(document).ready(function() {
+                       $('head').append('<link rel="stylesheet" href=" $source_css_boot" type="text/css" />'); 
+                       $('head').append('<link rel="stylesheet" href="$source_css" type="text/css" />'); 
+                    });
+JS;
+            $this->inlineScript()->captureEnd();

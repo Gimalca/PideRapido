@@ -1,0 +1,707 @@
+<?php
+$this->headlink()
+        ->prependStylesheet($this->basePath() . '/vendor/plugins/select2/css/core.css');
+?>
+<section id="content" class="animated fadeIn">
+    <form id="form"  action="<?php echo $this->basePath($this->form->getAttribute('action')); ?>" method="post" enctype="multipart/form-data" >   
+        <?php echo $this->formHidden($this->form->get('branch_id')); ?>
+        <?php echo $this->formHidden($this->form->get('branch_contact_id')); ?>
+        <h2 class="lh30 mtn text-center">
+            <b class="text-primary">Crear </b> Sucursal
+        </h2>
+        <div class="tray tray-center p25 va-t posr">
+
+
+            <!-- Store Owner Details -->
+            <div class="panel ">
+                <div class="panel-heading">
+                    <span class="panel-title">Sucursal</span>
+                </div>
+                <div class="panel-body bg-light dark">
+                    <div class="admin-form">
+
+                        <div class="section row mb10">
+                            <label for="sucursal-rif" class="field-label col-md-3 text-center">Franquicia a la que pertenece:</label>
+                            <div class="col-md-9">
+                                <label class="field select">
+                                    <?php echo $this->formSelect($this->form->get('franchise_id')); ?>
+                                    <i class="arrow double"></i>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="section row mb10">
+                            <label for="sucursal-rif" class="field-label col-md-3 text-center">RIF:</label>
+                            <div class="col-md-9">
+                                <label for="account-name" class="field prepend-icon">
+                                    <?php echo $this->formInput($this->form->get('rif')); ?>
+                                    <label for="account-name" class="field-icon"><i class="fa fa-male"></i>
+                                    </label>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="section row mb10">
+                            <label for="account-email" class="field-label col-md-3 text-center">Persona de contacto - Nombre</label>
+                            <div class="col-md-9">
+                                <label for="account-email" class="field prepend-icon">
+                                    <?php echo $this->formInput($this->form->get('contact')); ?>
+                                    <label for="account-email" class="field-icon"><i class="fa fa-envelope-o"></i>
+                                    </label>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="section row mb10">
+                            <label for="account-email" class="field-label col-md-3 text-center">Nombre de la Sucursal</label>
+                            <div class="col-md-9">
+                                <label for="account-email" class="field prepend-icon">
+                                    <?php echo $this->formInput($this->form->get('name')); ?>
+                                    <label for="account-email" class="field-icon"><i class="fa fa-envelope-o"></i>
+                                    </label>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="section row mb10">
+                            <label for="account-phone" class="field-label col-md-3 text-center">Numero de cada Franquiciado</label>
+                            <div class="col-md-9">
+                                <label for="account-phone" class="field prepend-icon">
+                                    <?php echo $this->formInput($this->form->get('phone')); ?>
+                                    <label for="account-phone" class="field-icon"><i class="fa fa-phone"></i>
+                                    </label>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="section row mb10">
+                            <label for="account-phone" class="field-label col-md-3 text-center">Direccion Local</label>
+                            <div class="col-md-9">
+                                <label for="account-phone" class="field prepend-icon">
+                                    <?php echo $this->formInput($this->form->get('address')); ?>
+                                    <label for="account-phone" class="field-icon"><i class="fa fa-building"></i>
+                                    </label>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="section row mb10">
+                            <div class="col-md-9 col-md-offset-3">
+                                <?php echo $this->formInput($this->form->get('address_2')); ?>
+                                </label>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="section row mb10">
+                            <label for="account-phone" class="field-label col-md-3 text-center">Direccion Fiscal</label>
+                            <div class="col-md-9">
+                                <label for="account-phone" class="field prepend-icon">
+                                    <?php echo $this->formInput($this->form->get('address_tax')); ?>
+                                    <label for="account-phone" class="field-icon"><i class="fa fa-building"></i>
+                                    </label>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="section row mb10">
+                            <label for="account-phone" class="field-label col-md-3 text-center">Horario</label>
+                            <div class="col-md-9">
+                                <label for="account-phone" class="field prepend-icon">
+                                    <?php echo $this->formInput($this->form->get('opening_time')); ?>
+                                    <label for="account-phone" class="field-icon"><i class="fa fa-building"></i>
+                                    </label>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="section row mb10">
+                            <label for="country_id" class="field-label col-md-3 text-center">Pais:</label>
+                            <div class="col-md-9">
+                                <label for="country_id" class="field select">
+                                    <?php echo $this->formSelect($this->form->get('country_id')); ?>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="section row mb10">
+                            <label for="state_id" class="field-label col-md-3 text-center">Estado:</label>
+                            <div class="col-md-9">
+                                <label for="state_id" class="field select">
+                                    <?php echo $this->formSelect($this->form->get('state_id')); ?>
+                                </label>
+                            </div>
+                        </div> 
+                        <div class="section row mb10">
+                            <label for="municipality_id" class="field-label col-md-3 text-center">Municipio:</label>
+                            <div class="col-md-9">
+                                <label for="municipality_id" class="field select">
+                                    <?php echo $this->formSelect($this->form->get('municipality_id')); ?>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="section row mb10">
+                            <label for="city_id" class="field-label col-md-3 text-center">Ciudad:</label>
+                            <div class="col-md-9">
+                                <label for="city_id" class="field select">
+                                    <?php echo $this->formSelect($this->form->get('city_id')); ?>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="section row mb10">
+                            <label for="account-phone" class="field-label col-md-3 text-center">Foto:</label>
+                            <div class="col-md-9">
+                                <div class="fileupload fileupload-new admin-form" data-provides="fileupload">
+                                    <div class="fileupload-new thumbnail" style="">
+                                        <img src="<?php echo $this->basePath() . '/img/franchise/branch/' . $this->logo ?>" alt="holder">
+                                    </div>
+                                    <div class="fileupload-preview fileupload-exists thumbnail" style=""></div>
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            <span class="button btn-system btn-file btn-block">
+                                                <span class="fileupload-new">Select</span>
+                                                <span class="fileupload-exists">Change</span>
+                                                <?php echo $this->formFile($this->form->get('logo')); ?>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="section row mb10">
+                            <label for="account-phone" class="field-label col-md-3 text-center">Banner:</label>
+                            <div class="col-md-9">
+                                <label class="field prepend-icon append-button file">
+                                    <span class="button">Subir Archivo</span>
+                                    <input type="file" class="gui-file" name="banner" id="banner" onChange="document.getElementById('uploader1').value = this.value;">
+                                    <input type="text" class="gui-input" id="uploader1" placeholder="Cambiar Banner (Tamaño: 1200 x 350)">
+                                    <label class="field-icon"><i class="fa fa-upload"></i>
+                                    </label>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!--                    <div class="section row mb10">
+                                                <label for="account-phone" class="field-label col-md-3 text-center">Referencia</label>
+                                                <div class="col-md-9">
+                                                    <label for="account-phone" class="field prepend-icon">
+                                                        <input type="text" name="account-phone" id="account-phone" class="gui-input" placeholder="Refencia" >
+                                                        <label for="account-phone" class="field-icon"><i class="fa fa-clock-o"></i>
+                                                        </label>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="section row mb10">
+                                                <label for="account-phone" class="field-label col-md-3 text-center">Mapa</label>
+                                                <div class="col-md-9">
+                                                    <iframe width="600" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=Lomas%20de%20La%20Lagunita%2C%20Miranda%2C%20Venezuela&key=AIzaSyCVlmJ5_I21mHeSwjwRit-gu5rMfHrnDxI"></iframe>
+                                                </div>
+                                            </div>
+                                            <div class="section row mb10">
+                                                <label for="account-phone" class="field-label col-md-3 text-center">ID</label>
+                                                <div class="col-md-9">
+                                                    <label for="account-phone" class="field prepend-icon">
+                                                        <input type="text" name="account-phone" id="account-phone" class="gui-input" placeholder="N° 00000000" disabled>
+                                                        <label for="account-phone" class="field-icon"><i class="fa fa-clock-o"></i>
+                                                        </label>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="section row mb10">
+                                                <label for="account-phone" class="field-label col-md-3 text-center">Id Dispositivo</label>
+                                                <div class="col-md-9">
+                                                    <label for="account-phone" class="field prepend-icon">
+                                                        <input type="text" name="account-phone" id="account-phone" class="gui-input" placeholder="N° 000000" disable>
+                                                        <label for="account-phone" class="field-icon"><i class="fa fa-clock-o"></i>
+                                                        </label>
+                                                    </label>
+                                                </div>
+                                            </div>-->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Store Information -->
+
+            <div class="panel ">
+                <div class="panel-heading">
+                    <span class="panel-title">Emails</span>
+                </div>
+                <div class="panel-body bg-light dark">
+                    <div class="admin-form">
+                        <div class="section row mb10">
+                            <label for="account-name" class="field-label col-md-3 text-center">Email de administrador: </label>
+                            <div class="col-md-9">
+                                <label for="account-name" class="field prepend-icon">
+                                    <?php echo $this->formInput($this->form->get('email')); ?>
+                                    <label for="account-name" class="field-icon"><i class="fa fa-home"></i>
+                                    </label>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="section row mb10">
+                            <label for="account-name" class="field-label col-md-3 text-center">Usuario operativo: </label>
+                            <div class="col-md-9">
+                                <label for="account-name" class="field prepend-icon">
+                                    <?php echo $this->formInput($this->form->get('user')); ?>
+                                    <label for="account-name" class="field-icon"><i class="fa fa-globe"></i>
+                                    </label>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="section row mb10">
+                            <label for="account-name" class="field-label col-md-3 text-center">Email Franquicia: </label>
+                            <div class="col-md-9">
+                                <label for="account-name" class="field prepend-icon">
+                                    <?php echo $this->formInput($this->form->get('email_franchise')); ?>
+                                    <label for="account-name" class="field-icon"><i class="fa fa-globe"></i>
+                                    </label>
+                                </label>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="panel">
+                <div class="panel-heading">
+                    <span class="panel-title">Contraseña</span>
+                </div>
+                <div class="panel-body bg-light dark">
+                    <div class="admin-form">
+                        <div class="section row mb10">
+                            <label for="account-name" class="field-label col-md-3 text-center">Contraseña Usuario Administrador: </label>
+                            <div class="col-md-9">
+                                <label for="account-name" class="field prepend-icon">
+                                    <?php echo $this->formInput($this->form->get('password')); ?>
+                                    <label for="account-name" class="field-icon"><i class="fa fa-unlock-alt"></i>
+                                    </label>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="section row mb10">
+                            <label for="account-name" class="field-label col-md-3 text-center">Repetir Contraseña Administrador: </label>
+                            <div class="col-md-9">
+                                <label for="account-name" class="field prepend-icon">
+                                    <?php echo $this->formInput($this->form->get('password_confirm')); ?>
+                                    <label for="account-name" class="field-icon"><i class="fa fa-unlock-alt"></i>
+                                    </label>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!--                        <div class="section row mb10">
+                                                    <label for="account-name" class="field-label col-md-3 text-center">Contraseña Franquimovil: </label>
+                                                    <div class="col-md-9">
+                                                        <label for="account-name" class="field prepend-icon">
+                        <?php // echo $this->formInput($this->form->get('device_code'));  ?>
+                                                            <label for="account-name" class="field-icon"><i class="fa fa-unlock-alt"></i>
+                                                            </label>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                        
+                                                <div class="section row mb10">
+                                                    <label for="account-name" class="field-label col-md-3 text-center">Repetir Contraseña Franquimovil: </label>
+                                                    <div class="col-md-9">
+                                                        <label for="account-name" class="field prepend-icon">
+                        <?php // echo $this->formInput($this->form->get('device_code_confirm'));  ?>
+                                                            <label for="city" class="field-icon"><i class="fa fa-unlock-alt"></i>
+                                                            </label>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                </div>
+                                            </div>
+                                        </div>-->
+
+                        <!--                <div class="panel">
+                                            <div class="panel-heading">
+                                                <span class="panel-title">Gestionar productos</span>
+                                            </div>
+                                            <div class="panel-body bg-light dark">
+                        
+                                                <div class="row admin-form theme-primary">
+                                                    <div class="col-md-offset-4 col-md-4">
+                                                        <div class="text-center">
+                                                            <h3>Buscador de productos</h3>
+                                                            <div class="section">
+                                                                <label class="field prepend-icon">
+                                                                    <input type="search" name="search" id="search" class="gui-input" placeholder="Ingrese el nombre del producto">
+                                                                    <label for="search" class="field-icon"><i class="fa fa-search"></i>
+                                                                    </label>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                        
+                                                <div id="tableCenter">
+                                                    <table class="table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th width="150"></th>
+                                                                <th><b><center>Nombre del producto</center></b></th>
+                                                                <th width="80"><b><center>Agregar</center></b></th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td><img src="assets/img/stock/combo1.jpg" class="responsive" id="imgCombo"></td>
+                                                                <td><button type="button" class="btn btn-light" data-toggle="modal" data-target="#modalCrearLocales" data-whatever="Big Mac">Big Mac</button></td>
+                                                                <td>
+                                                                    <div class="checkbox">
+                                                                        <label>
+                                                                            <input type="checkbox">
+                                                                        </label>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><img src="assets/img/stock/combo1.jpg" class="responsive" id="imgCombo"></td>
+                                                                <td><button type="button" class="btn btn-light" data-toggle="modal" data-target="#modalCrearLocales" data-whatever="Cuarto de libra">Cuarto de libra</button></td>
+                                                                <td>
+                                                                    <div class="checkbox">
+                                                                        <label>
+                                                                            <input type="checkbox">
+                                                                        </label>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                        
+                                            </div>
+                                        </div>-->
+
+
+                    </div>
+                    <!--            <div class="modal fade" id="modalCrearLocales" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                <h4 class="modal-title" id="exampleModalLabel"></h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <label>
+                                                            Tipo de pan:
+                                                        </label>
+                                                        <ul>
+                                                            <li>Ajonjolí</li>
+                                                            <li>Oregano y parmesano</li>
+                                                            <li>Blanco</li>
+                                                            <li>Integral</li>
+                                                            <li>Dulce</li>
+                                                        </ul>
+                                                        <label>
+                                                            Tamaño del pan:
+                                                        </label>
+                                                        <ul>
+                                                            <li>15cm</li>
+                                                            <li>30cm</li>
+                                                        </ul>
+                                                        <label>
+                                                            Término del pan:
+                                                        </label>
+                                                        <ul>
+                                                            <li>Tostado</li>
+                                                            <li>Gratinado</li>
+                                                        </ul>
+                                                        <label>
+                                                            Tipo de queso:
+                                                        </label>
+                                                        <ul>
+                                                            <li>Cheddar</li>
+                                                            <li>Americano</li>
+                                                            <li>Ricota</li>
+                                                        </ul>
+                                                        <label>
+                                                            Vegetales:
+                                                        </label>
+                                                        <ul>
+                                                            <li>Lechuga</li>
+                                                            <li>Cebolla</li>
+                                                            <li>Tomate</li>
+                                                            <li>Pimentón</li>
+                                                            <li>Pepinillo</li>
+                                                            <li>Pepino</li>
+                                                            <li>Aceitunas</li>
+                                                            <li>Jalapeños</li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <label>
+                                                            Aderezos:
+                                                        </label>
+                                                        <ul>
+                                                            <li>Vinagre de vino</li>
+                                                            <li>Aceite de oliva</li>
+                                                            <li>Sal</li>
+                                                            <li>Pimienta</li>
+                                                            <li>Oregano</li>
+                                                        </ul>
+                                                        <label>
+                                                            Acompañante:
+                                                        </label>
+                                                        <ul>
+                                                            <li>Galleta de avena</li>
+                                                            <li>Galleta de chispas de chocolate</li>
+                                                            <li>Galleta de doble chocolate</li>
+                                                            <li>Papas de queso</li>
+                                                            <li>Papas de cebolla</li>
+                                                        </ul>
+                                                        <label>
+                                                            Tipo de salsa:
+                                                        </label>
+                                                        <ul>
+                                                            <li>Mayonesa</li>
+                                                            <li>Mostaza</li>
+                                                            <li>Tomate</li>
+                                                            <li>Asiago</li>
+                                                            <li>Mostaza Dulce</li>
+                                                            <li>Cebolla Dulce</li>
+                                                            <li>Chipotle</li>
+                                                            <li>BBQ</li>
+                                                            <li>Ranch</li>
+                                                            <li>Pesto</li>
+                                                        </ul>
+                    
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <label>
+                                                            Tamaño de las bebidas:
+                                                        </label>
+                                                        <ul>
+                                                            <li>Pequeño</li>
+                                                            <li>Mediano</li>
+                                                            <li>Grande</li>
+                                                        </ul>
+                                                        <label>
+                                                            Tipo de bebida:
+                                                        </label>
+                                                        <ul>
+                                                            <li>Liptón de durazno</li>
+                                                            <li>Liptón de limón</li>
+                                                            <li>Liptón de té verde</li>
+                                                            <li>Pepsi</li>
+                                                            <li>7up</li>
+                                                            <li>Golden Kolita</li>
+                                                            <li>Golden Uva</li>
+                                                            <li>Golden Naranja</li>
+                                                            <li>Golden Manzanita</li>
+                                                            <li>Golden Piña</li>
+                                                            <li>Coca-Cola</li>
+                                                            <li>Chinotto</li>
+                                                            <li>Frescolita</li>
+                                                            <li>Hit Uva</li>
+                                                            <li>Hit Naranja</li>
+                                                            <li>Hit Manzanita</li>
+                                                            <li>Hit Piña</li>
+                                                        </ul>
+                                                        <label>
+                                                            Extras 15cm:
+                                                        </label>
+                                                        <ul>
+                                                            <li>Carnes [+Bs 176,00]</li>
+                                                            <li>Quesos [+Bs 60,00]</li>
+                                                            <li>Tocineta [+Bs 85,00]</li>
+                                                            <li>Mozzarella [+Bs 176,00]</li>
+                                                        </ul>
+                                                        <label>
+                                                            Extras 30cm:
+                                                        </label>
+                                                        <ul>
+                                                            <li>Carnes [+Bs 290,00]</li>
+                                                            <li>Quesos [+Bs 110,00]</li>
+                                                            <li>Tocineta [+Bs 141,00]</li>
+                                                            <li>Mozzarella [+Bs 290,00]</li>
+                                                        </ul>                            
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                    
+                                                    </div>
+                                                </div>
+                                            </div>
+                    
+                                        </div>
+                                    </div>
+                                </div>-->
+                    <div class="row">
+                        <div class="admin-form">
+                            <div class="col-md-offset-9">
+                                <button type="submit" class="btn btn-primary notification" data-note-style="success" >Guardar Cambios</button>
+                                <!--  <a href="asignar-combos.php">
+                                 </a> -->
+                                <input class="btn btn-danger" type="submit" value="Cancelar">
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div></div></form></section>
+
+<?php
+$this->headScript()
+        // Admin Panels
+        ->prependFile($this->basePath('vendor') . '/plugins/datepicker/js/moment.js')
+        ->prependFile($this->basePath('assets_admin') . '/admin-tools/admin-plugins/admin-panels/json2.js')
+        ->prependFile($this->basePath('assets_admin') . '/admin-tools/admin-plugins/admin-panels/jquery.ui.touch-punch.min.js')
+        ->prependFile($this->basePath('assets_admin') . '/admin-tools/admin-plugins/admin-panels/adminpanels.js')
+        // Page Plugins via CDN 
+        ->prependFile('http://cdnjs.cloudflare.com/ajax/libs/globalize/0.1.1/globalize.min.js')
+
+        // Sparklines CDN
+        ->prependFile('http://cdnjs.cloudflare.com/ajax/libs/jquery-sparklines/2.1.2/jquery.sparkline.min.js')
+        //Page Plugins
+        ->prependFile($this->basePath() . '/assets/js/bootstrap.js')
+        ->prependFile($this->basePath('vendor') . '/plugins/datepicker/js/moment.js')
+        ->prependFile($this->basePath('vendor') . '/plugins/daterange/daterangepicker.js')
+        ->prependFile($this->basePath('vendor') . '/plugins/datepicker/js/bootstrap-datetimepicker.min.js')
+        ->prependFile($this->basePath('vendor') . '/plugins/tagmanager/tagmanager.js')
+        // Chart Plugins
+        ->prependFile($this->basePath('vendor') . '/plugins/highcharts/highcharts.js')
+        ->prependFile($this->basePath('vendor') . '/plugins/circles/circles.js')
+        ->prependFile($this->basePath('vendor') . '/plugins/raphael/raphael.js')
+        // Holder js
+        ->prependFile($this->basePath() . '/vendor/plugins/select2/select2.min.js')
+        ->prependFile($this->basePath() . '/vendor/plugins/fileupload/fileupload.js')
+        ->prependFile($this->basePath('assets_admin') . '/js/bootstrap/holder.min.js')
+;
+;
+$this->inlineScript()->captureStart();
+$url = $this->basePath();
+echo <<<JS
+
+ jQuery(document).ready(function() {
+var URL = '$url';
+                
+            $('.admin-panels').adminpanel({
+                grid: '.admin-grid',
+                draggable: true,
+                preserveGrid: true,
+                mobile: false,
+                callback: function() {
+                    bootbox.confirm('<h3>A Custom Callback!</h3>', function() {});
+                },
+                onFinish: function() {
+                    $('.admin-panels').addClass('animated fadeIn').removeClass('fade-onload');
+                    // Init the rest of the plugins now that the panels
+                    // have had a chance to be moved and organized.
+                    // It's less taxing to organize empty panels
+                    demoHighCharts.init();
+                    runVectorMaps();
+                    // We also refresh any "in-view" waypoints to ensure
+                    // the correct position is being calculated after the 
+                    // Admin Panels plugin moved everything
+                    Waypoint.refreshAll();
+                },
+                onSave: function() {
+                    $(window).trigger('resize');
+                }
+            });
+          
+            // Init custom page animation
+            setTimeout(function() {
+                $('.custom-nav-animation li').each(function(i, e) {
+                    var This = $(this);
+                    var timer = setTimeout(function() {
+                        This.addClass('animated animated-short zoomIn');
+                    }, 50 * i);
+                });
+            }, 500);
+            // Init tray navigation smooth scroll
+            $('.tray-nav a').smoothScroll({
+                offset: -145
+            });
+            // Init Select2 - Basic Multiple
+            $("#multiselect3").select2({
+              placeholder: "Select Categories",
+               allowClear: true,
+               style: "bg-primary light"
+            });
+        
+        
+        
+            // Init Select2 - Basic Multiple
+            $("#related_id").select2({
+              placeholder: "Select Related",
+               allowClear: true,
+               style: "bg-primary light"
+            });
+        
+//         Init Select2 - Basic Multiple
+            $("#country_id").select2({
+              placeholder: "Selecciona un Pais",
+               allowClear: true,
+               style: "bg-primary light"
+            });
+//          Init Select2 - Basic Multiple
+            $("#state_id").select2({
+              placeholder: "Selecciona un Estado",
+               allowClear: true,
+               style: "bg-primary light"
+            });
+//          Init Select2 - Basic Multiple
+            $("#municipality_id").select2({
+              placeholder: "Selecciona un Estado",
+               allowClear: true,
+               style: "bg-primary light"
+            });
+//          Init Select2 - Basic Multiple
+            $("#city_id").select2({
+              placeholder: "Selecciona un Estado",
+               allowClear: true,
+               style: "bg-primary light"
+            });
+        
+        
+            // select dropdowns - placeholder like creation
+            var selectList = $('.admin-form select');
+            selectList.each(function(i, e) {
+                $(e).on('change', function() {
+                    if ($(e).val() == "0") $(e).addClass("empty");
+                    else $(e).removeClass("empty")
+                });
+            });
+        
+            selectList.each(function(i, e) {
+                $(e).change();
+            });
+            
+            $('#form').on('change','select.location-select',function(e){
+                    var location_id = $(this).val();
+                    var data_location = $(this).data('location');
+                    var data_select = $(this).data('select');
+        
+                    console.log(location_id,data_location, data_select);
+        
+                    $.get(URL+"/api/"+data_select+"/"+location_id,function(entities){
+                         var options = "";
+                         console.log(entities);
+                            if(data_select == "state"){
+                            $.each(entities, function(i, state) {
+                                options += "<option value='" + state.state_id + "'>" + state.name + "</option>";
+                            });$("."+data_select).html(options);
+                            }                            
+                            if(data_select == "municipality"){
+                                $.each(entities, function(i, municipality) {
+                                    options += "<option value='" + municipality.municipality_id + "'>" + municipality.name + "</option>";
+                                });$("."+data_select).html(options);
+                                $.get(URL+"/api/city/"+location_id,function(entities){
+                                var options = "";
+                                console.log(entities);
+                                   $.each(entities, function(i, city) {
+                                       options += "<option value='" + city.city_id + "'>" + city.name + "</option>";
+                                   });$(".city").html(options);
+                                },"json");
+                                }
+                        },"json");
+                });
+
+            
+
+});
+
+JS;
+$this->inlineScript()->captureEnd();

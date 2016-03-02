@@ -1,0 +1,757 @@
+<div class="modal signUpContent fade" id="ModalLogin" tabindex="-1" role="dialog">
+
+    <div class="modal-dialog ">
+
+        <div class="modal-content">
+
+            <form action="<?php echo $this->url('account', array('controller' => 'login')) ?>" method="post">
+
+            <div class="modal-header">
+
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"> &times; </button>
+
+                <h3 class="modal-title-site text-center"> Ingresar a PideRápido </h3>
+
+            </div>
+
+            <div class="modal-body">
+
+                <div class="control-group"> <a class="fb_button btn  btn-block btn-lg " href="<?php echo $this->fbUrl ?>">Ingresa con Facebook</a> </div>
+                <h5 style="padding:10px 0 10px 0;" class="text-center">Ó</h5>
+                <div class="form-group login-username">
+
+                    <div>
+
+                        <?php echo $this->formInput($this->loginForm->get('email')); ?>
+
+                    </div>
+
+                </div>
+
+                <div class="form-group login-password">
+
+                    <div>
+
+                        <?php echo $this->formInput($this->loginForm->get('password')); ?>
+
+                    </div>
+
+                </div>
+                <div class="form-goup text-center">
+                   
+                        <div class="g-recaptcha"  id="re4" ></div>  
+                    
+                </div>
+
+                <div class="form-group">
+
+                    <div>
+
+                        <div class="checkbox login-remember">
+
+                           <label>
+
+                                 <?php echo $this->formInput($this->loginForm->get('rememberme')); ?>
+
+                                
+
+                                Recordarme 
+
+                            </label>
+
+                        </div>
+
+                    </div>
+
+                </div>
+                 
+
+                <div>
+
+                    <div>
+
+                       <input name="submit" class="btn  btn-block btn-lg btn-primary" value="Ingresar" type="submit">
+
+                    </div>
+
+                </div>
+
+                <!--userForm--> 
+
+            
+
+            </div>
+
+                 <?php echo $this->formInput($this->loginForm->get('csrf')); ?>
+
+            <div class="modal-footer">
+
+                <p class="text-center"> ¿No tienes cuenta? <a data-toggle="modal" data-dismiss="modal" href="#ModalSignup"> Regístrate. </a> <br>
+
+                    <a href="password.php"> ¿Olvidó contraseña? </a> </p>
+
+            </div>
+
+                </form>
+
+        </div>
+
+        <!-- /.modal-content --> 
+
+
+
+    </div>
+
+    <!-- /.modal-dialog --> 
+
+
+
+</div>
+
+<!-- /.Modal Login --> 
+
+
+
+<!-- Modal Signup start -->
+
+<div class="modal signUpContent fade" id="ModalSignup" tabindex="-1" role="dialog">
+
+    <div class="modal-dialog">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"> &times; </button>
+
+                <h3 class="modal-title-site text-center"> Registrarse en Pide Rápido </h3>
+
+            </div>
+
+            <div class="modal-body">
+                <div class="control-group"> <a class="fb_button btn  btn-block btn-lg " href="<?php echo $this->fbUrl ?>">Ingresa con Facebook</a> </div>
+                <h5 style="padding:10px 0 10px 0;" class="text-center">Ó</h5>
+
+                <form action="<?php echo $this->url('account', array('controller' => 'register', 'action' => 'add')) ?>" method="post">
+
+                <!--div class="control-group"> <a class="fb_button btn  btn-block btn-lg " href="#"> Vía Facebook </a> </div>
+
+                <h5 style="padding:10px 0 10px 0;" class="text-center"> O </h5-->
+
+                <div class="form-group reg-username">
+
+                    <div>
+
+                         <?php echo $this->formInput($this->registerForm->get('firstname')); ?>
+
+                    </div>
+
+                </div>
+
+                <div class="form-group reg-username">
+
+                    <div>
+
+                          <?php echo $this->formInput($this->registerForm->get('lastname')); ?>
+
+                    </div>
+
+                </div>
+
+                <div class="form-group reg-email">
+
+                    <div>
+
+                        <?php echo $this->formInput($this->registerForm->get('email')); ?>
+
+                     
+
+                    </div>
+
+                </div>
+
+                <div class="form-group reg-password">
+
+                    <div>
+
+                         <?php echo $this->formInput($this->registerForm->get('password')); ?>
+
+                    </div>
+
+                </div>
+                
+                 <div class="form-goup">
+                    <div class="col-md-12">
+                        <div class="g-recaptcha"  id="re1" ></div>
+                       
+                    </div>
+                </div>
+
+                
+
+                <div class="form-group">
+
+                    <div class=" col-md-12">
+
+                        <div class="checkbox login-remember col-md-2">
+
+                           <label>
+
+                                 <?php echo $this->formInput($this->registerForm->get('terms')); ?>
+
+                                
+
+                                Acepto 
+
+                            </label>
+
+                        </div>
+
+                        <div style="margin-top: 9px" class=" col-md-10">
+
+                            <a  href="<?php echo $this->basePath('terminos.pdf') ?>" target="_blank">Terminos y Condiciones </a>
+
+                        </div>
+
+                    </div>
+
+                    
+
+                     
+
+                </div>
+
+               
+
+                
+
+                <div>
+
+                    <div>
+
+                       
+
+                            <input name="submit" class="btn btn-block btn-lg btn-primary" value="Registrar" type="submit">
+
+                        
+
+                    </div>
+
+                </div>
+
+                <?php echo $this->formInput($this->registerForm->get('csrf')); ?>
+
+              </form>
+
+            </div>
+
+            <div class="modal-footer">
+
+                <p class="text-center"> ¿Ya eres miembro? <a data-toggle="modal" data-dismiss="modal" href="#ModalLogin"> Ingresar </a> </p>
+
+            </div>
+
+        </div>
+
+
+
+    </div>
+
+
+
+</div>
+
+<!-- /.ModalSignup End --> 
+
+
+
+<!-- Fixed navbar start -->
+
+<div class="navbar navbar-tshop navbar-fixed-top megamenu" role="navigation">
+
+    <div class="navbar-top">
+
+        <div class="container">
+
+            <div class="row">
+
+               
+
+                <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12 no-margin no-padding">
+
+                    <div class="pull-right">
+
+
+
+                        <ul class="userMenu">
+
+
+
+                            <li><a class="fa fa-facebook tooltipHere" target="_blank" href="https://www.facebook.com/pages/Pide-R%C3%A1pido/1553920374896633?fref=ts" data-original-title="Facebook" data-toggle="tooltip" data-placement="bottom" title=""></a></li>
+
+                            <li><a class="fa fa-twitter tooltipHere" target="_blank" href="https://twitter.com/piderapido" data-original-title="twitter" data-toggle="tooltip" data-placement="bottom" title=""></a></li>
+
+                            <li><a class="fa fa-instagram tooltipHere" target="_blank" href="https://instagram.com/piderapido/" data-original-title="instagram" data-toggle="tooltip" data-placement="bottom" title=""></a></li>
+
+                            <li style="margin-right: 25px;"><a target="_blank" class="fa fa-youtube tooltipHere" href="https://www.youtube.com/channel/UCaW4eyI65cTrLTWWRRIlZjQ" data-original-title="youtube" data-toggle="tooltip" data-placement="bottom" title=""></a></li>
+
+
+
+                            <?php if(isset($this->userIdentity)): ?> 
+
+                            <!--li> <a href="micuenta.php"><span class="hidden-xs"> Mi cuenta</span> <i class="glyphicon glyphicon-user hide visible-xs "></i></a> </li-->
+
+                            <li> <a href="<?php echo $this->url('account') ?>"><span class="hidden-xs"><?php echo $this->userIdentity->firstname.' '.$this->userIdentity->lastname ?></span> <i class="glyphicon glyphicon-user hide visible-xs "></i></a> </li>
+
+                            <li> <a href="<?php echo $this->url('account', array('controller' => 'login', 'action' => 'logout')) ?>"><span class="hidden-xs">Cerrar Sesión</span> <i class="glyphicon glyphicon-log-out hide visible-xs "></i></a> </li>
+
+                             
+
+                            <?php else : ?>
+
+                            <!--li> <a href="micuenta.php"><span class="hidden-xs"> Mi cuenta</span> <i class="glyphicon glyphicon-user hide visible-xs "></i></a> </li-->
+
+                            <li> <a href="#" data-toggle="modal" data-target="#ModalLogin"> <span class="hidden-xs">Iniciar Sesión</span> <i class="glyphicon glyphicon-log-in hide visible-xs "></i> </a> </li>
+
+                            <li class="hidden-xs"> <a href="#" data-toggle="modal" data-target="#ModalSignup"> Regístrate </a> </li>
+
+                            
+
+                            <?php endif;?>
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!--/.navbar-top-->
+
+
+
+    <div class="container">
+
+        <div class="navbar-header">
+
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"> <span class="sr-only"> Toggle navigation </span> <span class="icon-bar"> </span> <span class="icon-bar"> </span> <span class="icon-bar"> </span> </button>
+            <?php if (isset($this->userIdentity)): ?> 
+            <?php @$products = $this->shoppingCart->products(); ?>
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-cart"> <i class="fa fa-shopping-cart colorWhite"> </i> <span class="cartRespons colorWhite"> Carrito <?php echo sizeof($products) ?> </span> </button>
+             <?php endif; ?>
+            <a class="navbar-brand " href="<?php echo $this->basePath('') ?>"> <img src="<?php echo $this->basePath('img') ?>/logo5.png" alt="TSHOP" style="margin-top: -12px"> </a> 
+
+
+
+            <!-- this part for mobile -->
+
+            <!-- <div class="search-box pull-right hidden-lg hidden-md hidden-sm">
+
+              <div class="input-group">
+
+                <button class="btn btn-nobg getFullSearch" type="button"> <i class="fa fa-search"> </i> </button>
+
+              </div>
+
+            </div> -->
+
+        </div>
+
+
+
+        <!-- this part is duplicate from cartMenu  keep it for mobile -->
+         <?php if (isset($this->userIdentity)): ?> 
+        <div class="navbar-cart  collapse hidden-md hidden-sm hidden-lg hidden-xl">
+
+            <div class="cartMenu  col-lg-4 col-xs-12 col-md-4 ">
+
+                <div class="w100 miniCartTable scroll-pane">
+
+                    <table>
+                         <?php if (isset($this->shoppingCart)):?>
+                        
+                          <?php $products = $this->shoppingCart->products(); ?>
+                            <tbody>
+                              <?php if (sizeof($products) > 0): ?>
+                                <?php foreach($products as $index => $product) : ?> 
+                                <tr class="miniCartProduct">
+                                    <td  class="miniCartProductThumb">
+                                        <div> 
+                                            <a href="<?php echo $this->url('catalog', array('controller' => 'cart', 'action' => 'checkout', 'id'=> $product['product_id']));?>"> 
+                                                <img src="<?php echo $this->basePath() . '/img/catalog/product/' . $product['image'] ?>" alt="img">
+                                            </a> 
+                                        </div>
+                                    </td>
+                                    <td ><div class="miniCartDescription">
+                                            <h4> <a href="<?php echo $this->url('catalog', array('controller' => 'cart', 'action' => 'checkout', 'id'=> $product['product_id']));?>"><?php echo $product['name'];?></a> </h4>
+                                          
+                                            <div class="price"> <span> <?php echo $product['precio']; ?>(+<?=$product['subtotalopciones']?>) Bs.</span> </div>
+                                        </div></td>
+                                    <td  class="miniCartQuantity"></td>
+                                    <td  class="miniCartSubtotal"><span><?php echo $product['total']?> Bs.  </span></td>
+                                    <td  class="delete"><a href="<?php echo $this->url('catalog', array('controller' => 'cart', 'action'=>'delete' ,'id' => $index))?>"> x </a></td>
+                                </tr>
+                                <?php endforeach; else: ?> 
+                                    <div><p>Su carrito esta vacio</p></div>
+                                <?php endif; ?>
+                            </tbody>
+                        <?php endif; ?>
+                    </table>
+
+                </div>
+
+                <!--/.miniCartTable-->
+
+
+
+                <div class="miniCartFooter  miniCartFooterInMobile text-right">
+
+                    <h3 class="text-right subtotal"> Sub-total:<?php echo array_reduce($products, function ($sum, $product) {
+
+                                                return $product['total'] + $sum;
+
+                                            }, 0); ?> Bs.</h3>
+
+                    <a href="<?php echo $this->url('catalog', array('controller' => 'cart', 'action' => 'checkout'));?>"class="btn btn-sm btn-danger"> <i class="fa fa-shopping-cart"> </i> Ver Carrito </a> 
+                </div>
+
+                <!--/.miniCartFooter--> 
+
+
+
+            </div>
+
+            <!--/.cartMenu--> 
+
+        </div>
+         <?php endif; ?> 
+        <!--/.navbar-cart-->
+
+
+
+        <div class="navbar-collapse collapse">
+
+            <ul class="nav navbar-nav">
+
+                <li class="dropdown megamenu-fullwidth"> <a href="<?php echo $this->basePath() . '/catalog/franchise/list' ?>"> Encuéntralo </b> </a>
+
+
+
+                </li>
+
+
+
+                <!-- change width of megamenu = use class > megamenu-fullwidth, megamenu-60width, megamenu-40width -->
+
+                <li class="dropdown megamenu-80width "> <a data-toggle="dropdown" class="dropdown-toggle" href="#"> Promociones <b class="caret"> </b> </a>
+
+                    <ul class="dropdown-menu">
+
+                        <li class="megamenu-content"> 
+
+
+
+                            <!-- megamenu-content -->
+
+
+
+                            <ul class="col-lg-6 col-sm-2 col-md-6  unstyled noMarginLeft">
+
+
+
+                                <li>
+
+                                    <p> <strong> Descuentos y promociones </strong> </p>
+
+                                    <br>
+
+                                    <p>Pronto podrás saber cuáles son las promociones y descuentos en nuestras franquicias afiliadas, tan solo con el tipo de Comida</p>
+
+                                </li>
+
+
+
+                                <li> 
+                                	<br>
+                                	<h2 class="text-center">¡Próximamente!</h2>
+
+                                    <!--div class="form-group required">
+
+                                        <label for="State">Tipo de comida <sup>*</sup></label>
+
+                                        <select required="" aria-required="true" id="State" name="Estado">
+
+                                            <option value="0" selected>Tipo de Comida</option>
+
+                                            <option value="1">Sushi</option>
+
+                                            <option value="2">Mexicana</option>
+
+                                            <option value="3">Hamburguesa</option>
+
+                                        </select>
+
+                                    </div>
+
+                                    <input id="textinput" name="textinput" placeholder="Ciudad" class="form-control input-md" type="text"-->
+
+
+
+                                </li>
+
+
+
+                                <!--a href="verpromociones.php">
+
+                                    <button id="button2id" class="btn btn-default" name="button2id">
+
+                                        Buscar
+
+                                    </button>
+
+                                </a-->
+
+                            </ul>
+
+
+
+                            <ul class="col-lg-3  col-sm-3 col-md-3 col-xs-6">
+
+                                <div>
+
+                                    <a href="#">
+
+                                        <img class="img-responsive" alt="img" src="<?php echo $this->basePath('img') ?>/promociones/no-promo.jpg"></img>
+
+                                    </a>
+
+                                </div>
+
+                                <br>
+
+                                <div>
+
+                                    <a href="#">
+
+                                        <img class="img-responsive" alt="img" src="<?php echo $this->basePath('img') ?>/promociones/no-promo.jpg"></img>
+
+                                    </a>
+
+                                </div>
+
+                                <br>
+
+
+                            </ul>
+
+
+
+                            <ul class="col-lg-3  col-sm-3 col-md-3 col-xs-6">
+
+                                <div>
+
+                                    <a href="#">
+
+                                        <img class="img-responsive" alt="img" src="<?php echo $this->basePath('img') ?>/promociones/no-promo.jpg"></img>
+
+                                    </a>
+
+                                </div>
+
+                                <br>
+
+                                <div>
+
+                                    <a href="#">
+
+                                        <img class="img-responsive" alt="img" src="<?php echo $this->basePath('img') ?>/promociones/no-promo.jpg"></img>
+
+                                    </a>
+
+                                </div>
+
+                                <br>
+
+                              
+
+                            </ul>
+
+                        </li>
+
+                    </ul>
+
+                </li>
+
+                <li class="dropdown megamenu-80width "> <a href="<?php echo $this->url('catalog', array('controller' => 'info', 'action' => 'comoFunciona')) ?>"> Cómo funciona </b> </a></li>
+
+                <li class="dropdown megamenu-80width "> <a href="<?php echo $this->url('catalog', array('controller' => 'info', 'action' => 'contacto')) ?>"> Contacto </a></li>
+
+            </ul>
+
+
+
+            <?php if (isset($this->userIdentity)): ?> 
+
+            <div class="nav navbar-nav navbar-right hidden-xs">
+
+                <?php if (!isset($this->shoppingCart)):?>
+
+                <div class="dropdown  cartMenu "> 
+
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"> 
+
+                        <i class="fa fa-shopping-cart"></i> 
+
+                        <span class="cartRespons"><?php echo 0 ?></span> <b class="caret"> </b> 
+
+                    </a>
+
+                </div>
+
+            </div>
+
+            <?php else: $products = $this->shoppingCart->products(); ?>
+
+                <div class="dropdown  cartMenu "> 
+
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"> 
+
+                        <i class="fa fa-shopping-cart"></i> 
+
+                        <span class="cartRespons"> <?php echo sizeof($products) ?></span> <b class="caret"> </b> 
+
+                    </a>
+
+                    <div class="dropdown-menu col-lg-4 col-xs-12 col-md-4 ">
+
+                    <?php if (sizeof($products) > 0): ?>
+
+                        <div class="w100 miniCartTable scroll-pane">
+
+                            <table>
+
+                                <tbody>
+
+                                    <?php foreach($products as $index => $product) : ?>                         
+
+                                    <tr class="miniCartProduct">
+
+                                        <td style="width:20%" class="miniCartProductThumb">
+
+                                            <div> 
+
+                                            <a href="<?php echo $this->url('catalog', array('controller' => 'cart', 'action' => 'checkout', 'id'=> $product['product_id']));?>">
+
+                                                    <img src="<?php echo $this->basePath() . '/img/catalog/product/' . $product['image'] ?>" alt="img">
+
+                                                </a>
+
+                                            </div>
+
+                                        </td>
+
+                                        <td style="width:40%"><div class="miniCartDescription">
+
+                                            <h4> 
+
+                                                <a href="<?php echo $this->url('catalog', array('controller' => 'cart', 'action' => 'checkout', 'id'=> $product['product_id']));?>"><?php echo $product['name'];?></a> 
+
+                                            </h4>
+
+                                            <div class="price">
+
+                                                <span><?php echo $product['precio']; ?>(+<?=$product['subtotalopciones']?>) Bs.</span>
+
+                                            </div>
+
+                                        </td>
+
+                                            <td style="width:10%" class="miniCartQuantity">
+
+                                                <a> </a>
+
+                                            </td>
+
+                                            <td style="width:15%" class="miniCartSubtotal">
+
+                                                <span><?php echo $product['total']?> Bs. </span>
+
+                                            </td>
+
+                                        <td style="width:5%" class="delete">
+
+                                        <a href='<?php echo $this->url('catalog', array('controller' => 'cart', 'action'=>'delete' ,'id' => $index))?>'>x</a>
+
+                                        </td>
+
+                                    </tr>
+
+                                    <?php endforeach; ?>
+
+                                </tbody>
+
+                            </table>
+
+                        </div>
+
+                        <div class="miniCartFooter text-right">
+
+                            <h3 class="text-right subtotal">
+
+                                 Sub-total: <?php echo array_reduce($products, function ($sum, $product) {
+
+                                                return $product['total'] + $sum;
+
+                                            }, 0); ?> Bs.
+
+                            </h3>
+
+                            <a class="btn btn-sm btn-danger" href="<?php echo $this->url('catalog', array('controller' => 'cart', 'action' => 'checkout'));?>">
+
+                                <i class="fa fa-shopping-cart"></i>
+
+                                Ver carrito 
+
+                            </a> 
+
+                        </div>
+
+                        <?php else: ?> <div><p>Su carrito esta vacio</p></div><?php endif; ?>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <?php endif; endif;?> 
+
+        </div>
+
+    </div>
+    <!--/.container -->
+    <div class="search-full text-right"> <a class="pull-right search-close"> <i class=" fa fa-times-circle"> </i> </a>
+
+        <div class="searchInputBox pull-right">
+
+            <input type="search" data-searchurl="search?=" name="q" placeholder="Escriba su búsqueda" class="search-input">
+
+            <button class="btn-nobg search-btn" type="submit"> <i class="fa fa-search"> </i> </button>
+
+        </div>
+
+    </div>
+
+    <!--/.search-full--> 
+
+
+
+</div>
+

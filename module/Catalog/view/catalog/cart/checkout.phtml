@@ -1,0 +1,167 @@
+<div class="container main-container headerOffset">  
+    <div class="row">
+        <div class="col-lg-9 col-md-9 col-sm-7">
+            <h1 class="section-title-inner"><span><i class="glyphicon glyphicon-shopping-cart"></i>Carrito de Compras </span></h1>
+        </div>
+      
+    </div>  
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12">
+            <div class="row userInfo">        
+                <div class="col-xs-12 col-sm-12">
+                    <div class="w100 clearfix">
+                        <div class="row userInfo">                
+                            <div class="col-lg-12">
+                                <h2 class="block-title-2"> Productos Ordenados </h2>
+                            </div>            
+                        	<div class="col-xs-12 col-sm-12">
+                                <div class="cartContent w100 checkoutReview ">
+                                    <table class="cartTable table-responsive" style="width:100%">
+                                        <tbody>
+                                            
+                                            <tr class="CartProduct cartTableHeader">
+                                                <th style="width:15%"> Productos </th>
+                                                <th style="width:20%"> Detalle </th>
+                                                <th style="width:10%">Borrar</th>
+                                              
+                                                <th class="hidden-xs" style="  width:10%">Precio Unitario</th>
+                                                <th class="hidden-xs" style="width:5%">Cant.</th>
+                                                <th class="hidden-xs" style="width:10%">Desc.</th>
+                                                <th style="width:15%">Total</th>
+                                            </tr>
+                                            <?php $count = 0; $total =0;  foreach ($this->products as $product): ?>
+                                            
+                                            <tr class="CartProduct">
+                                                
+                                                <td class="CartProductThumb">
+                                                    <div>
+                                                        <a href="<?php echo $this->url('catalog', array('controller' => 'branch', 'action' => 'product', 'id' =>  $product->product_id)); ?>"><img src="<?php echo $this->basePath() . '/img/catalog/product/' . $product->image ?>"></a>
+                                                    </div>
+                                                </td>
+                                                
+                                                <td>
+                                                    <div class="CartDescription">
+                                                        <h4> <a href="<?php echo $this->url('catalog', array('controller' => 'branch', 'action' => 'product', 'id' =>  $product->product_id)); ?>"><?php echo $product->name ?></a> </h4>
+                                                        <span class="size">Franquicia: <a href="<?php echo $this->url('catalog', array('controller' => 'branch', 'action' => 'detail', 'id' =>  $product->branch_id)); ?>"><?php echo $product->name_franchise ?></a></span>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <a href="<?php echo $this->url('catalog', array('controller' => 'cart', 'action' => 'delete', 'id' => $count)); ?>"> Borrar</a>
+                                                </td>
+                                                <td class="delete hidden-xs"><div class="price "><?php echo $product->precio + $product->subtotalopciones ?> Bs.</div></td>
+                                               
+                                                <td class="hidden-xs">1</td>
+                                                <td class="hidden-xs">0</td>
+                                                <td class="price"><?php echo $product->total ?> Bs.</td>
+                                            </tr>
+                                            <?php $total = $total+$product->total; $count ++; $branch = $product->branch_id ?>
+                                            <?php endforeach; ?>
+                                            <tr class="CartProduct">
+                                                
+                                                <td class="CartProductThumb">
+                                                  
+                                                </td>
+                                                <td>
+                                                    
+                                                </td>
+                                                <td class="delete hidden-xs"><div class="price "></div></td>
+                                                <td class="hidden-xs"></td>
+                                                <td class="hidden-xs"></td>
+                                           
+                                                <td class=""><b>sub-total : </b></td>
+                                                <td class="price"><?php  $sub = $total; echo number_format($sub, 2, '.', '')?> Bs.</td>
+                                            </tr>
+                                            <tr class="CartProduct">
+                                                
+                                                <td class="CartProductThumb">
+                                                  
+                                                </td>
+                                                <td>
+                                                    
+                                                </td>
+                                                <td class="delete hidden-xs"><div class="price "></div></td>
+                                                <td class="hidden-xs"></td>
+                                                <td class="hidden-xs"></td>
+                                        
+                                                <td class=""><b>Comision (12%) : </b></td>
+                                                <td class="price"><?php $comi = $sub*0.12; echo   number_format($comi, 2, '.', '')?> Bs.</td>
+                                            </tr>
+                                            <tr class="CartProduct">
+                                                
+                                                <td class="CartProductThumb">
+                                                  
+                                                </td>
+                                                <td>
+                                                    
+                                                </td>
+                                                <td class="delete hidden-xs"><div class="price "></div></td>
+                                                <td class="hidden-xs"></td>
+                                              
+                                                <td class="hidden-xs"></td>
+                                                <td class=""><b>IVA (12%) : </b></td>
+                                                <td class="price"><?php $iva = ($comi + $sub) * 0.12; echo   number_format($iva, 2, '.', '')?> Bs.</td>
+                                            </tr>
+                                            <tr class="CartProduct">
+                                                
+                                                <td class="CartProductThumb">
+                                                  
+                                                </td>
+                                                <td>
+                                                    
+                                                </td>
+                                                <td class="delete hidden-xs "><div class="price "></div></td>
+                                                <td class="hidden-xs"></td>
+                                                <td class="hidden-xs"></td>
+                                            
+                                                <td class=""><b>TOTAL A PAGAR : </b></td>
+                                                <td class="price"><h1><?php $total_payment = $comi + $sub + $iva; echo number_format($total_payment, 2, '.', '')  ?> Bs.</h1></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            <!--cartContent-->
+                            <!--/costDetails-->
+                            <!--/row-->
+                            </div>
+                        </div>
+                    </div>
+                    <!--/row end-->
+                    <div class="cartFooter w100">
+                        <div class="box-footer">              
+                            <div class="pull-right">
+                                <form action="<?php echo $this->url('payment', array('controller' => 'checkout', 'action' => 'orderCart')) ?>" method="post">
+                                <a href="
+                                    <?php
+                                   $flink = $this->url('catalog', array('controller' => 'franchise', 'action' => 'list'));
+                                   echo (isset($branch)) ? $this->url('catalog', array('controller' => 'branch', 'action' => 'detail', 'id' => $branch)) : $flink;
+                                   ?>
+                                   " class="btn btn-primary btn-small " style="margin-bottom: 5px"> 
+                                Continuar Comprando &nbsp; <i class="fa fa-angle-left"></i>
+                                </a>
+                                
+                                    
+                                       <button  type="submit" class="btn btn-primary btn-small" > 
+                                        Concretar Orden &nbsp; <i class="fa fa-check"></i>
+                                       </button>
+                                    
+                                </form>
+                               	
+                            </div>
+                            <!--/ ir a orden.php --> 
+                            <!--div class="pull-right">
+                            <a href="#" class="btn btn-primary btn-small " data-toggle="modal" data-target="#modalAds"> 
+                            Confirmar Orden &nbsp; <i class="fa fa-check"></i>
+                            </a>
+                            </div-->
+                        </div>
+                    </div>
+                <!--/ cartFooter -->
+                </div>
+            </div>
+        </div>
+    <!--/row end--> 
+    <!--/rightSidebar-->
+    </div>
+<!--/row-->  
+    <div style="clear:both"></div>
+</div>

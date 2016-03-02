@@ -1,0 +1,60 @@
+<div class="container main-container headerOffset">
+  
+    <div class="row">
+		<div class="col-lg-9 col-md-9 col-sm-7">
+            <h1 class="section-title-inner"><span><i class="glyphicon glyphicon-shopping-cart"></i> Métodos de Pago</span></h1>
+		</div>
+
+		
+	</div>
+	
+	  <div class="row">
+		
+   <!--/rightSidebar--> 
+		
+		<div class="w100 clearfix">
+            <div class="row userInfo">
+              <div class="col-lg-12">
+                <h2 class="block-title-2"> Método de pago</h2>
+                <p>Favor seleccionar el métdo de pago preferido para usar en el pedido. </p>
+                <strong style="font-size: 18px"> <span class=" site-color">Monto a Pagar :</span>  <?php echo $this->order->total_payment ?>  Bs.</strong>
+                <hr>
+              </div>
+              <div class="col-xs-12 col-sm-12">
+                <div class="paymentBox">
+                  <div class="panel-group paymentMethod" >
+                   
+                    <div class="panel panel-default">
+                      <div class="panel-heading panel-heading-custom">
+                        <h4 class="panel-title"> <a class="masterCard" data-toggle="collapse" data-parent="#accordion" href="#collapseThree"> <span class="numberCircuil">Opción: </span> <strong> Tarjeta de Crédito </strong> </a> </h4>
+                      </div>
+                      <div id="collapseThree" class="">
+                        <div class="panel-body">
+                          <p>Todas las transacciones son seguras y cifradas. Para aprender más, favor leer nuestras políticas de usuario</p>
+                          <br>
+                          <div class="panel open">
+                            <div class="creditCard">
+                                <?php echo $this->boton123 ?>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <!--/row--> 
+                
+              </div>
+            </div>
+          </div>
+          <!--/row end-->
+          
+          <div class="cartFooter w100">
+            
+          </div>
+        </div>
+        
+	
+  </div> <!--/row-->
+  
+  <div style="clear:both"></div>

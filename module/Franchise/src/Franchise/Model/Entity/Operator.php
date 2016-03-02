@@ -1,0 +1,39 @@
+<?php
+
+namespace Franchise\Model\Entity;
+
+class Operator {
+
+    public $operator_id;
+    public $email;
+    public $name;
+    public $phone;
+    public $password;
+    public $salt;
+    public $last_name;
+    public $branch_id;
+
+    public function __construct(Array $data = array())
+    {
+        $this->exchangeArray($data);
+    }
+
+    public function exchangeArray($data)
+    {
+
+        $attributes = array_keys($this->getArrayCopy());
+
+        foreach ($attributes as $attr) {
+            if (isset($data[$attr])) {
+                $this->{$attr} = $data[$attr];
+            }
+        }
+    }
+    
+    public function getArrayCopy() {
+        return get_object_vars($this);
+    }
+    
+    
+    
+}

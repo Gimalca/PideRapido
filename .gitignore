@@ -1,0 +1,16 @@
+nbproject
+._*
+.vagrant
+.~lock.*
+.buildpath
+.DS_Store
+.idea
+.project
+.settings
+vendor
+composer.phar
+!/public/vendor/
+/piderapido_26_09_15.sql
+/prapido.mwb
+/config/autoload/local.php.back.dist
+/node_modules/

@@ -1,0 +1,273 @@
+<section id="content" class="pn animated fadeIn">
+    <!-- <div class="p40 bg-background bg-topbar bg-psuedo-tp"> -->
+    <?php $this->form->prepare(); ?>
+    <div class="pv30 ph40 bg-light dark br-b br-grey posr">
+        <div class="table-layout">
+            <div class="w200 text-center pr30 hidden-xs">
+                <img src="<?php echo $this->basePath() . '/img/franchise/branch/' . $branch->logo ?>" class="responsive">
+            </div>
+            <div class="va-t m30">
+
+                <h2 class=""><?php echo $this->branch->name ?><small> Sucursal </small></h2>
+                <p class="fs15 mb20">Contacto: <?php echo $this->branch->contact ?></p>
+                <p class="fs15 mb20">Numero: <?php echo $this->branch->phone ?></p>
+            </div>
+        </div>
+    </div>
+    <div class="p25 pt35">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="panel">
+                    <div class="multi-field-wrapper">  
+                        <form id="productForm" class="form-horizontal" role="form"  action="<?php echo $this->basePath($this->form->getAttribute('action')); ?>" method="post" enctype="multipart/form-data">
+                            <?php echo $this->formHidden($this->form->get('branch_id')); ?>
+                            <div class="panel-heading">                            
+                                <span class="panel-title">Agregar Productos</span> 
+                                <a class="add-field">
+                                    <i class="fa fa-plus-circle"></i>
+                                </a>
+                                <a  onclick="document.getElementById('productForm').submit();" style="margin-left: 10px;">
+                                    <i class="fa fa-save"></i>
+                                </a>
+                            </div>
+                            <div class="panel-body pn">
+                                <div class="multi-fields">
+                                    <div class="multi-field">                                     
+                                        <table class="table mbn tc-icon-1 tc-med-2 tc-bold-last" id="addTr">
+                                            <tbody>
+                                                <tr id="addProduct"> 
+                                                    <td>
+                                                        <a class="remove-field">
+                                                            <i class="fa fa-minus-circle"></i>
+                                                        </a>
+                                                    </td>
+                                                    <td>Nombre del Producto</td>
+                                                    <td><?php echo $this->formRow($this->form->get('product_id')); ?></td>                                                    
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-6">
+                <div class="panel">
+                    <div class="panel-heading">
+                        </span>
+                        <span class="panel-title">Productos Agregados</span>
+                    </div>
+                    <div class="panel-body pn">
+                        <table class="table mbn tc-icon-1 tc-med-2 tc-bold-last">
+                            <tbody>
+                                <?php foreach ($this->product as $product) : ?>
+                                    <tr>
+                                        <td><?php echo $product->name; ?></td>
+                                        <td class="text-center">
+                                            <div class="btn-group text-right" data-id="<?php echo $product->product_has_branch_id; ?>" data-whatever="<?php echo $product->status_product_has_branch; ?>" >
+                                                <?php
+                                                $status = $product->status_product_has_branch;
+                                                if ($status == 0) {
+                                                    ?>
+                                                    <button type="button" class="btn btn-danger br2 btn-xs fs12 dropdown-toggle" data-toggle="dropdown" aria-expanded="true"> 
+                                                        Deshabilitado
+                                                        <span class="caret ml5"></span>
+                                                    </button> 
+                                                    <?php
+                                                }
+                                                if ($status == 1) {
+                                                    ?>
+                                                    <button type="button" class="btn btn-success br2 btn-xs fs12 dropdown-toggle" data-toggle="dropdown" aria-expanded="true"> 
+                                                        Activo
+                                                        <span class="caret ml5"></span>
+                                                    </button> 
+                                                <?php }if ($status == 2) {
+                                                    ?>
+                                                    <button type="button" class="btn btn-warning br2 btn-xs fs12 dropdown-toggle" data-toggle="dropdown" aria-expanded="true"> 
+                                                        Archivado
+                                                        <span class="caret ml5"></span>
+                                                    </button> 
+                                                <?php }
+                                                ?>
+                                                <ul class="dropdown-menu" role="menu">
+                                                    <?php
+                                                    switch ($status) {
+                                                        case 0:
+                                                            ?>
+
+                                                            <li>
+                                                                <a class="status" data-whatever="1" data-note-style="success" data-note-shadow="true" href = "#">Activar</a>
+                                                            </li>
+                                                            <li class = "" >
+                                                                <a class="status" data-whatever="0" data-note-style="success" data-note-shadow="true" href = "#" >Deshabilitar</a>
+                                                            </li>
+                                                            <li  class = "">
+                                                                <a class="status" data-whatever="2" data-note-style="success" data-note-shadow="true" href = "#">Archivar</a>
+                                                            </li>
+                                                            <?php
+                                                            break;
+                                                        case 1:
+                                                            ?>
+                                                            <li>
+                                                                <a class="status" data-whatever="1" data-note-style="success" data-note-shadow="true" href = "#">Activar</a>
+                                                            </li>
+                                                            <li class = "" >
+                                                                <a class="status" data-whatever="0" data-note-style="success" data-note-shadow="true" href = "#" >Deshabilitar</a>
+                                                            </li>
+                                                            <li  class = "">
+                                                                <a class="status" data-whatever="2" data-note-style="success" data-note-shadow="true" href = "#">Archivar</a>
+                                                            </li>
+                                                            <?php
+                                                            break;
+                                                        case 2:
+                                                            ?>
+
+                                                            <li>
+                                                                <a class="status" data-whatever="1" data-note-style="success" data-note-shadow="true" href = "#">Activar</a>
+                                                            </li>
+                                                            <li class = "" >
+                                                                <a class="status" data-whatever="0" data-note-style="success" data-note-shadow="true" href = "#" >Deshabilitar</a>
+                                                            </li>
+                                                            <li  class = "">
+                                                                <a class="status" data-whatever="2" data-note-style="success" data-note-shadow="true" href = "#">Archivar</a>
+                                                            </li>
+                                                            <?php
+                                                            break;
+                                                    }
+                                                    ?>
+
+                                                </ul>
+                                            </div>
+                                    </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+<?php
+$this->headScript()
+        // Admin Panels
+        ->prependFile($this->basePath('vendor') . '/plugins/datepicker/js/moment.js')
+        ->prependFile($this->basePath('assets_admin') . '/admin-tools/admin-plugins/admin-panels/json2.js')
+        ->prependFile($this->basePath('assets_admin') . '/admin-tools/admin-plugins/admin-panels/jquery.ui.touch-punch.min.js')
+        ->prependFile($this->basePath('assets_admin') . '/admin-tools/admin-plugins/admin-panels/adminpanels.js')
+        // Page Plugins via CDN 
+        ->prependFile('http://cdnjs.cloudflare.com/ajax/libs/globalize/0.1.1/globalize.min.js')
+
+        // Sparklines CDN
+        ->prependFile('http://cdnjs.cloudflare.com/ajax/libs/jquery-sparklines/2.1.2/jquery.sparkline.min.js')
+        //Page Plugins
+        ->prependFile($this->basePath() . '/assets/js/bootstrap.js')
+        ->prependFile($this->basePath('vendor') . '/plugins/datepicker/js/moment.js')
+        ->prependFile($this->basePath('vendor') . '/plugins/daterange/daterangepicker.js')
+        ->prependFile($this->basePath('vendor') . '/plugins/datepicker/js/bootstrap-datetimepicker.min.js')
+        ->prependFile($this->basePath('vendor') . '/plugins/tagmanager/tagmanager.js')
+        // Chart Plugins
+        ->prependFile($this->basePath('vendor') . '/plugins/highcharts/highcharts.js')
+        ->prependFile($this->basePath('vendor') . '/plugins/circles/circles.js')
+        ->prependFile($this->basePath('vendor') . '/plugins/raphael/raphael.js')
+        ->prependFile($this->basePath('vendor') . '/plugins/jquerymask/jquery.maskedinput.min.js')
+        ->prependFile($this->basePath('vendor') . '/plugins/tagmanager/tagmanager.js')
+        ->prependFile($this->basePath('vendor') . '/plugins/dropzone/dropzone.min.js')
+        // Holder js
+        ->prependFile($this->basePath() . '/vendor/plugins/select2/select2.min.js')
+        ->prependFile($this->basePath() . '/vendor/plugins/fileupload/fileupload.js')
+        ->prependFile($this->basePath('assets_admin') . '/js/bootstrap/holder.min.js')
+;
+;
+$this->inlineScript()->captureStart();
+echo <<<JS
+        jQuery(document).ready(function() {
+
+            "use strict";
+            
+
+            $('.multi-field-wrapper').each(function() {
+                var wrapper = $('#addTr tbody', this);
+                $(".add-field", $(this)).click(function(e) {
+                var newgroup = $('#addProduct', wrapper).clone(true);
+                console.log(newgroup);
+                newgroup.find('input, select').each(function(){ 
+                    
+                 //code increment name Array
+                 this.name = this.name.replace(/\[(\d+)\]/,function(str,p1){return '[' + (parseInt(p1,10)+1) + ']'});
+ 
+                 }).end().appendTo(wrapper).find('input, select, file, hide').val('').focus();
+                
+                  
+            });
+            $('#addTr').on('click','.remove-field', function(evt) {
+               evt.preventDefault();
+               // if ($('#addTr', wrapper).length > 1)
+                console.log($(this).closest('tr'));
+                $(this).closest('tr').remove();
+                });
+            });
+
+            $('.status').click(function(e){
+                    e.preventDefault();
+                    var row = $(this).closest('div');
+                    var oldStatus = row.data('whatever');            
+                    var status = $(this).data('whatever');
+                    var id = row.data('id');
+
+                              $.ajax({
+                                    url: '../statusProduct/'+id,
+                                    type: 'post',
+                                    data: {"id":id,"status":status},
+                                    dataType: 'json',
+                                    beforeSend: function() {
+
+                                            },
+                                    complete: function() {
+
+                                    },
+                                    success: function(json) {
+                                        var _class = '';
+                                        var statusName = json.statusName;
+                                        switch (json.status) {
+                                            case '1':
+                                               _class = 'btn btn-success br2 btn-xs fs12 dropdown-toggle';
+                                                break;
+                                            case '0':
+                                                _class = 'btn btn-danger br2 btn-xs fs12 dropdown-toggle';
+                                                break;
+                                            case '2':
+                                                _class = 'btn btn-warning br2 btn-xs fs12 dropdown-toggle';
+                                                break;
+
+                                        }
+
+                                        var button = $(row).find('button');
+                                        button.html(statusName+'<span class="caret ml5"></span>');
+
+                                        var oldClass = button.attr('class');
+                                        button.removeClass(oldClass); 
+                                        button.addClass(_class);
+
+                                        var newStatus = $(row).find('a[data-whatever='+status+']').parent('li');               
+                                        var old = $(row).find('a[data-whatever='+oldStatus+']').parent('li');
+
+
+
+
+                                    },
+                                    error: function(xhr, ajaxOptions, thrownError) {
+                                        alert(thrownError + "-" + xhr.status );
+                                    }
+                             });
+                });
+
+
+        });
+    </script>
+JS;
+$this->inlineScript()->captureEnd();

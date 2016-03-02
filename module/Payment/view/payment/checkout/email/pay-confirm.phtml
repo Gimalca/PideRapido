@@ -1,0 +1,153 @@
+<div>
+    <div>  
+        <table style="width:100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#f6f4f5">
+            <tbody>
+                <tr>
+                    <td>
+                        <table style="width:700px;margin-top: 15px;" border="0" cellspacing="0" cellpadding="0" align="center" bgcolor="#ffffff"><tbody><tr><td style="background-color: #a91220;">
+                                        <table style="width:280px" border="0" cellspacing="0" cellpadding="0" align="left"><tbody><tr><td style="padding:15px 0 15px 20px" width="270">
+                                                        <div><a href="http://piderapido.com" target="_blank"><img style="border:none;text-decoration:none" src="http://piderapido.com/img/logo5.png" alt="Pide Rapido" border="0" class="CToWUd"></a></div>
+                                                    </td>
+                                                </tr></tbody></table></td>
+                                </tr></tbody></table></td>
+                </tr></tbody></table></div>
+    
+        <table style="width:100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#f6f4f5"><tbody><tr><td>
+                        <table style="width:580px;margin-bottom: 15px" border="0" cellspacing="0" cellpadding="0" align="center" bgcolor="#ffffff"><tbody><tr><td width="100%" height="20">&nbsp;</td>
+                                </tr><tr><td>
+                                        
+                                        <table style="width:540px" border="0" cellspacing="0" cellpadding="0" align="center"><tbody><tr><td style="font-family:Helvetica,arial,sans-serif;font-size:34px;color:#245273;text-align:center;line-height:34px">¡Gracias por tu compra en Pide Rápido!</td>
+                                                </tr><tr><td style="font-family:Helvetica,arial,sans-serif;font-size:22px;color:#333333;text-align:center;line-height:34px">¡<?php echo ucfirst($this->order->firstname) ?>, Tu orden ha sido confirmada! </td>
+                                                </tr><tr><td width="100%" height="20">&nbsp;</td>
+                                                </tr><tr><td style="font-family:Helvetica,arial,sans-serif;font-size:13px;color:#666666;text-align:left;line-height:18px;padding:15px">
+                                                        <p>En pocos minutos recibirás un correo para retirar tu comida, puedes confirmar el status de la misma en Tu carrito o haciendo <a href="<?php echo 'http://piderapido.com/account/OrderHistory/detail/' . $order->order_id ?>">click aquí</a> <br><br> Usa el siguiente # de pedido, Y muestraselo al operador del establecimiento al momento de retirar tu pedido para culminar tu experiencia de ser el #1,</p>
+                                                        <table border="0" cellspacing="0" cellpadding="0" align="center">
+                                                            <tbody><tr><td style="background-color:#9dd62c;text-transform:uppercase;letter-spacing:1px;font-size:13px;font-family:Helvetica,arial,sans-serif;text-align:center;color:#ffffff;font-weight:400;padding-left:25px;padding-right:25px" align="center" valign="middle" height="36"><span style="color:#ffffff;font-weight:400"> 
+                                                                           <?php echo $this->order->invoice_number ?> </span></td>
+                                                                </tr></tbody></table>
+                                                    </td>
+                                                </tr><tr><td width="100%" height="20">&nbsp;</td>
+                                                </tr><tr><td>
+                                                        <table style="width:700px;margin-top: 15px;" border="0" cellspacing="0" cellpadding="0" align="center" bgcolor="#ffffff">
+                                        <tbody>
+                                            
+                                            <tr class="CartProduct cartTableHeader">
+                                                <th style="width:15%"> Productos </th>
+                                                <th style="width:20%"> Detalle </th>
+                                               
+                                                <th style="width:10%">Precio Unitario</th>
+                                                <th class="hidden-xs" style="width:5%">Cant.</th>
+                                                <th class="hidden-xs" style="width:10%">Desc.</th>
+                                                <th style="width:15%" align="right">Total</th>
+                                                <th style="width:5%" align="right"></th>
+                                            </tr>
+                                            <?php $count = 0; $total =0;  foreach ($this->products as $product): ?>
+                                            
+                                            <tr class="CartProduct">
+                                                
+                                                <td align="center">
+                                                    <div>
+                                                        <img width="50px" src="<?php echo 'http://piderapido.com/img/catalog/product/' . $product->image ?>">
+                                                    </div>
+                                                </td>
+                                                
+                                                <td align="center">
+                                                    <div class="CartDescription" style="margin-bottom: 7px">
+                                                        <h5 style="padding: 2px; margin:5px"> <?php echo $product->name ?> </h5>
+                                                        <?php if(!empty($product->options)): ?>
+                                                        <div class="options">
+                                                            <ul style='margin: 0px; font-size: 0.7em;text-align: left;'>
+                                                                <?php foreach(explode(',', $product->options) as $option): ?>
+                                                                <li style="list-style: none"> <?php echo $this->escapeHtml($option)?></li>
+                                                                <?php endforeach; ?>
+                                                            </ul>
+                                                        </div>
+                                                        <?php endif; ?>
+                                                    </div>
+                                                </td>
+                                               
+                                                <td class="delete" align="center"><div class="price "><?php echo number_format($product->total, 2, '.', '') ?> Bs.</div></td>
+                                                <td class="hidden-xs" align="center">1</td>
+                                                <td class="hidden-xs" align="center">0</td>
+                                                <td class="price" align="right"><?php echo number_format($product->total, 2, '.', '') ?> Bs.</td>
+                                                <td class="hidden-xs" align="center"></td>
+                                            </tr>
+                                            <?php $total =$total+$product->total; $count ++; $branch = $product->branch_id ?>
+                                            <?php endforeach; ?>
+                                            <tr class="CartProduct">
+                                                
+                                                <td class="CartProductThumb" align="center">
+                                                  
+                                                </td>
+                                                <td align="center">
+                                                    
+                                                </td>
+                                                <td class="delete" align="center"><div class="price "></div></td>
+                                          
+                                 
+                                                <td   colspan="2" class="hidden-xs" align="right"><b>sub-total : </b></td>
+                                               <td class="price" align="right"><?php  $sub = $total; echo number_format($sub, 2, '.', '')?> Bs.</td>
+                                                <td class="hidden-xs" align="center"></td>
+                                            </tr>
+                                             <tr class="CartProduct">
+                                                
+                                                <td class="CartProductThumb" align="center">
+                                                  
+                                                </td>
+                                                <td align="center">
+                                                    
+                                                </td>
+                                                <td class="delete" align="center"><div class="price "></div></td>
+                                              
+                                        
+                                                <td  colspan="2" class="hidden-xs" align="right"><b>Comision (12%) : </b></td>
+                                                <td class="price" align="right"><?php $comi = $sub*0.12; echo   number_format($comi, 2, '.', '')?> Bs.</td>
+                                                <td class="hidden-xs" align="center"></td>
+                                            </tr>
+                                            <tr class="CartProduct">
+                                                
+                                                <td class="CartProductThumb" align="center">
+                                                  
+                                                </td>
+                                                <td align="center">
+                                                    
+                                                </td>
+                                                <td class="delete" align="center"><div class="price "></div></td>
+                                               
+                      
+                                                <td  colspan="2" class="hidden-xs" align="right"><b>IVA (12%) : </b></td>
+                                                <td class="price" align="right"><?php $iva = ($comi + $sub) * 0.12; echo   number_format($iva, 2, '.', '')?> Bs.</td>
+                                                 <td class="hidden-xs" align="center"></td>
+                                            </tr>
+                                            <tr class="CartProduct">
+                                                
+                                                 <td class="CartProductThumb" align="center">
+                                                  
+                                                </td>
+                                                <td align="center">
+                                                    
+                                                </td>
+                                                <td class="delete" align="center"><div class="price "></div></td>
+                                                <td colspan="2" class="hidden-xs" align="right"><b>TOTAL A PAGAR : </b></td>
+
+                                               <td class="price" align="right"><b><?php $total_payment = $comi + $sub + $iva; echo number_format($total_payment, 2, '.', '')  ?> Bs.</b></td>
+                                                <td class="hidden-xs" align="center"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                                        </td>
+                                                </tr><tr><td width="100%" height="20">&nbsp;</td>
+                                                </tr><tr><td style="font-family:Helvetica,arial,sans-serif;font-size:13px;color:#666666;text-align:left;line-height:18px">
+                                                        
+                                                        <p><a href="<?php echo $this->link ?>" target="_blank"><?php echo $this->link ?></a></p>
+                                                        <p style="padding:15px"><span style="color:#666666;font-family:Helvetica,arial,sans-serif;font-size:13px;line-height:18px;">¡Así de fácil, rápido y cómodo!,<br> El equipo de Pide<strong>Rapido</strong>.com</span></p>
+                                                    </td>
+                                                </tr><tr><td width="100%" height="20">&nbsp;</td>
+                                                </tr><tr><td style="font-family:Helvetica,arial,sans-serif;font-size:11px;color:#666666;text-align:left;line-height:11px;padding:15px">En caso de recibir este mensaje por error, no es necesario tomar ninguna otra medida, no recibirá ningún envío automatizado. Si cree que su dirección de correo electrónico fue mal utilizado, por favor contacte con nosotros en <a href="mailto:info@piderapido.com" target="_blank">info@piderapido.com</a>.</td>
+                                                </tr><tr><td width="100%" height="20">&nbsp;</td>
+                                                </tr></tbody></table></td>
+                                </tr></tbody></table></td>
+                </tr></tbody></table>
+    <div>
+        </div>
+</div>

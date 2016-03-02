@@ -1,0 +1,78 @@
+<!-- Begin: Content -->
+<section id="content" class="animated fadeIn">
+
+    <h2 class="lh30 mt15 text-center"> Seleccione una <b class="text-primary"> Franquicia </b></h2>
+    <br>
+
+    <div class="panel">
+
+        <div class="admin-form theme-primary">
+
+            <div id="p1" class="panel heading-border panel-primary">
+
+                <div class="panel-body bg-light">
+
+
+                    <form id="form"  action="<?php echo $this->basePath('/admin/branch/listFranchise'); ?>" method="post" enctype="multipart/form-data">
+                        <div class="col-md-offset-4 col-md-4">
+                            <div class="section">
+                                <label class="field select">
+                                    <?php echo $this->formSelect($this->franchies_list->get('franchise_id')); ?>
+                                    <i class="arrow"></i>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-12 text-center">
+                            <center>
+                                <button class="button btn-primary" type="submit">Buscar</button>
+                            </center>
+                        </div> 
+                    </form>  
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="row">
+
+            <div class="text-center">
+
+                <h2 class="lh30 mt15 text-center"> Listado <b class="text-primary"> de Franquicias </b></h2>
+                <br>
+            </div>
+
+        </div>
+        <br>
+        <?php foreach ($this->franchieses as $franchies) : ?>
+            <a href="<?php echo $this->url('admin', array('controller' => 'branch', 'action' => 'list', 'id' => $franchies->franchise_id)); ?>">
+                <div class="col-md-4">
+                    <div class="panel">
+                        <div class="panel-heading">
+                            <span class="panel-title">
+                                <span class="glyphicons glyphicons-fast_food"></span>Franquicia</span>
+                        </div>
+                        <div class="panel-body">
+
+                            <div class="clearfix"></div>
+                            <div class="tab-content br-n pn">
+                                <div id="tab17_1" class="tab-pane active">
+                                    <div class="row">
+                                        <div class="col-md-4 ">
+                                            <img  src="<?php echo $this->basePath() . '/img/franchise/' . $franchies->logo ?>" class="img-responsive thumbnail mr25 h-100" />
+                                        </div>
+                                        <div class="col-md-8">
+                                            <h5><?php echo $franchies->name ?></h5><br>
+                                        </div>
+                                    </div>
+                                </div>                                    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        <?php endforeach; ?>
+
+</section>
+<!-- End: Content -->

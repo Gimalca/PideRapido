@@ -1,0 +1,97 @@
+<section id="content" class="animated fadeIn">
+
+    <h2 class="lh30 mt15 text-center"> Crear <b class="text-primary"> Operador </b></h2>
+    <br>
+    <div class="panel">
+
+        <div class="admin-form theme-primary">
+
+            <div id="p1" class="panel heading-border panel-primary">
+
+                <div class="panel-body bg-light">
+
+                    <div class="row">
+
+                        <div class="admin-form tab-pane" id="register1" role="tabpanel">
+
+                            <!-- end .form-header section -->
+
+                            <form method="post" action="<?php echo $this->basePath($this->form->getAttribute('action')); ?>" id="form-register1">
+                                <?php echo $this->formHidden($this->form->get('branch_id')); ?>
+                                <div class="panel-body p25">
+                                    <label for="names" class="field-label">Nombres del asistente</label>
+                                    <div class="section row">
+                                        <div class="col-md-6">
+                                            <label for="firstname" class="field prepend-icon">
+                                                <?php echo $this->formInput($this->form->get('name')); ?>
+                                            </label>
+                                        </div>
+                                        <!-- end section -->
+
+                                        <div class="col-md-6">
+                                            <label for="lastname" class="field prepend-icon">
+                                                <?php echo $this->formInput($this->form->get('last_name')); ?>
+                                            </label>
+                                        </div>
+                                        <!-- end section -->
+
+                                    </div>
+
+                                    <div class="section">
+                                        <label for="password" class="field-label">Contraseña</label>
+                                        <label for="password" class="field prepend-icon">
+                                            <?php echo $this->formInput($this->form->get('password')); ?>
+                                        </label>
+                                    </div>
+                                    <!-- end section -->
+
+                                    <div class="section">
+                                        <label for="confirmPassword" class="field-label">Confirmar contraseña</label>
+                                        <label for="confirmPassword" class="field prepend-icon">
+                                            <?php echo $this->formInput($this->form->get('confirm_password')); ?>
+                                        </label>
+                                    </div>
+                                    <!-- end .section row section -->
+
+                                    <!-- end section -->
+
+                                    <div class="section">
+                                        <label for="email" class="field-label">Correo electrónico</label>
+                                        <label for="email" class="field prepend-icon">
+                                            <?php echo $this->formInput($this->form->get('email')); ?>
+                                        </label>
+                                    </div>
+                                    <!-- end section -->
+
+                                    <div class="section">
+                                        <label for="mobile" class="field-label">Telefono Celular</label>
+                                        <label for="mobile" class="field prepend-icon">
+                                            <?php echo $this->formInput($this->form->get('phone')); ?>
+                                        </label>
+                                    </div>
+
+                                </div>
+                                <!-- end .form-body section -->
+                                <div class="panel-footer text-right">
+                                    <button type="submit"class="btn btn-primary notification" data-note-style="success">Guardar</button>
+                                    <input class="btn btn-danger" type="button" value="Cancelar">
+                                </div>
+                                <!-- end .form-footer section -->
+                            </form>
+                        </div>
+                        <!-- end .admin-form section -->
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+</div>
+</div>
+
+
+</section>

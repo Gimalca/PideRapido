@@ -1,0 +1,311 @@
+<!-- Begin: Content -->
+
+<!-- Begin: Content -->
+<section id="content" class="animated fadeIn">
+    <?php $this->form->prepare(); ?>
+    <form class="form-horizontal" role="form"  action="<?php echo $this->basePath($this->form->getAttribute('action')); ?>" method="post" enctype="multipart/form-data">
+        <div class="panel">
+            <div class="panel-heading">
+                <span class="panel-title">
+                    <span class="glyphicons glyphicons-fast_food"></span>
+                    Crear Opciones
+                </span>
+                </span>
+            </div>
+            <div class="tab-content">
+                <div class="multi-field-wrapper">                                
+
+                    <div class="multi-fields">
+                        <div class="multi-field"> 
+                            <div id="tab5_1" class="tab-pane active">
+                                <div class="panel-body bg-light">
+
+                                    <div class="col-md-8">
+
+                                        <div class="form-group">
+                                            <label for="inputStandard" class="col-lg-3 control-label">Nombre de la Opcion
+                                            </label>
+                                            <div class="col-lg-8">
+                                                <?php echo $this->formRow($this->form->get('name')); ?>
+                                            </div>       
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-lg-3 control-label" for="textArea2">Tipo</label>
+                                            <div class="col-lg-8">
+                                                <?php echo $this->formRow($this->form->get('type_id')); ?>
+                                                <i class="arrow double"></i>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-lg-3 control-label" for="textArea2">Clasificacion</label>
+                                            <div class="col-lg-8">
+                                                <?php echo $this->formRow($this->form->get('clasification_id')); ?>
+                                                <i class="arrow double"></i>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="inputStandard" class="col-lg-3 control-label">Sort Order
+                                            </label>
+                                            <div class="col-lg-8">
+                                                <?php echo $this->formRow($this->form->get('sort_order')); ?>
+                                            </div>
+
+                                        </div>
+
+                                        <br><br>                                
+
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <div class="col-md-offset-8">
+                                            <button class="btn btn-primary" type="submit">Guardar Cambios</button>
+                                            <input class="btn btn-danger" type="button" value="Cancelar">
+                                        </div>
+                                    </div>
+                                </div>                
+                            </div>
+
+                        </div>
+                    </div>                                
+                </div>
+
+
+            </div>
+        </div>
+    </form>
+
+
+    <h2 class="lh30 mtn text-center">Opciones de <b class="text-primary">Productos</b></h2>
+    <br>
+
+    <div class="panel">
+        <div class="admin-form theme-primary">
+
+            <div class="panel-menu">
+                <div class="chart-legend" data-chart-id="#high-line3">
+                    <a class="legend-item btn btn-sm btn-primary mr10" href="<?php echo $this->url('admin', array('controller' => 'option', 'action' => 'addOption')); ?>"><span class="fa fa-plus pr5"></span>Agregar Opciones Multiples</a>
+                    <a class="legend-item btn btn-sm btn-primary mr10" href="<?php echo $this->url('admin', array('controller' => 'option', 'action' => 'addOptionValue')); ?>"><span class="fa fa-plus pr5"></span>Agregar Valores de opciones</a>
+                    <a class="legend-item btn btn-sm btn-primary mr10" href="<?php echo $this->url('admin', array('controller' => 'option', 'action' => 'addType')); ?>"><span class="fa fa-plus pr5"></span>Agregar Tipo</a>
+                    <a class="legend-item btn btn-sm btn-primary mr10" href="<?php echo $this->url('admin', array('controller' => 'option', 'action' => 'addClasification')); ?>"><span class="fa fa-plus pr5"></span>Agregar Clasificacion</a>
+
+                    <a lass="disabled legend-item btn btn-dark btn-sm mr10" style="float: right;">Cantidad de Usuarios: 60</a>
+                </div>
+            </div>
+            <div id="p1" class="panel heading-border panel-primary">
+
+                <div class="panel-body bg-light">
+                    <div class="tab-content">
+                        <div id="tab15_1" class="tab-pane active">
+                            <table class="table admin-form theme-warning tc-checkbox-1 fs13">
+
+                                <thead>
+                                    <tr class="bg-light">
+                                        <th class="text-center">Seleccionar</th>
+                                        <th class="">Nombre</th>
+                                        <th class="">Tipo</th>
+                                        <th class="">Clasificacion</th>
+                                        <th class="">Orden</th>
+                                        <th class="text-center">Estatus</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach ($this->options as $option) : ?>
+                                        <tr data-id="<?php echo $option->option_id; ?>">
+                                            <td class="text-center">
+                                                <label class="option block mn">
+                                                    <input type="checkbox" name="mobileos" value="FR">
+                                                    <span class="checkbox mn"></span>
+                                                </label>
+                                            </td>
+                                            <td class=""><?php echo $option->name ?></td>
+                                            <td class=""><?php echo $option->name_type ?></td>
+                                            <td class=""><?php echo $option->name_clasification ?></td>
+                                            <td class=""><?php echo $option->sort_order ?></td>
+                                            <td class="text-center">
+                                                <div class="btn-group text-right" data-id="<?php echo $option->option_id; ?>" data-whatever="<?php echo $option->status; ?>" >
+                                                    <?php
+                                                    $status = $option->status;
+                                                    if ($status == 0) {
+                                                        ?>
+                                                        <button type="button" class="btn btn-danger br2 btn-xs fs12 dropdown-toggle" data-toggle="dropdown" aria-expanded="true"> 
+                                                            Deshabilitado
+                                                            <span class="caret ml5"></span>
+                                                        </button> 
+                                                        <?php
+                                                    }
+                                                    if ($status == 1) {
+                                                        ?>
+                                                        <button type="button" class="btn btn-success br2 btn-xs fs12 dropdown-toggle" data-toggle="dropdown" aria-expanded="true"> 
+                                                            Activo
+                                                            <span class="caret ml5"></span>
+                                                        </button> 
+                                                    <?php }if ($status == 2) {
+                                                        ?>
+                                                        <button type="button" class="btn btn-warning br2 btn-xs fs12 dropdown-toggle" data-toggle="dropdown" aria-expanded="true"> 
+                                                            Archivado
+                                                            <span class="caret ml5"></span>
+                                                        </button> 
+                                                    <?php }
+                                                    ?>
+                                                    <ul class="dropdown-menu" role="menu">
+                                                        <?php
+                                                        switch ($status) {
+                                                            case 0:
+                                                                ?>
+
+                                                                <li>
+                                                                    <a class="status" data-whatever="1" data-note-style="success" data-note-shadow="true" href = "#">Activar</a>
+                                                                </li>
+                                                                <li class = "" >
+                                                                    <a class="status" data-whatever="0" data-note-style="success" data-note-shadow="true" href = "#" >Deshabilitar</a>
+                                                                </li>
+                                                                <li  class = "">
+                                                                    <a class="status" data-whatever="2" data-note-style="success" data-note-shadow="true" href = "#">Archivar</a>
+                                                                </li>
+                                                                <?php
+                                                                break;
+                                                            case 1:
+                                                                ?>
+                                                                <li>
+                                                                    <a class="status" data-whatever="1" data-note-style="success" data-note-shadow="true" href = "#">Activar</a>
+                                                                </li>
+                                                                <li class = "" >
+                                                                    <a class="status" data-whatever="0" data-note-style="success" data-note-shadow="true" href = "#" >Deshabilitar</a>
+                                                                </li>
+                                                                <li  class = "">
+                                                                    <a class="status" data-whatever="2" data-note-style="success" data-note-shadow="true" href = "#">Archivar</a>
+                                                                </li>
+                                                                <?php
+                                                                break;
+                                                            case 2:
+                                                                ?>
+
+                                                                <li>
+                                                                    <a class="status" data-whatever="1" data-note-style="success" data-note-shadow="true" href = "#">Activar</a>
+                                                                </li>
+                                                                <li class = "" >
+                                                                    <a class="status" data-whatever="0" data-note-style="success" data-note-shadow="true" href = "#" >Deshabilitar</a>
+                                                                </li>
+                                                                <li  class = "">
+                                                                    <a class="status" data-whatever="2" data-note-style="success" data-note-shadow="true" href = "#">Archivar</a>
+                                                                </li>
+                                                                <?php
+                                                                break;
+                                                        }
+                                                        ?>
+
+                                                    </ul>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>      
+</section>
+<?php
+$this->inlineScript()->captureStart();
+echo <<<JS
+
+jQuery('document').ready(function(){
+
+    $('.btn-delete').click(function(e){
+
+           e.preventDefault();
+            var row = $(this).closest('tr');
+           
+            var id = row.data('id');
+          bootbox.confirm("Desea eliminar el registro ??", function(e) {
+
+                // e returns true if user clicks "accept"
+                // false if "cancel" or dismiss icon are clicked
+                if (e) {  
+                  
+
+                      $.ajax({
+                            url: '../option/delete-option/'+id,
+                            type: 'post',
+                            data: 'id='+id,
+                            dataType: 'json',
+                            beforeSend: function() {
+
+                                    },
+                            complete: function() {
+
+                            },
+                            success: function(json) {
+                                row.fadeOut();
+                            },
+                            error: function(xhr, ajaxOptions, thrownError) {
+                                alert(thrownError + "-" + xhr.status );
+                            }
+                     });
+               } else {
+                   return;
+               }    
+           });
+        });
+        $('.status').click(function(e){
+                    e.preventDefault();
+                    var row = $(this).closest('div');
+                    var oldStatus = row.data('whatever');            
+                    var status = $(this).data('whatever');
+                    var id = row.data('id');
+
+                              $.ajax({
+                                    url: '../option/statusOption/'+id,
+                                    type: 'post',
+                                    data: {"id":id,"status":status},
+                                    dataType: 'json',
+                                    beforeSend: function() {
+
+                                            },
+                                    complete: function() {
+
+                                    },
+                                    success: function(json) {
+                                        var _class = '';
+                                        var statusName = json.statusName;
+                                        switch (json.status) {
+                                            case '1':
+                                               _class = 'btn btn-success br2 btn-xs fs12 dropdown-toggle';
+                                                break;
+                                            case '0':
+                                                _class = 'btn btn-danger br2 btn-xs fs12 dropdown-toggle';
+                                                break;
+                                            case '2':
+                                                _class = 'btn btn-warning br2 btn-xs fs12 dropdown-toggle';
+                                                break;
+
+                                        }
+
+                                        var button = $(row).find('button');
+                                        button.html(statusName+'<span class="caret ml5"></span>');
+
+                                        var oldClass = button.attr('class');
+                                        button.removeClass(oldClass); 
+                                        button.addClass(_class);
+
+                                        var newStatus = $(row).find('a[data-whatever='+status+']').parent('li');               
+                                        var old = $(row).find('a[data-whatever='+oldStatus+']').parent('li');
+
+
+
+
+                                    },
+                                    error: function(xhr, ajaxOptions, thrownError) {
+                                        alert(thrownError + "-" + xhr.status );
+                                    }
+                             });
+                });
+    //ready document    
+    });
+
+//</script>
+
+JS;
+$this->inlineScript()->captureEnd();

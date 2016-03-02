@@ -1,0 +1,165 @@
+<section id="content" class="animated fadeIn">
+
+    <h2 class="lh30 mtn text-center">Ordenes de <b class="text-primary"><?php echo strtoupper($this->customer->firstname) ?></b></h2>
+    <br>
+
+    <div class="col-md-12">
+
+        <div class="panel">
+            <div class="panel-body pn">
+
+                <table class="table admin-form theme-warning tc-checkbox-1 fs13">
+                    <thead>
+                        <tr class="bg-light">
+                            <th class="text-center">ID de la Orden</th>
+                            <th class="">Numro de Factura</th>
+                            <th class="">Fecha de Solicitud</th>
+                            <th class="">Tarjeta de Credito</th>
+                            <th class="">Sub Total</th>
+                            <th class="">Total a Pagar</th>
+                            <th class="">Estatus Orden</th>
+                            <th class="">Estatus Despacho</th>
+                            <th class=""></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($this->orders as $order) : ?>
+                            <tr>
+                                <td class=""><?php echo $order->order_id ?></td>
+                                <td class=""><?php echo $order->invoice_number ?></td>
+                                <td class=""><?php echo $order->date_added ?></td>
+                                <td class=""><?php echo $order->tdc ?></td>
+                                <td class=""><?php echo $order->subtotal ?></td>
+                                <td class=""><?php echo $order->total_payment ?></td>
+                                <td>
+                                    <?php
+                                    switch ($order->order_status) {
+                                        case 1:
+                                            ?>
+                                            <div class="btn-group text-center">
+                                                <button class="btn btn-dark br2 btn-xs fs12 dropdown-toggle" aria-expanded="false" type="button" disabled>
+                                                    Recibido
+                                                </button>       
+                                            </div>
+                                            <?php
+                                            break;
+                                        case 2:
+                                            ?>
+                                            <div class="btn-group text-center">
+                                                <button class="btn btn-danger br2 btn-xs fs12 dropdown-toggle" aria-expanded="false" type="button" disabled>
+                                                    Cancelado
+                                                </button>       
+                                            </div>
+                                            <?php
+                                            break;
+                                        case 3:
+                                            ?>
+                                            <div class="btn-group text-center">
+                                                <button class="btn btn-warning br2 btn-xs fs12 dropdown-toggle" aria-expanded="false" type="button" disabled>
+                                                    En Proceso
+                                                </button>       
+                                            </div>
+                                            <?php
+                                            break;
+                                        case 4:
+                                            ?>
+                                            <div class="btn-group text-center">
+                                                <button class="btn btn-info br2 btn-xs fs12 dropdown-toggle" aria-expanded="false" type="button" disabled>
+                                                    Procesado
+                                                </button>       
+                                            </div>
+                                            <?php
+                                            break;
+                                        case 5:
+                                            ?>
+                                            <div class="btn-group text-center">
+                                                <button class="btn btn-success br2 btn-xs fs12 dropdown-toggle" aria-expanded="false" type="button" disabled>
+                                                    Entregado
+                                                </button>       
+                                            </div>
+                                            <?php
+                                            break;
+                                    }
+                                    ?>             
+                                </td>
+                                <td>
+                                    <?php
+                                    switch ($order->order_dispatch) {
+                                        case 0:
+                                            ?>
+                                            <div class="btn-group text-center">
+                                                <button class="btn btn-info br2 btn-xs fs12 dropdown-toggle" aria-expanded="false" type="button" disabled>
+                                                    Por Entregar
+                                                </button>       
+                                            </div>
+                                            <?php
+                                            break;
+                                        case 1:
+                                            ?>
+                                            <div class="btn-group text-center">
+                                                <button class="btn btn-success br2 btn-xs fs12 dropdown-toggle" aria-expanded="false" type="button" disabled>
+                                                    Entregado
+                                                </button>       
+                                            </div>
+                                            <?php
+                                            break;
+                                    }
+                                    ?>             
+                                </td>
+                                <td class=""><a href="<?php echo $this->url('admin', array('controller' => 'customer', 'action' => 'orderDetail', 'id' => $order->order_id, 'idd' => $this->customer->customer_id)); ?>">Ver Detalle</a></td>
+                            </tr>
+                        <?php endforeach; ?>
+
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+
+    </div>
+
+
+
+</section>
+<!-- include footable plugin --> 
+
+<?php $this->inlineScript()->appendFile($this->basePath('assets/js/jquery-tcm-month.js')); ?>
+
+<?php
+$this->inlineScript()->captureStart();
+
+echo <<<JS
+    $(function() {
+        "use strict";
+
+            /* @month picker
+            *  ------------------------------------------------------------------
+            */
+
+            $("#monthpicker1").monthpicker({
+                changeYear: false,
+                stepYears: 1,
+                prevText: '<i class="fa fa-chevron-left"></i>',
+                nextText: '<i class="fa fa-chevron-right"></i>',
+                showButtonPanel: false,
+                dateFormat: "mm/yy",
+                beforeShow: function(input, inst) {
+                    var newclass = 'admin-form';
+                    var themeClass = $(this).parents('.admin-form').attr('class');
+                    var smartpikr = inst.dpDiv.parent();
+                    if (!smartpikr.hasClass(themeClass)) {
+                        inst.dpDiv.wrap('<div class="' + themeClass + '"></div>');
+                    }
+                }
+            });
+
+            $('.inline-mp').monthpicker({
+                prevText: '<i class="fa fa-chevron-left"></i>',
+                nextText: '<i class="fa fa-chevron-right"></i>',
+                showButtonPanel: false
+            });
+    });
+JS;
+
+$this->inlineScript()->captureEnd();
+?>

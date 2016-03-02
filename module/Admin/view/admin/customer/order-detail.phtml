@@ -1,0 +1,163 @@
+<section id="content">
+
+    <div class="panel invoice-panel">
+        <div class="panel-heading">
+            <span class="panel-title">
+                <span class="glyphicon glyphicon-print"></span> Fatura #<?php echo $this->producto->invoice_number_branch ?></span>
+        </div>
+        <div class="panel-body p20" id="invoice-item">
+
+            <div class="row mb30">
+                <div class="col-md-4">
+                    <div class="pull-left">
+                        <h1 class="lh10 mt10"> Factura #<?php echo $this->producto->invoice_number_branch ?></h1>
+                        <h5 class="mn"> Creada: <?php echo $this->producto->date_added ?> </h5>
+                        <h5 class="mn"> Status: <b class="text-success">Pagada</b> </h5>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="pull-right text-right">
+                        <h2 class="invoice-logo-text hidden lh10">PideRapido</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row" id="invoice-info">
+                <div class="col-md-6">
+                    <div class="panel panel-alt">
+                        <div class="panel-heading">
+                            <span class="panel-title"> <i class="fa fa-user"></i> Datos personales: </span>
+                        </div>
+                        <div class="panel-body">
+                            <ul class="list-unstyled">
+                                <li> <b>Nombre:</b><?php echo $this->producto->firstname ?> <?php echo $this->producto->lastname ?></li>
+                                <li> <b>Cédula</b><?php echo $this->producto->document_identity ?></li>
+                                <li> <b>Dirección:</b><?php echo $this->producto->address_default ?></li>
+                                <li> <b>Teléfono</b><?php echo $this->producto->telephone ?></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="panel panel-alt">
+                        <div class="panel-heading">
+                            <span class="panel-title"> <i class="fa fa-info"></i> Detalle de factura: </span>
+                            <div class="panel-btns pull-right ml10"> </div>
+                        </div>
+                        <div class="panel-body">
+                            <ul class="list-unstyled">
+                                <li> <b>Factura #:</b><?php echo $this->producto->invoice_number_branch ?></li>
+                                <li> <b>Tipo de Pago:</b>TDC</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" id="invoice-table">
+                <div class="col-md-12">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th><b>Código</b></th>
+                                <th><b>Producto</b></th>
+                                <th><b>Descripción</b></th>
+                                <th><b>P. Unitario</b></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            $contadorP = 0;
+                            $contadorO = 0;
+                            ?>
+                            <?php foreach ($this->product_order as $product): ?>
+                                <tr>
+                                    <td><?php echo $product->sku ?></td>
+                                    <td style="width: 40%">
+                                        <a data-remote="true" href="<?php echo '#sub_categoria_' . $contadorO ?>" id="<?php 'categoria' . $contadorP ?>" data-toggle="collapse" data-parent="<?php echo '#sub_categoria_' . $contadorO ?>" style="text-decoration: none; color: black">
+                                            <span style="margin-left: 25px;"><?php echo $product->name ?></span>
+                                            <span class="menu-ico-collapse"><i class="fa fa-chevron-down"></i></span>
+                                        </a>
+                                        <div class="collapse list-group-submenu" id="<?php echo 'sub_categoria_' . $contadorO ?>">
+                                            <?php foreach ($this->product_option as $option): ?>
+                                                <?php if ($option->order_product_id == $product->order_product_id) : ?>
+                                                    <?php if ($option->nameO): ?>
+                                                        <span data-parent="<?php echo '#sub_categoria_' . $contadorO ?>" style="padding-left: 40px;"><?php echo $option->opcion ?>: <b><?php echo $option->nameO ?></b></span><br>
+                                                    <?php else: ?>
+                                                        <span data-parent="<?php echo '#sub_categoria_' . $contadorO ?>" style="padding-left: 40px;"><b>Sin Opciones</b></span><br>
+                                                    <?php endif; ?>
+                                                <?php endif; ?>
+                                            <?php endforeach ?>
+                                        </div>
+                                    </td>
+                                    <td><?php echo $product->description ?></td>
+                                    <td><?php echo $product->subtotal ?></td>
+                                </tr> 
+                                <?php
+                                $contadorO = $contadorO + 1;
+                                $contadorP = $contadorP + 1;
+                                ?>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <br>
+            <div class="row" id="invoice-footer">
+                <div class="col-md-12">
+                    <div class="pull-left mt20 fs15 text-primary"> Gracias por su compra.</div>
+                    <div class="pull-right">
+                        <table class="table" id="invoice-summary">
+                            <tr>
+                                <td><b>P. Unitario:</b>
+                                </td>
+                                <td class="text-right pr10"><?php echo number_format((float) $this->price, 2, '.', '') ?> Bs.</td>
+                            </tr>
+                            <tr>
+                                <td><b>IVA (12%):</b>
+                                </td>
+                                <td class="text-right pr10"><?php echo number_format((float) $this->iva, 2, '.', '') ?> Bs</td>
+                            </tr>
+                            <tr>
+                                <td><b>Subtotal Sucursal:</b>
+                                </td>
+                                <td class="text-right pr10"><?php echo number_format((float) $this->subtotal_branch, 2, '.', '') ?> Bs</td>
+                            </tr>
+                            <tr>
+                                <td><b>Servicio (10%):</b>
+                                </td>
+                                <td class="text-right pr10"><?php echo number_format((float) $this->comision, 2, '.', '') ?> Bs.</td>
+                            </tr>
+                            <tr>
+                                <td><b>IVA Servicio (12%):</b>
+                                </td>
+                                <td class="text-right pr10"><?php echo number_format((float) $this->iva_service, 2, '.', '') ?> Bs</td>
+                            </tr>
+                            <tr>
+                                <td><b>Sub Total PR:</b>
+                                </td>
+                                <td class="text-right pr10"><?php echo number_format((float) $this->subtotal_pr, 2, '.', '') ?> Bs</td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><h3><b>Total:</b></h3>
+                                    </td>
+                                    <td class="text-right pr10" style="width: 150px;"><h3><?php echo number_format((float) $this->total, 2, '.', '') ?> Bs.</h3></td>
+                                </tr>
+                            </tbody>                                        
+                        </table>
+                    </div>
+                    <div class="clearfix"></div>
+                    <br><br><br><br>
+                    <div class="invoice-buttons">
+                        <a href="javascript:window.print()" id="print" class="btn btn-default mr10"><i class="fa fa-print pr5"></i> Imprimir </a>
+                        <!--<button class="btn btn-primary btn-gradient" type="button"><i class="fa fa-floppy-o pr5"></i> Guardar </button>-->
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</section>
+
+<script></script>

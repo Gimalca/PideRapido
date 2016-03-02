@@ -1,0 +1,244 @@
+<div class="container main-container headerOffset">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12">
+
+            <form action="<?php echo $this->url('account', array('controller' => 'information', 'action' => 'edit')) ?>" method="post" id="form">  
+                <?php echo $this->formInput($this->infoForm->get('register_complete')); ?>
+                <?php echo $this->formInput($this->infoForm->get('address_default')); ?>
+                <center>
+                    <div class="col-lg-12 col-md-9 col-sm-7">
+                        <h1 class="section-title-inner"><span> Información Personal </span></h1>
+                        <div class="row userInfo">
+                            <div class="col-lg-12">
+                                <p class="required"><sup>*</sup> Campo Requeridos </p>
+                            </div> 
+                            <div class="col-xs-12 col-sm-6">
+                                <div class="form-group required">
+                                    <label for="InputName">Nombre <sup>*</sup> </label>
+                                    <?php echo $this->formInput($this->infoForm->get('firstname')); ?>
+                                </div>
+                                <div class="form-group">
+                                    <label for="InputName">Compañia</label>
+                                    <?php echo $this->formInput($this->infoForm->get('company')); ?>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="InputEmail"> Email </label>
+                                    <?php echo $this->formInput($this->infoForm->get('email')); ?>
+                                </div>
+
+                            </div>
+                            <div class="col-xs-12 col-sm-6">
+                                <div class="form-group required">
+
+                                    <label for="InputLastName">Apellido <sup>*</sup> </label>
+                                    <?php echo $this->formInput($this->infoForm->get('lastname')); ?>
+
+                                </div>
+                                <div class="form-group required">
+
+                                    <div class="col-xs-8">
+                                        <label>Cedula / Rif <sup>*</sup></label>
+                                        <div class="row">
+                                            <div class="col-xs-4">
+                                                <?php echo $this->formSelect($this->infoForm->get('type_document_identity')); ?>
+                                            </div>
+                                            <div class="col-xs-8">
+                                                <?php echo $this->formRow($this->infoForm->get('document_identity')); ?>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <div class="row">
+                                            <label for="InputPasswordCurrent"> Genero <sup> * </sup> </label>
+                                            <?php echo $this->formSelect($this->infoForm->get('gender')); ?>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group required">
+                                    <label>Fecha de nacimiento <sup>*</sup></label>
+                                    <div class="row">
+                                        <div class="col-xs-4">
+                                            <?php echo $this->formSelect($this->infoForm->get('day')); ?>
+                                        </div>
+                                        <div class="col-xs-4">
+                                            <?php echo $this->formRow($this->infoForm->get('month')); ?>
+                                        </div>
+                                        <div class="col-xs-4">
+                                            <?php echo $this->formSelect($this->infoForm->get('year')); ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>	
+                        </div>
+
+                    </div>
+                </center>
+                <center>
+                    <div class="col-lg-12 col-md-9 col-sm-7">
+                        <h1 class="section-title-inner"><span> Dirección Principal </span></h1>
+                        <div class="row userInfo">
+                            <div class="col-lg-12">
+                                <p class="required"><sup>*</sup> Campo Requeridos </p>
+                            </div>
+                            <div class="col-xs-12 col-sm-6">
+                                <div class="form-group required">
+                                    <label for="InputName">Pais <sup>*</sup> </label>
+                                    <?php echo $this->formSelect($this->infoForm->get('country_id')); ?>
+                                </div>
+                                <div class="form-group required">
+                                    <label for="InputName">Estado <sup>*</sup> </label>
+                                    <?php echo $this->formSelect($this->infoForm->get('state_id')); ?>
+                                </div>
+                                <div class="form-group required">
+                                    <label for="InputName">Municipio <sup>*</sup></label>
+                                    <?php echo $this->formSelect($this->infoForm->get('municipality_id')); ?>
+                                </div>
+
+                                <div class="form-group required">
+                                    <label for="InputEmail"> Ciudad <sup>*</sup></label>
+                                    <?php echo $this->formSelect($this->infoForm->get('city_id')); ?>
+                                </div>
+                              
+
+                            </div>
+                            <div class="col-xs-12 col-sm-6">
+                                <div class="form-group required">
+
+                                    <label for="InputLastName">Direccion <sup>*</sup> </label>
+                                    <?php echo $this->formTextarea($this->infoForm->get('address_1')); ?>
+
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="InputName">Zona Postal</label>
+                                    <?php echo $this->formInput($this->infoForm->get('postcode')); ?>
+                                </div>
+                                <div class="form-group required">
+
+                                    <div class="col-xs-8">
+                                        <label>Celular <sup>*</sup></label>
+                                        <div class="row">
+                                            <div class="col-xs-4">
+                                                <?php echo $this->formSelect($this->infoForm->get('code_phone')); ?>
+                                            </div>
+                                            <div class="col-xs-8">
+                                                <?php echo $this->formInput($this->infoForm->get('number_phone')); ?>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12 col-sm-12 ">
+                                <div class="form-group">
+                                    <div>
+                                        <style type="text/css">
+                                            .login-remember input{
+                                                display: block !important;
+                                            }
+                                        </style>
+                                        <div class="checkbox login-remember">
+                                            <label>
+                                                <?php echo $this->formInput($this->infoForm->get('newsletter')); ?>
+
+                                                Recibir promociones y notificaciones ? </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+                              	
+                                <button type="submit"  class="btn btn-primary"><i class="fa fa-save"></i> &nbsp; Guardar </button>
+                              
+                            </div>
+
+                            <div class="col-lg-12 clearfix">
+                                <ul class="pager">
+                                    <li class="next pull-left"><a href="<?php echo $this->url('account') ?>"> &larr; Volver </a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+                </center>
+            </form>       
+        </div>
+    </div>
+
+<?php
+$this->headScript()
+        // Admin Panels
+        ->prependFile($this->basePath('vendor') . '/plugins/datepicker/js/moment.js')
+//        ->prependFile($this->basePath('assets_admin') . '/admin-tools/admin-plugins/admin-panels/json2.js')
+//        ->prependFile($this->basePath('assets_admin') . '/admin-tools/admin-plugins/admin-panels/jquery.ui.touch-punch.min.js')
+//        ->prependFile($this->basePath('assets_admin') . '/admin-tools/admin-plugins/admin-panels/adminpanels.js')
+        // Page Plugins via CDN 
+        ->prependFile('http://cdnjs.cloudflare.com/ajax/libs/globalize/0.1.1/globalize.min.js')
+        
+        // Sparklines CDN
+        ->prependFile('http://cdnjs.cloudflare.com/ajax/libs/jquery-sparklines/2.1.2/jquery.sparkline.min.js')
+        //Page Plugins
+        ->prependFile($this->basePath() . '/assets/js/bootstrap.js')
+        ->prependFile($this->basePath('vendor') . '/plugins/datepicker/js/moment.js')
+        ->prependFile($this->basePath('vendor') . '/plugins/daterange/daterangepicker.js')
+        ->prependFile($this->basePath('vendor') . '/plugins/datepicker/js/bootstrap-datetimepicker.min.js')
+        ->prependFile($this->basePath('vendor') . '/plugins/tagmanager/tagmanager.js')
+        ->prependFile($this->basePath('assets') . '/js/ion-checkRadio/ion.checkRadio.js')
+     
+        // Chart Plugins
+        ->prependFile($this->basePath('vendor') . '/plugins/highcharts/highcharts.js')
+        ->prependFile($this->basePath('vendor') . '/plugins/circles/circles.js')
+        ->prependFile($this->basePath('vendor') . '/plugins/raphael/raphael.js')
+        // Holder js
+        ->prependFile($this->basePath() . '/vendor/plugins/select2/select2.min.js')
+        ->prependFile($this->basePath() . '/vendor/plugins/fileupload/fileupload.js')
+//       ->prependFile($this->basePath('assets_admin') . '/js/bootstrap/holder.min.js')
+;
+;
+$this->inlineScript()->captureStart();
+$url = $this->basePath();
+echo <<<JS
+
+ jQuery(document).ready(function() {
+ var URL = '$url';
+    console.log('entra');
+    
+    $('#form').on('change','select.location-select',function(e){
+                    var location_id = $(this).val();
+                    var data_location = $(this).data('location');
+                    var data_select = $(this).data('select');
+        
+                    console.log(location_id,data_location, data_select);
+                    var link = URL+"/api/"+data_select+"/"+location_id;
+                    console.log (link);
+                    $.get(link,function(entities){
+                         var options = "";
+                         console.log(entities);
+                            if(data_select == "state"){
+                            $.each(entities, function(i, state) {
+                                options += "<option value='" + state.state_id + "'>" + state.name + "</option>";
+                            });$("."+data_select).html(options);
+                            }                            
+                            if(data_select == "municipality"){
+                                $.each(entities, function(i, municipality) {
+                                    options += "<option value='" + municipality.municipality_id + "'>" + municipality.name + "</option>";
+                                });$("."+data_select).html(options);
+                                $.get(URL+"/api/city/"+location_id,function(entities){
+                                var options = "";
+                                console.log(entities);
+                                   $.each(entities, function(i, city) {
+                                       options += "<option value='" + city.city_id + "'>" + city.name + "</option>";
+                                   });$(".city").html(options);
+                                },"json");
+                                }
+                        },"json");
+        
+                  
+    });
+ 
+});
+
+JS;
+$this->inlineScript()->captureEnd();

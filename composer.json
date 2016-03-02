@@ -1,0 +1,22 @@
+{
+    "name": "vendor/piderapido",
+    "description": "Description of project piderapido.",
+    "authors": [
+        {
+            "name": "Pedro Giacometto",
+            "email": "pedro.giacometto@gmail.com"
+        }
+    ],
+     "require": {
+        "php": ">=5.5",
+        "zendframework/zendframework": "~2.5",
+        "zendframework/zend-mvc": "2.6.3",
+        "google/recaptcha": "dev-master",
+        "facebook/php-sdk-v4": "dev-master"
+    },
+    "require-dev": {
+        "zendframework/zend-developer-tools": "dev-master",
+        "bjyoungblood/bjy-profiler": "dev-master",
+        "zendframework/zftool": "dev-master"
+    }
+}

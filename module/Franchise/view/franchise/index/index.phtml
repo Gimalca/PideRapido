@@ -1,0 +1,318 @@
+        
+<!-- Begin: Content -->
+<section id="content" class="animated fadeIn">
+    <div class="col-md-12">
+        <br><br>
+        <h2 class="lh30 mt15 col-md-4 col-md-offset-4" style="margin-bottom: 20px;">
+            Surcusal
+            <b class="text-primary"><?php echo $this->branch->name; ?></b>
+        </h2>          
+    </div>
+    <div class="col-md-12" style="margin-bottom: 30px;">
+        <div class="col-md-3 col-md-offset-1">
+            <br><br>
+            <div class="panel bg-alert light of-h mb10">
+                <div class="pn pl20 p5">
+                    <div class="icon-bg"> <i class="fa fa-comments-o"></i> </div>
+                    <h2 class="mt15 lh15"> <b><?php echo $this->total_price ?></b> </h2>
+                    <h5 class="text-muted">Saldo de ventas historico</h5>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <br><br>
+            <div class="panel bg-info light of-h mb10">
+                <div class="pn pl20 p5">
+                    <div class="icon-bg"> <i class="fa fa-twitter"></i> </div>
+                    <h2 class="mt15 lh15"> <b><?php echo $this->total_orders ?></b> </h2>
+                    <h5 class="text-muted">Número de pedidos</h5>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4" style="">
+            <div class="">
+                <div class="panel-body bg-light dark">
+                    <div class="row">
+                        <div class="col-md-10">
+                            <h3>Estado de la Sucursal</h3>
+                            <label class="switch block mt15">
+
+                                <div class="btn-group text-right"  data-id="<?php echo $this->branch->branch_id; ?>" data-whatever="<?php echo $this->branch->status; ?>">
+                                    <?php
+                                    $status = $this->branch->status;
+                                    if ($status == 0) {
+                                        ?>
+                                        <button type="button" class="btn btn-danger br2 btn-xs fs12 dropdown-toggle" data-toggle="dropdown" aria-expanded="true"> 
+                                            Deshabilitado
+                                            <span class="caret ml5"></span>
+                                        </button> 
+                                        <?php
+                                    }
+                                    if ($status == 1) {
+                                        ?>
+                                        <button type="button" class="btn btn-success br2 btn-xs fs12 dropdown-toggle" data-toggle="dropdown" aria-expanded="true"> 
+                                            Active
+                                            <span class="caret ml5"></span>
+                                        </button> 
+                                    <?php }
+                                    ?>
+
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li class="divider"></li>
+                                        <?php
+                                        switch ($status) {
+                                            case 0:
+                                                ?>
+                                                <li>
+                                                    <a class="status" data-whatever="1" data-note-style="success" data-note-shadow="true" href = "#">Activo</a>
+                                                </li>
+                                                <li class = "" >
+                                                    <a class="status" data-whatever="0" data-note-style="success" data-note-shadow="true" href = "#" >Deshabilitado</a>
+                                                </li>
+                                                <?php
+                                                break;
+                                            case 1:
+                                                ?>
+                                                <li  class = "">
+                                                    <a class="status" data-whatever="1" data-note-style="success" data-note-shadow="true" href = "#">Activo</a>
+                                                </li>
+                                                <li>
+                                                    <a class="status" data-whatever="0" data-note-style="success" data-note-shadow="true" href = "#">Deshabilitado</a>
+                                                </li>
+                                                <?php
+                                                break;
+                                        }
+                                        ?>
+
+                                    </ul>
+                                </div> 
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="panel">
+            <div class="panel-heading">
+                <span class="panel-title">
+                    <span></span>Resultados de la búsqueda</span>
+            </div>
+            <div class="panel-body" id="tableCenter">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th><b><center>Fecha</center></b></th>
+                            <th><b><center># Pedido</center></b></th>
+                            <th><b><center>Subtotal</center></b></th>
+                            <th><b><center>Detalle</center></b></th>
+                            <th><b><center>Status</center></b></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($this->order as $order): ?>
+                            <tr>
+                                <td><?php echo $order->date_added ?></td>
+                                <td><?php echo $order->invoice_number_branch ?></td>                                            
+                                <td>Bs. <?php echo $order->subtotal_order_branch ?></td>
+                                <td><a href="<?php echo $this->basePath() . '/franchise/orders/detail/' . $order->order_id; ?>"><button type="button" class="btn btn-light" >Ver Detalle</button></a></td>
+                                <td>
+                                    <?php
+                                    switch ($order->order_status_branch) {
+                                        case 1:
+                                            ?>
+                                            <div class="btn-group text-center">
+                                                <button class="btn btn-dark br2 btn-xs fs12 dropdown-toggle" aria-expanded="false" type="button" disabled>
+                                                    Recibido
+                                                </button>       
+                                            </div>
+                                            <?php
+                                            break;
+                                        case 2:
+                                            ?>
+                                            <div class="btn-group text-center">
+                                                <button class="btn btn-danger br2 btn-xs fs12 dropdown-toggle" aria-expanded="false" type="button" disabled>
+                                                    Cancelado
+                                                </button>       
+                                            </div>
+                                            <?php
+                                            break;
+                                        case 3:
+                                            ?>
+                                            <div class="btn-group text-center">
+                                                <button class="btn btn-warning br2 btn-xs fs12 dropdown-toggle" aria-expanded="false" type="button" disabled>
+                                                    En Proceso
+                                                </button>       
+                                            </div>
+                                            <?php
+                                            break;
+                                        case 4:
+                                            ?>
+                                            <div class="btn-group text-center">
+                                                <button class="btn btn-info br2 btn-xs fs12 dropdown-toggle" aria-expanded="false" type="button" disabled>
+                                                    Procesado
+                                                </button>       
+                                            </div>
+                                            <?php
+                                            break;
+                                        case 5:
+                                            ?>
+                                            <div class="btn-group text-center">
+                                                <button class="btn btn-success br2 btn-xs fs12 dropdown-toggle" aria-expanded="false" type="button" disabled>
+                                                    Entregado
+                                                </button>       
+                                            </div>
+                                            <?php
+                                            break;
+                                    }
+                                    ?>             
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>                    
+    </div>
+</section>
+<?php
+$this->inlineScript()->captureStart();
+echo <<<JS
+//<script type="text/javascript">
+   jQuery('document').ready(function(){
+       
+        var Stacks = {
+                stack_top_right: {
+                    "dir1": "down",
+                    "dir2": "left",
+                    "push": "top",
+                    "spacing1": 10,
+                    "spacing2": 10
+                },
+            }
+
+            // PNotify Plugin Event Init
+            
+       $('.btn-delete').click(function(e){
+           e.preventDefault();
+            var row = $(this).closest('div');
+            var rowf = $('#fade');
+            var id = row.data('id');
+          bootbox.confirm("Are You Sure?!", function(e) {
+
+                // e returns true if user clicks "accept"
+                // false if "cancel" or dismiss icon are clicked
+                if (e) {  
+                  
+
+                      $.ajax({
+                            url: '../delete/'+id,
+                            type: 'post',
+                            data: 'id='+id,
+                            dataType: 'json',
+                            beforeSend: function() {
+
+                                    },
+                            complete: function() {
+
+                            },
+                            success: function(json) {
+                                rowf.fadeOut();
+                            },
+                            error: function(xhr, ajaxOptions, thrownError) {
+                                alert(thrownError + "-" + xhr.status );
+                            }
+                     });
+               } else {
+                   return;
+               }    
+           });
+        });
+       $('.status').click(function(e){
+            e.preventDefault();
+            var row = $(this).closest('div');
+            var oldStatus = row.data('whatever');            
+            var status = $(this).data('whatever');
+            var id = row.data('id');
+
+                      $.ajax({
+                            url: '../public/franchise/index/status/'+id,
+                            type: 'post',
+                            data: {"id":id,"status":status},
+                            dataType: 'json',
+                            beforeSend: function() {
+
+                                    },
+                            complete: function() {
+
+                            },
+                            success: function(json) {
+                                var _class = '';
+                                var statusName = json.statusName;
+                                switch (json.status) {
+                                    case '1':
+                                       _class = 'btn btn-success br2 btn-xs fs12 dropdown-toggle';
+                                        
+                                        break;
+                                    case '0':
+                                        _class = 'btn btn-danger br2 btn-xs fs12 dropdown-toggle';
+                                        break;
+                                    case '2':
+                                        _class = 'btn btn-warning br2 btn-xs fs12 dropdown-toggle';
+                                        row.fadeOut();
+                                        var noteStyle = $(this).data('note-style');
+                                        var noteShadow = $(this).data('note-shadow');
+                                        var noteOpacity = $(this).data('note-opacity');
+                                        var noteStack = $(this).data('note-stack');
+                                        var width = "390px";
+
+                                        var noteStack = noteStack ? noteStack : "stack_top_right";
+                                        var noteOpacity = noteOpacity ? noteOpacity : "1";
+
+                                        function findWidth() {
+                                            if (noteStack == "stack_bar_top") {
+                                                return "100%";
+                                            }
+                                        }
+
+                                        new PNotify({
+                                            title: 'Succefully Archived',
+                                            shadow: noteShadow,
+                                            opacity: noteOpacity,
+                                            addclass: noteStack,
+                                            type: 'noteStyle',
+                                            stack: Stacks[noteStack],
+                                            width: findWidth(),
+                                            delay: 1400
+                                        });
+                                        break;
+
+                                }
+                                
+                                var button = $(row).find('button');
+                                button.html(statusName+'<span class="caret ml5"></span>');
+
+                                var oldClass = button.attr('class');
+                                button.removeClass(oldClass); 
+                                button.addClass(_class);
+
+                                var newStatus = $(row).find('a[data-whatever='+status+']').parent('li');               
+                                var old = $(row).find('a[data-whatever='+oldStatus+']').parent('li');
+                                  
+
+                                
+
+                            },
+                            error: function(xhr, ajaxOptions, thrownError) {
+                                alert(thrownError + "-" + xhr.status );
+                            }
+                     });
+        });
+        
+   });
+
+//</script>
+
+JS;
+$this->inlineScript()->captureEnd();

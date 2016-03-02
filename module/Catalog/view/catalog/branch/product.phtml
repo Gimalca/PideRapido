@@ -1,0 +1,268 @@
+<div class="container headerOffset">
+    <div id='alert_buy' style='display:none' class="alert alert-dismissible alert-danger"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><ul><li>Inicie sesión para comprar!</li></ul></div>
+    <div class="row transitionfx"> 
+        <!-- left column -->
+        <div class="col-lg-6 col-md-6 col-sm-6"> 
+            <img class="responsive" style="max-width:550px" src="<?php echo $this->basePath() . '/img/catalog/product/' . $this->product->image ?>" />
+            <div class="clear"></div>
+        </div>
+        <!--/ left column end --> 
+        <!-- right column -->
+        <div class="col-lg-6 col-md-6 col-sm-5">
+            <div class="row">
+                <div class="col-md-8">
+                    <h1 class="product-title"><?php echo $this->product->name ?></h1>
+                    <h3 class="product-code">Franquicia: 
+                        <a href="<?php echo $this->url('catalog', array('controller' => 'branch', 'action' => 'list', 'id' => $this->product->franchise_id)) ?>">
+                            <?php echo $this->product->name_franchise ?>
+                        </a>
+                    </h3>
+                    <div class="product-price">
+                        <span class="price-sales"> Precio</span>
+                        <span style='color:#588E00' class="price-standard" >
+                            <span id='product_price'><?php echo $this->escapeHtml($this->price); ?></span> Bs.</span>
+                    </div>
+                    <div class="details-description">
+                        <p><?php echo $this->product->description ?> </p>
+
+                        <div style="clear:both"></div>
+                        <?php if ($this->product->status == 1): ?>
+                            <h3 class="incaps" style="margin-left: 25px;"><i class="fa fa fa-check-circle-o color-in"></i> Producto disponible</h3>
+                        <?php elseif ($this->product->status == 0): ?>
+                            <h3  class="incaps"><i class="fa fa-minus-circle color-out"></i>No disponible</h3>
+                        <?php endif; ?>
+                    </div>
+                </div>
+                <div class="col-md-4 text-center">
+                    <!--img src="http://www.placehold.it/150x100"-->
+                    <br><br>
+                    <div class="cart-actions" style="margin-left: 25px;">
+                        <div class="addto text-center">
+                            <button id='buyBtn' class="button btn-cart cart first" type="button" title="Add to Cart" >Comprar</button>
+                        </div>
+                    </div>
+                  
+                </div>
+            </div>
+            <div class="color-details"> <span class="selected-color"><strong>Sucursal</strong></span>
+                <ul class="">
+                    <li>Las Mercedes</li>
+                </ul>
+            </div>
+            <?php echo $this->form()->openTag($form->prepare()); ?>
+            <div class="color-details">
+                <?php if (isset($this->generalOptions) && sizeof($this->generalOptions) > 0): ?>
+                    <span class="selected-color"><strong>Opciones Generales:</strong></span>
+                    <div class="row">
+                        <div class="productFilter productFilterLook2">
+                            <?php foreach ($this->generalOptions as $option): ?>
+                                <div class="col-md-4">
+                                    <label class='irc-label'><?php echo $this->form->get($option)->getLabel(); ?></label>
+                                    <div class="filterBox">
+                                        <?php echo $this->formSelect($this->form->get($option)); ?>
+                                    </div>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
+                <?php else: ?>
+                    <label>No hay opciones disponibles</label>
+                <?php endif; ?>
+                <div class="clear"></div>
+                <br><br>
+                <div class="product-tab w100 clearfix">
+                    <ul class="nav nav-tabs nav-justified">
+                        <li class="active"><a href="#extra" data-toggle="tab">Items</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="extra">
+                            <div class="form-group">
+                                
+                                    <?php if (isset($this->ingredients)): ?>
+                                        <div class="row">
+                                            <?php foreach ($this->ingredients as $ingredient): ?>
+                                                <div class="js-extras-checkboxes col-md-12">
+                                                   
+                                                    <h3> 
+                                                        <?php echo $this->escapeHtml($ingredient['option']['name_option']); ?>
+                                                    </h3>
+
+                                                    <div class="col-md-12">
+                                                        <?php foreach ($ingredient['extras'] as $extra): ?>
+                                                           
+                                                                <a class='icr-checkbox'>
+                                                                    <label style='font-weight: 400' class="icr-label" for="checkboxes-<?php echo $extra['product_option_value_id']; ?>" >
+                                                                        <div>
+                                                                            <span style='margin-right: 5px' class="icr-item type_checkbox checkbox-inline"></span>
+                                                                            <span class="icr-text">
+                                                                                <?php echo $this->escapeHtml($extra['name']); ?>
+                                                                                <?php if (isset($extra['price']) && $extra['price'] > 0): ?>
+                                                                                    (<?php echo $this->escapeHtml(round($extra['price'], 2) . ' ' . $extra['price_prefix'].' Bs.'); ?>)
+                                                                                <?php endif; ?>
+                                                                            </span>
+                                                                        </div>
+                                                                        
+                                                                       
+                                                                        <span class="icr-hidden">
+                                                                            <input name="extras[<?php echo $this->escapeHtml($extra['product_option_value_id']); ?>]" 
+                                                                                   id="checkboxes-<?php echo $this->escapeHtml($extra['product_option_value_id']); ?>" class="icr-input" value="1" 
+                                                                                   type="checkbox" />
+                                                                        </span>
+                                                                    </label>
+                                                                </a>
+                                                           
+                                                        <?php endforeach; ?>
+                                                    </div>
+                                                </div>
+                                            <?php endforeach; ?>
+                                        </div>
+                                    <?php else: ?>
+                                        <label>No hay ingredientes disponibles</label>
+                                    <?php endif; ?>
+                                
+                            </div>
+                        </div>
+                        <?php echo $this->form()->closeTag(); ?>
+
+                        <div style="clear:both"></div>
+                        
+                    </div>
+                </div>
+                 
+            </div>
+        </div>
+      
+    </div>
+     <div class="row cart-actions left" style="margin: 25px;">
+                        <div class="addto text-left">
+                           <a href="
+                                    <?php
+                                   $flink = $this->url('catalog', array('controller' => 'franchise', 'action' => 'list'));
+                                   echo (isset($this->product->branch_id)) ? $this->url('catalog', array('controller' => 'branch', 'action' => 'detail', 'id' => $this->product->branch_id)) : $flink;
+                                   ?>
+                                   " class="btn btn-primary btn-small " style="margin-bottom: 5px"> 
+                                Continuar Comprando &nbsp; <i class="fa fa-angle-left"></i>
+                                </a>
+                        </div>
+                    </div>
+  <!--<div class="row recommended">
+        <h1> Productos Relacionados </h1>
+        <div id="SimilarProductSlider">
+            <div class="item">
+                <div class="product"> <a class="product-image"> <img src="images/product/combo1.jpg" alt="img"> </a>
+                    <div class="description">
+                        <h4><a  href="detalleproducto.php">Combo #1</a></h4>            
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="product"> <a class="product-image"> <img src="images/product/combo2.jpg" alt="img"> </a>
+                    <div class="description">
+                        <h4><a  href="detalleproducto.php">Combo #2</a></h4>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="product"> <a class="product-image"> <img src="images/product/combo3.jpg" alt="img"> </a>
+                    <div class="description">
+                        <h4><a  href="detalleproducto.php">Combo #3</a></h4>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="product"> <a class="product-image"> <img src="images/product/combo4.jpg" alt="img"> </a>
+                    <div class="description">
+                        <h4><a  href="detalleproducto.php">Combo #4</a></h4>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="product"> <a class="product-image"> <img src="images/product/combo5.jpg" alt="img"> </a>
+                    <div class="description">
+                        <h4><a  href="detalleproducto.php">Combo #5</a></h4>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+    </div>  
+</div>
+
+
+<?php $buyAction = $this->url('catalog', array('controller' => 'cart', 'action' => 'add', 'id' => $this->product->product_has_branch_id)); ?>
+
+<?php $optionAction = $this->url('catalog', array('controller' => 'branch', 'action' => 'options', 'id' => $this->product->product_has_branch_id)); ?>
+
+<?php $redirectChekout = $this->url('catalog', array('controller' => 'cart', 'action' => 'checkout')); ?>
+
+<?php
+$this->inlineScript()->captureStart();
+echo <<<JS
+
+$(function () {
+    
+    var actionUrl  = '{$this->escapeJs($buyAction)}';
+    var optionsUrl = '{$this->escapeJs($optionAction)}';
+
+    var inputs = $("input[type='checkbox'][class='icr-input']");
+    inputs.ionCheckRadio();
+    var optionsProduct = $('#formProductOptions'); 
+
+    $('.js-extras-checkboxes').on('change', '.icr-checkbox', function (evt) {
+        evt.stopPropagation();
+        $.ajax({ type: "POST",
+            url: optionsUrl,
+            data: optionsProduct.serialize(),
+            dataType: 'json'
+        })
+        .done(function (response) {
+            $('#product_price').html(response.price);
+        })
+        .fail(function (err) {
+
+        });
+    });
+
+    $('select.icr-select-box').minimalect({
+        onchange: function (value, text) {
+            $.ajax({
+                type: "POST",
+                url: optionsUrl,
+                data: optionsProduct.serialize(),
+                dataType: 'json'
+            })
+            .done(function (response) {
+                $('#product_price').html(response.price);
+                console.log(response);
+            })
+            .fail(function (err) {
+
+            });
+        }
+    });
+
+    $('#buyBtn').click(function (evt) {
+            evt.stopPropagation();
+            evt.preventDefault();
+            $.ajax({
+                type: "POST",
+                url: actionUrl,
+                data: optionsProduct.serialize(),
+                dataType: 'json'
+            })
+            .fail (function (res) {
+                console.log('lol')
+                var location = res.getResponseHeader('redirectUrl');
+                $('#alert_buy').css('display','block');
+                $('#ModalLogin').modal();
+                //window.location.replace(location);
+                return false;
+            })
+            .done(function (res) {
+                window.location.replace('{$this->escapeJs($redirectChekout)}');
+            });
+    });
+});
+
+JS;
+$this->inlineScript()->captureEnd();
+?>

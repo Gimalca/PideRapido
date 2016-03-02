@@ -1,0 +1,117 @@
+<?php echo $this->doctype(); ?>
+
+<html lang="es">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <?php echo $this->partial('layout/head'); ?>
+
+    <body>
+
+        <!-- Start: Theme Preview Pane -->
+
+        <!-- Start: Main -->
+
+
+        <!-- Start: Header -->
+        <?php echo $this->partial('layout/header'); ?>
+        <!-- End: Header -->
+        
+         <!-- Start: Slider -->
+        <?php
+        if($this->slider == 1) echo $this->partial('landingpage/slider');
+        ?>
+        <!-- End: Slider -->
+        
+        <!-- Start: Sidebar -->
+        <?php //echo $this->partial('layout/admin_sidebar'); ?>
+
+        <!-- Start: Content-Wrapper -->
+        <div class="container main-container ">
+            <div style="clear:both"></div>
+            <section class= " padding-top-100">
+
+                <div>
+                    <?php
+                    echo $this->flashMessenger()->renderCurrent('error', array('alert', 'alert-dismissible', 'alert-danger'));
+                    echo $this->flashMessenger()->renderCurrent('info', array('alert', 'alert-dismissible', 'alert-info'));
+                    echo $this->flashMessenger()->renderCurrent('warning', array('alert', 'alert-dismissible', 'alert-warning'));
+                    echo $this->flashMessenger()->renderCurrent('success', array('alert', 'alert-dismissible', 'alert-success'));
+                    $this->flashMessenger()->getPluginFlashMessenger()->clearCurrentMessagesFromNamespace('default');
+                    $this->flashMessenger()->getPluginFlashMessenger()->clearCurrentMessagesFromNamespace('success');
+                    $this->flashMessenger()->getPluginFlashMessenger()->clearCurrentMessagesFromNamespace('error');
+                    ?>
+                    <!-- Begin: Content -->
+
+                    <?php echo $this->content; ?>
+                    <!-- End: Content -->
+                </div>
+            </section>
+
+        </div>
+        <?php if($this->parallax == 1) echo $this->partial('landingpage/parallax'); ?>
+          
+        <!-- End: Slider -->
+        
+       <!-- Start: featured -->
+       <?php if($this->featured == 1) echo  $this->partial('landingpage/featured'); ?>
+        <!-- End: Slider -->
+        
+          <!-- Start: parallax_two -->
+       <?php if($this->parallax_two == 1) echo  $this->partial('landingpage/parallax_two'); ?>
+        <!-- End: Slider -->
+        
+           <!-- Start: Slider -->
+        <?php echo $this->partial('layout/footer'); ?>
+        <!-- End: Slider -->
+
+        <!-- BEGIN: PAGE SCRIPTS -->
+        
+
+         <?php
+        echo $this->headScript()
+        // ->prependFile($this->basePath('_admin').'/js/utility/utility.js')
+        ;
+        ?>
+        
+      
+        <?php
+        if (getenv('APPLICATION_ENV') == 'development') {
+            $source_js = $this->basePath('assets');
+            $source_css = $source_js . '/css/style.css';
+        } else {
+            $source_js = $this->basePath();
+            $source_css_boot = $source_js . '/css/bootstrap.min.css';
+            $source_css = $source_js . '/css/style.min.css'; 
+        }
+        ?>
+   
+<script src="<?php echo $source_js ?>/js/jquery/1.8.3/jquery.js" type="text/javascript" ></script> 
+<script src="<?php echo $source_js ?>/js/bootstrap-theme.js" type="text/javascript" ></script> 
+<script src="<?php echo $source_js ?>/js/jquery.js" type="text/javascript" ></script> 
+<script src="<?php echo $source_js ?>/js/jquery.easing.1.js"></script> 
+<script src="<?php echo $source_js ?>/js/helper-plugins/jquery.mousewheel.js" type="text/javascript" ></script> 
+<script src="<?php echo $source_js ?>/js/bootstrap.js"></script> 
+<script src="<?php echo $source_js ?>/js/jquery.cycle2.js"></script> 
+<script src="<?php echo $source_js ?>/js/jquery.parallax-1.js" type="text/javascript"></script> 
+<script src="<?php echo $source_js ?>/js/ion-checkRadio/ion.checkRadio.js" type="text/javascript" ></script> 
+<script src="<?php echo $source_js ?>/js/grids.js"></script> 
+<script src="<?php echo $source_js ?>/js/owl.carousel.js"></script> 
+<script src="<?php echo $source_js ?>/js/jquery.minimalect.js"></script> 
+<script src="<?php echo $source_js ?>/js/home.js"></script> 
+<script src="<?php echo $source_js ?>/js/script.js"></script>
+<script src="<?php echo $source_js ?>/js/bootbox.min.js"></script>
+<script src="<?php echo $source_js ?>/js/bootstrap-slider.js"></script>
+
+<script src="http://www.google.com/recaptcha/api.js?hl=es&onload=CaptchaCallback&render=explicit"></script>   
+      
+<script type="text/javascript">
+     var CaptchaCallback = function(){
+                    grecaptcha.render('re1', {'sitekey' : '6LctMxkTAAAAALJWle9jjS2yveGef9sgT5sGHupx'});
+                    grecaptcha.render('re4', {'sitekey' : '6LctMxkTAAAAALJWle9jjS2yveGef9sgT5sGHupx'});
+                 };
+</script>
+<?php echo $this->inlineScript() ?>
+        <!-- END: PAGE SCRIPTS -->
+
+    </body>
+
+</html>

@@ -1,0 +1,36 @@
+<div class="headerOffset">
+	<div class="row">
+		<div class="col-lg-12 col-md-12 col-sm-12">
+			<center>
+                            <h1 class="section-title-inner"><span>Hola, <?php echo ucfirst($this->user->firstname).' '.ucfirst($this->user->lastname) ?></span></h1>
+				<!--h6 class="section-title-inner"><span>Ult vez conectado: XX / XX / XXXX - 12:00 pm</span></h6-->
+			</center>
+		</div>
+		<br><br>
+		<div class="col-lg-12 col-md-12 col-sm-12">
+			<br>
+			<ul class="myAccountList row">
+                            
+				
+				<li class="col-lg-4 col-md-4 col-sm-4 col-xs-6  text-center ">
+					<div class="thumbnail equalheight"> <a title="Orders" href="<?php echo $this->url('account', array('controller' => 'OrderHistory', 'action' => 'index')) ?>"><i class="fa fa-calendar"></i> Historial de Compras </a> </div>
+				</li>
+				<li class="col-lg-4 col-md-4 col-sm-4 col-xs-6  text-center ">
+					<div class="thumbnail equalheight"> <a title="Add  address" href="saldo.php"> <i class="fa fa-credit-card"> </i> Saldo PideRápido </a> </div>
+				</li>
+				<li class="col-lg-4 col-md-4 col-sm-4 col-xs-6  text-center ">
+					<div class="thumbnail equalheight"> <a title="Informacion de Cuenta" href="<?php echo $this->url('account', array('controller' => 'information', 'action' => 'edit')) ?>"><i class="fa fa-cog"></i>Mi Cuenta </a> </div>
+				</li>
+				
+			</ul>
+			<div class="clear clearfix"></div>
+		</div>
+		<br><br>
+		<center>
+			<a href="<?php echo $this->url('account', array('controller' => 'login', 'action' => 'logout')) ?>">
+				<button class="btn btn-primary" type="submit">Salir</button>
+			</a>
+		</center>
+    </div>
+</div>
+<div class="gap"> </div>
