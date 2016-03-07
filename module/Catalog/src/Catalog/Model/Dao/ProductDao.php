@@ -62,15 +62,24 @@ class ProductDao {
                 $imageProduct = $this->getImage($id);
 //                var_dump($logoBranch);die;
                 if ($dataFilter['image'] == "no-logo.jpg") {
+                    //print_r($productOption);die;
                     if ($imageProduct->image != "no-logo.jpg") {
                         $dataFilter['image'] = $imageProduct->image;
                         $insert = $this->tableGateway->update($dataFilter, array('product_id' => $id));
+                        
                     } else {
                         $insert = $this->tableGateway->update($dataFilter, array('product_id' => $id));
+                       
                     }
                 } else {
                     $insert = $this->tableGateway->update($dataFilter, array('product_id' => $id));
+                   
                 }
+                
+                if($insert){
+                    $this->saveProductOption($productOption, $id);
+                }
+                
                 return $insert;
             } else {
                 throw new \Exception('El Formulario no Existe');

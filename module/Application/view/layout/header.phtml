@@ -88,7 +88,7 @@
 
                 <p class="text-center"> ¿No tienes cuenta? <a data-toggle="modal" data-dismiss="modal" href="#ModalSignup"> Regístrate. </a> <br>
 
-                    <a href="password.php"> ¿Olvidó contraseña? </a> </p>
+                    <a data-toggle="modal" data-dismiss="modal" href="#ModalForget"> ¿Olvidó contraseña? </a> </p>
 
             </div>
 
@@ -109,7 +109,76 @@
 </div>
 
 <!-- /.Modal Login --> 
+<div class="modal signUpContent fade" id="ModalForget" tabindex="-1" role="dialog">
 
+    <div class="modal-dialog ">
+
+        <div class="modal-content">
+
+            <form action="<?php echo $this->url('account', array('controller' => 'login', 'action' => 'res-password')) ?>" method="post">
+
+            <div class="modal-header">
+
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"> &times; </button>
+
+               <h3 class="modal-title-site text-center"> Recuperar Contraseña </h3>
+
+            </div>
+
+            <div class="modal-body">
+
+                <div class="form-group login-username">
+
+                    <div>
+
+                        <?php echo $this->formInput($this->loginForm->get('email')); ?>
+
+                    </div>
+
+                </div>
+
+
+                <div>
+
+                    <div>
+
+                       <input name="submit" class="btn  btn-block btn-lg btn-primary" value="Ingresar" type="submit">
+
+                    </div>
+
+                </div>
+
+                <!--userForm--> 
+
+            
+
+            </div>
+
+                 <?php echo $this->formInput($this->loginForm->get('csrf')); ?>
+
+            <div class="modal-footer">
+
+                <p class="text-center"> ¿No tienes cuenta? <a data-toggle="modal" data-dismiss="modal" href="#ModalSignup"> Regístrate. </a> <br>
+                  
+            </div>
+
+                </form>
+
+        </div>
+
+        <!-- /.modal-content --> 
+
+
+
+    </div>
+
+    <!-- /.modal-dialog --> 
+
+
+
+</div>
+
+<!-- /.Modal Login --> 
 
 
 <!-- Modal Signup start -->

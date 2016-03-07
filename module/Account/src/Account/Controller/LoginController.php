@@ -212,6 +212,7 @@ class LoginController extends AbstractActionController
             $this->flashMessenger()->addMessage('Login Correcto!', 'success');
 
             return $this->redirect()->toRoute('account');
+            
         } catch (Exception $e) {
             //$this->layout()->mensaje = $e->getMessage();
             $this->flashMessenger()->addMessage($e->getMessage(), 'error');
