@@ -205,7 +205,7 @@ class BranchController extends AbstractActionController {
             $view['generalOptions'] = $generalOptions;
         }
 
-        if ($this->exists($categoryOptions[$OPTION_TYPE['CHECKBOX']])) {
+        if (@$this->exists($categoryOptions[$OPTION_TYPE['CHECKBOX']])) {
             $ingredients = $this->setIngredients(
                 $productForm,
                 $product,

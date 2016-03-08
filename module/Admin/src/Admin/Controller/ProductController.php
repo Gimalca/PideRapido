@@ -198,8 +198,8 @@ class ProductController extends AbstractActionController {
                 }
             } else {
                 $messages = $productAddForm->getMessages();
-                print_r($messages);
-                die;
+//                print_r($messages);
+//                die;
                 print_r($productAddForm->getData());
                 $productAddForm->populateValues($productAddForm->getData());
             }

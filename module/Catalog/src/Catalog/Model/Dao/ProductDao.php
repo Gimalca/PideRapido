@@ -77,6 +77,7 @@ class ProductDao {
                 }
                 
                 if($insert){
+                   
                     $this->saveProductOption($productOption, $id);
                 }
                 
@@ -117,6 +118,7 @@ class ProductDao {
                     'product_id' => $id,
                     'option_id' => $option,
                     'required' => $dataProduct['required'][$contador],
+                    //'status' => 1
                 );
                 $contador++;
 
@@ -153,6 +155,7 @@ class ProductDao {
                 'option_id' => $data['option_id'],
                 'option_value_id' => $value,
                 'price' => $data['price'][$contador],
+                'status' => 1
             );
             $contador++;
 

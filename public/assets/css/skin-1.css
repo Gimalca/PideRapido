@@ -67,9 +67,9 @@ a:hover, a:focus {
 	color:#fff;
 	background:#F8B332;
 }
-.product:hover, .featuredImgLook2 .inner:hover {
+/*.product:hover, .featuredImgLook2 .inner:hover {
 	border: 1px solid #a91220;
-}
+}*/
 .subCategoryList .thumbnail:hover {
 	border: 1px solid #4EC67F;
 }

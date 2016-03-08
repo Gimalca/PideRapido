@@ -23,7 +23,7 @@
             </div>
           </div>
           <div class="img-title"></div>
-          <a class="img-block" href="#"> <img class="img-responsive" src="<?php echo $this->basePath().'/img/franchise/'.$franchies->logo?>" alt="img"></a></div>
+          <a class="img-block" href="<?php echo $this->basePath() . '/catalog/branch/list/' . $franchies->franchise_id; ?>"> <img class="img-responsive" src="<?php echo $this->basePath().'/img/franchise/'.$franchies->logo?>" alt="img"></a></div>
       </div>
         <?php endforeach; ?>
     </div>
@@ -33,21 +33,21 @@
   <!--/.featuredPostContainer--> 
 </div>
 <?php
-    if (getenv('APPLICATION_ENV') == 'development') {
-            $source_js = $this->basePath('assets');
-            $source_css = $source_js . '/css/style.css';
-        } else {
-            $source_js = $this->basePath();
-            $source_css_boot = $source_js . '/css/bootstrap.min.css';
-            $source_css = $source_js . '/css/style.min.css'; 
-        }
-    $this->inlineScript()->captureStart();
-            echo <<<JS
-             
-               
-                $(document).ready(function() {
-                       $('head').append('<link rel="stylesheet" href=" $source_css_boot" type="text/css" />'); 
-                       $('head').append('<link rel="stylesheet" href="$source_css" type="text/css" />'); 
-                    });
-JS;
-            $this->inlineScript()->captureEnd();
+//    if (getenv('APPLICATION_ENV') == 'development') {
+//            $source_js = $this->basePath('assets');
+//            $source_css = $source_js . '/css/style.css';
+//        } else {
+//            $source_js = $this->basePath();
+//            $source_css_boot = $source_js . '/css/bootstrap.min.css';
+//            $source_css = $source_js . '/css/style.min.css'; 
+//        }
+//  $this->inlineScript()->captureStart();
+//            echo <<<JS
+//             
+//               
+//                $(document).ready(function() {
+//                       $('head').append('<link rel="stylesheet" href=" $source_css_boot" type="text/css" />'); 
+//                       $('head').append('<link rel="stylesheet" href="$source_css" type="text/css" />'); 
+//                    });
+//JS;
+//            $this->inlineScript()->captureEnd();
