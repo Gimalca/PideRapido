@@ -20,16 +20,23 @@ class FranchiseController extends AbstractActionController {
     public function listAction() {
         $request = $this->getRequest();
         $franchiseListSelect = new FranchiseList();
-
-        if ($request->isPost()) {
-            $postData = array_merge_recursive(
+        
+        $postData = array_merge_recursive(
                     $request->getPost()->toArray(), $request->getFiles()->toArray()
             );
             $franchise_id = $postData['franchise_id'];
-//                var_dump($product_id);die;
-            $franchiseList = $this->getFranchiseSelect();
-            $franchiseListSelect->get('franchise_id')->setValueOptions($franchiseList);
 
+        if ($request->isPost() && $franchise_id != '0') {
+            
+            
+            
+
+            $franchiseList['0'] = 'Todas';
+            $franchiseListSelect->get('franchise_id')->setValueOptions($franchiseList);
+            $franchiseListSelect->get('franchise_id')->setValue('0');
+            
+            $franchiseListSelect->get('franchise_id')->setValueOptions($franchiseList);
+            
             $franchiseTableGateway = $this->getService('FranchiseTableGateway');
             $franchiseDao = new FranchiseDao($franchiseTableGateway);
 
@@ -38,20 +45,23 @@ class FranchiseController extends AbstractActionController {
             $view['franchieses'] = $franchies;
             $view['franchies_list'] = $franchiseListSelect;
             return new ViewModel($view);
-        } else {
+        } 
 
             $franchiseTableGateway = $this->getService('FranchiseTableGateway');
             $franchiseDao = new FranchiseDao($franchiseTableGateway);
 
             $franchies = $franchiseDao->getAll()
                     ->fetchAll();
+           
             $franchiseList = $this->getFranchiseSelect();
+            $franchiseList['0'] = 'Todas';
             $franchiseListSelect->get('franchise_id')->setValueOptions($franchiseList);
+            $franchiseListSelect->get('franchise_id')->setValue('0');
             $view['franchieses'] = $franchies;
             $view['franchies_list'] = $franchiseListSelect;
             //print_r($view);die;
             return new ViewModel($view);
-        }
+        
     }
 
     private function getFranchiseSelect() {

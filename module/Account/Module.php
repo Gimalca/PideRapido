@@ -34,6 +34,8 @@ class Module {
     public function initAuth(MvcEvent $e) {
         $app = $e->getApplication();
         $routerMatch = $e->getRouteMatch();
+        $module = $routerMatch->getParam('__NAMESPACE__');
+        
         $controller = $routerMatch->getParam('controller');
         $action = $routerMatch->getParam('action');
         $sm = $app->getServiceManager();
@@ -52,8 +54,9 @@ class Module {
             $viewModel = $e->getViewModel();
             $viewModel->userIdentity = $auth->getIdentity();
         }
-        if($action !== 'facebook-callback' ){
-            //print_r('entra'); die;
+        
+        if($module !== 'Account\Controller' || $controller === 'Account\Controller\Register' ){
+           
             $viewModel = $e->getViewModel();
             $viewModel->fbUrl = $sm->get('FacebookUrl');
         }

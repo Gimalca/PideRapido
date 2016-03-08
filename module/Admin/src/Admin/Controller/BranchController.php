@@ -27,15 +27,19 @@ class BranchController extends AbstractActionController {
     public function listFranchiseAction() {
         $request = $this->getRequest();
         $franchiseListSelect = new FranchiseList();
-
-        if ($request->isPost()) {
-            $postData = array_merge_recursive(
+        
+         $postData = array_merge_recursive(
                     $request->getPost()->toArray(), $request->getFiles()->toArray()
             );
-            $franchise_id = $postData['franchise_id'];
+            @$franchise_id = $postData['franchise_id'];
+
+        if ($request->isPost() && $franchise_id != '0') {
+           
 //                var_dump($product_id);die;
             $franchiseList = $this->getFranchiseSelect();
+            $franchiseList['0'] = 'Todas';
             $franchiseListSelect->get('franchise_id')->setValueOptions($franchiseList);
+            $franchiseListSelect->get('franchise_id')->setValue('0');
 
             $franchiseTableGateway = $this->getService('FranchiseTableGateway');
             $franchiseDao = new FranchiseDao($franchiseTableGateway);
@@ -53,7 +57,9 @@ class BranchController extends AbstractActionController {
             $franchies = $franchiseDao->getAll()
                     ->fetchAll();
             $franchiseList = $this->getFranchiseSelect();
+             $franchiseList['0'] = 'Todas';
             $franchiseListSelect->get('franchise_id')->setValueOptions($franchiseList);
+            $franchiseListSelect->get('franchise_id')->setValue('0');
             $view['franchieses'] = $franchies;
             $view['franchies_list'] = $franchiseListSelect;
             //print_r($view);die;
@@ -65,15 +71,20 @@ class BranchController extends AbstractActionController {
         $request = $this->getRequest();
         $id = (int) $this->params()->fromRoute('id', 0);
         $branchListSelect = new BranchList();
-
-        if ($request->isPost()) {
-            $postData = array_merge_recursive(
+        
+         $postData = array_merge_recursive(
                     $request->getPost()->toArray(), $request->getFiles()->toArray()
             );
             $branch_id = $postData['branch_id'];
+
+        if ($request->isPost() && $branch_id != '0') {
+           
 //                var_dump($product_id);die;
             $branchList = $this->getBranchSelect($id);
+            
+            $branchList['0'] = 'Todas';
             $branchListSelect->get('branch_id')->setValueOptions($branchList);
+            $branchListSelect->get('branch_id')->setValue('0');
 
             $branchTableGateway = $this->getService('BranchTableGateway');
             $branchDao = new BranchDao($branchTableGateway);
@@ -85,8 +96,13 @@ class BranchController extends AbstractActionController {
             $view['frnachise_id'] = $id;
             return new ViewModel($view);
         } else {
+            
             $branchList = $this->getBranchSelect($id);
+            
+            $branchList['0'] = 'Todas';
             $branchListSelect->get('branch_id')->setValueOptions($branchList);
+            $branchListSelect->get('branch_id')->setValue('0');
+            
             $branchTableGateway = $this->getService('BranchTableGateway');
             $branchDao = new BranchDao($branchTableGateway);
             $branch = $branchDao->getAll($id);
@@ -335,6 +351,28 @@ class BranchController extends AbstractActionController {
         }
         return $result;
     }
+    private function getStateSelect() {
+        $cityDao = $this->getService('CityDao');
+        $results = $cityDao->getAllState();
+        $result = array();
+        foreach ($results as $bankR) {
+            //$result[] = $row->getArrayCopy();
+            $result[$bankR->state_id] = $bankR->name;
+        }
+        return $result;
+    }
+    private function getMunicipalitySelect() {
+        $cityDao = $this->getService('CityDao');
+        $results = $cityDao->getAllMunicipality();
+        $result = array();
+        foreach ($results as $bankR) {
+            //$result[] = $row->getArrayCopy();
+            $result[$bankR->municipality_id] = $bankR->name;
+        }
+        return $result;
+    }
+    
+     
 
     private function getCountrySelect() {
         $cityDao = $this->getService('CountryDao');
@@ -358,7 +396,8 @@ class BranchController extends AbstractActionController {
         $branchTableGateway = $this->getService('BranchTableGateway');
         $branchDao = new BranchDao($branchTableGateway);
         $branch = $branchDao->getBranch($id);
-
+        
+        //print_r($branch); die;
         $branchContactTableGateway = $this->getService('BranchContactTableGateway');
         $branchDao = new BranchDao($branchContactTableGateway);
         $branchContact = $branchDao->getBranchContact($id);
@@ -366,10 +405,24 @@ class BranchController extends AbstractActionController {
         $branchForm = new BranchAdd();
         $franchise = $this->getFranchiseSelect();
         $branchForm->get('franchise_id')->setValueOptions($franchise);
+        
         $country = $this->getCountrySelect();
-
         array_unshift($country, NULL);
-        $branchForm->get('country_id')->setValueOptions($country);
+        $branchForm->get('country_id')->setValueOptions($country);   
+      
+        $state = $this->getStateSelect();     
+        $branchForm->get('state_id')->setValueOptions($state);
+        $branchForm->get('state_id')->setValue($branch->state_id);
+        
+        $state = $this->getMunicipalitySelect();     
+        $branchForm->get('municipality_id')->setValueOptions($state);
+        $branchForm->get('municipality_id')->setValue($branch->municipality_id);
+        
+        $city = $this->getCitySelect(null);     
+        $branchForm->get('city_id')->setValueOptions($city);
+        $branchForm->get('city_id')->setValue($branch->city_id);
+        
+        
         $branchForm->setData($branch->getArrayCopy());
         $branchForm->setData($branchContact->getArrayCopy());
         $view['logo'] = $branch->logo;
