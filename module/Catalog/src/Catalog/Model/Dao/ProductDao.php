@@ -304,6 +304,7 @@ class ProductDao {
         $this->query->join(array('ot' => 'pr_option_type'), 'o.type_id = ot.type_id', array('name_type' => 'name',
             'type_id')
         ); // empty list of columns
+        $this->where(['o.status' => '1']);
         $this->query->order('o.sort_order');
 
         return $this;

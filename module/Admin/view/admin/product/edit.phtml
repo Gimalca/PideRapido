@@ -204,6 +204,7 @@
                             <th>Requerido</th>
                             <th>Valores</th>
                             <th>Orden</th>
+                            <th>status</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -215,7 +216,7 @@
                                 <td><a href="<?php echo $this->url('admin', array('controller' => 'product', 'action' => 'optionValue', 'id' => $option->product_option_id)) ?>">Valores</a></td>
 
                                 <td><?php echo $option->sort_order ?></td>
-
+                                <td><?php echo ($option->status == 1) ? 'Activo' : 'Desactivo' ?></td>
                             </tr>
                         <?php endforeach; ?>
                     </tbody>
