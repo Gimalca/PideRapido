@@ -16,9 +16,9 @@ hr {
 .product, .featuredImgLook2 .inner , .cartMiniTable, .cartTable{
 	background:#fff;
 }
-.product:hover {
+/*.product:hover {
 	  box-shadow: 0 3px 20px 0 rgba(0, 0, 0, 0.3);
-}
+}*/
 .load-more-block .btn-thin {
 	   box-shadow: -4px 0 0 #EDEEF0, 4px 0 0 #EDEEF0 !important;
 }

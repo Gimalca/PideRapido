@@ -99,8 +99,8 @@
 
                                 <thead>
                                     <tr class="bg-light">
-                                        <th class="text-center">Seleccionar</th>
-                                        <th class="">Nombre</th>
+                                      
+                                        <th class="text-center">Nombre</th>
                                         <th class="">Tipo</th>
                                         <th class="">Clasificacion</th>
                                         <th class="">Orden</th>
@@ -110,12 +110,7 @@
                                 <tbody>
                                     <?php foreach ($this->options as $option) : ?>
                                         <tr data-id="<?php echo $option->option_id; ?>">
-                                            <td class="text-center">
-                                                <label class="option block mn">
-                                                    <input type="checkbox" name="mobileos" value="FR">
-                                                    <span class="checkbox mn"></span>
-                                                </label>
-                                            </td>
+                                          
                                             <td class=""><?php echo $option->name ?></td>
                                             <td class=""><?php echo $option->name_type ?></td>
                                             <td class=""><?php echo $option->name_clasification ?></td>

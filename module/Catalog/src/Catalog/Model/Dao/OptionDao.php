@@ -108,9 +108,9 @@ class OptionDao {
                     array('name_clasification' => 'name')
             );
 
-
+        $query->where(['pr_option.status' => 1]);
         $query->order("pr_option.sort_order ASC");
-//        echo $query->getSqlString();die;
+         
 
         $resultSet = $this->tableGateway->selectWith($query);
 //        var_dump($resultSet->toArray());die;

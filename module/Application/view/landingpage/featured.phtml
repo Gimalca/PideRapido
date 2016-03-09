@@ -22,7 +22,7 @@
                         </div>
                     </div>
                     <div class="description">
-                        <h4><a href="#"><?php echo $product->name ?></a></h4>
+                        <h4><a href="<?php echo $this->url('catalog', array('controller' => 'branch', 'action' => 'product', 'id' => $product->product_has_branch_id)); ?>"><?php echo $product->name ?></a></h4>
                         <div class="grid-description">
                             <p><?php echo $product->description ?></p>
                         </div>

@@ -325,7 +325,7 @@ ul.list-border li:hover {
     overflow: auto;
 }
 .modal-dialog {
-    max-width: 460px;
+    max-width: 411px;
 }
 .modal-header {
     border-bottom: 1px solid #E5E5E5;
@@ -2328,9 +2328,9 @@ h1.bolder-style.dark, h1.bolder-style.dark a {
 .product .image img {
     max-height: 250px;
      }
-.product:hover {
+/*.product:hover {
     background: #fff;
-}
+}*/
 .add-fav {
     border: 1px solid;
     border-radius: 50%;
@@ -3786,7 +3786,7 @@ tr.CartProduct td, tr.CartProduct th {
 
 /* quick view btn */
 div.quickview {
-    display: block;
+    /* display: block; */
     margin-top: 40%;
     max-height: 50px;
     position: absolute;
@@ -4602,6 +4602,9 @@ div.quickview {
     }
 }
 @media (max-width: 400px) {
+    .modal-dialog {
+     max-width: 300px;
+    }
     .parallax-content {
     text-align: center;
     padding: 10px 0;

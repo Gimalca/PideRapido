@@ -77,6 +77,7 @@ class ProductDao {
                 }
                 
                 if($insert){
+                   
                     $this->saveProductOption($productOption, $id);
                 }
                 
@@ -117,6 +118,7 @@ class ProductDao {
                     'product_id' => $id,
                     'option_id' => $option,
                     'required' => $dataProduct['required'][$contador],
+                    //'status' => 1
                 );
                 $contador++;
 
@@ -153,6 +155,7 @@ class ProductDao {
                 'option_id' => $data['option_id'],
                 'option_value_id' => $value,
                 'price' => $data['price'][$contador],
+                'status' => 1
             );
             $contador++;
 
@@ -301,6 +304,7 @@ class ProductDao {
         $this->query->join(array('ot' => 'pr_option_type'), 'o.type_id = ot.type_id', array('name_type' => 'name',
             'type_id')
         ); // empty list of columns
+        $this->where(['o.status' => '1']);
         $this->query->order('o.sort_order');
 
         return $this;
