@@ -81,7 +81,8 @@ class BranchController extends AbstractActionController {
         $productsCombo->where(array(
             'branch_id' => $branchId,
             'type' => '2',
-            'status' => '1'
+            'pr_product_has_branch.status_product_has_branch' => '1',
+            
         ));
         $combos = $productsCombo->fetchAll();
         //var_dump($combos);die;

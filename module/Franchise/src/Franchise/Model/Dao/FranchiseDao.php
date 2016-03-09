@@ -27,7 +27,7 @@ class FranchiseDao {
         $this->query = $this->tableGateway->getSql()->select();
 
         $this->query->order("franchise_id DESC");
-       
+        $this->query->where(['status < 2'])   ; 
 //        echo $query->getSqlString();die;
 
        return $this;

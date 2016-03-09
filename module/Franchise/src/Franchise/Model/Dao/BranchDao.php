@@ -29,8 +29,10 @@ class BranchDao {
         $query->join(array('f' => 'pr_franchise'), 'pr_branch.franchise_id = f.franchise_id', array('name_franchise' => 'name')); // empty list of columns
 
         $query->where(array(
-            'pr_branch.franchise_id' => $id,
-                // 'status' => 1,
+            
+           'pr_branch.franchise_id' => $id,
+            'pr_branch.status < 2',
+                 
         ));
         $query->order("branch_id ASC");
         //echo $query->getSqlString();die;
@@ -217,7 +219,7 @@ class BranchDao {
         $query = $this->tableGateway->getSql()->select();
 
         $query->join(array('p' => 'pr_product'), 'pr_product_has_branch.product_id = p.product_id') // empty list of columns
-                ->where(array('pr_product_has_branch.branch_id' => $id));
+                ->where(array('pr_product_has_branch.branch_id' => $id, 'pr_product_has_branch.status_product_has_branch < 2'));
 
         //echo $query->getSqlString();die;
         $resultSet = $this->tableGateway->selectWith($query);

@@ -333,7 +333,7 @@ class ProductDao {
         }
 
         $this->query->join(array('pr_product' => 'pr_product'), 'pr_product_has_branch.product_id = pr_product.product_id', $colums); // empty list of columns
-
+       
         return $this;
     }
 
