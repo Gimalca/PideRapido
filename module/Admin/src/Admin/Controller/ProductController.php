@@ -159,10 +159,10 @@ class ProductController extends AbstractActionController {
 
                 $productData = $productAddForm->getData();
                 $prepareProductData = $this->prepareProductData($productData);
-
+                
                 $productEntity = New Product;
                 $productEntity->exchangeArray($prepareProductData);
-
+                print_r($productEntity);die;
                 $productOptionEntity = New ProductOption();
                 $productOptionEntity->exchangeArray($productData);
 

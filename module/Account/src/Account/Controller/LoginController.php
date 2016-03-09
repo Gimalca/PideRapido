@@ -166,7 +166,7 @@ class LoginController extends AbstractActionController
                 return $this->forward()->dispatch('Account\Controller\Register', array('action' => 'index'));
                 
             } else {
-                
+                $token = $postData->token;
                 $messages = $forgetForm->getMessages();
                 //print_r($messages);di
                 $this->flashMessenger()->addMessage($messages, 'error');
@@ -174,12 +174,18 @@ class LoginController extends AbstractActionController
         }
         
         
-        $userRow = $userDao->getUserByToken($token);
+       
         
-        if($userRow){
+        if($token){
             
+            $userRow = $userDao->getUserByToken($token);
             $forgetForm->get('token')->setValue($userRow->token);
-        }else{
+            
+        }elseif (!$userRow) {
+            $this->flashMessenger()->addMessage("Token invalido", 'error');
+            return $this->forward()->dispatch('Account\Controller\Register', array('action' => 'index'));
+        }
+        else{
             $this->flashMessenger()->addMessage("Token invalido", 'error');
             return $this->forward()->dispatch('Account\Controller\Register', array('action' => 'index'));
         }

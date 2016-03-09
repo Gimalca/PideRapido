@@ -6,7 +6,7 @@
         <div class="col-lg-12 col-md-12 col-sm-12">
             <div class="w100 clearfix category-top">
                 <h1><?php echo $this->franchise->name ?></h1>
-                <div class="categoryImage"> <img src="<?php echo $this->basePath('img/sucursal/no-image.jpg') ?>" class="img-responsive" alt="img"> </div>
+                <div class="categoryImage"> <img src="<?php echo ($this->franchise->banner != '') ? $this->basePath('img/franchise/banner/').$this->franchise->banner :$this->basePath('img/franchise/banner/no-image.jpg') ?>" class="img-responsive" alt="img"> </div>
             </div>
             <!--/.category-top-->      
             <div class="row  clearfix">	  

@@ -83,6 +83,10 @@ class FranchiseAdd extends Form {
         $this->add(array(
             'name' => 'category_id',
             'type' => 'select',
+            'options' => array(
+                'disable_inarray_validator' => true,
+               
+            ),
         ));
         $this->add(array(
             'name' => 'state',
@@ -111,6 +115,14 @@ class FranchiseAdd extends Form {
                 'type' => 'File',
                 'id' => 'logo',
                 'placeholder' => 'Logo',
+            ),
+        ));
+        $this->add(array(
+            'name' => 'banner',
+            'attributes' => array(
+                'type' => 'File',
+                'id' => 'banner',
+                'placeholder' => 'banner',
             ),
         ));
     }

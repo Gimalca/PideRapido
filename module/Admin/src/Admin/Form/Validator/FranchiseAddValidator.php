@@ -82,7 +82,7 @@ class FranchiseAddValidator extends InputFilter
         
         // Validator File Type //
         $mimeType = new MimeType();
-        $mimeType->setMimeType(array('image/gif', 'image/jpg','image/jpeg','image/png'));
+        $mimeType->setMimeType(array('image/gif', 'image/jpg','image/jpeg','image/png', 'inode/x-empty'));
         $logo->getValidatorChain()->attach($mimeType);
 
         /** Move File to Uploads/product **/
@@ -119,20 +119,20 @@ class FranchiseAddValidator extends InputFilter
         )));
         
         // Validator File Type //
-        $mimeType = new MimeType();
-        $mimeType->setMimeType(array('image/gif', 'image/jpg','image/jpeg','image/png'));
-        $banner->getValidatorChain()->attach($mimeType);
+        $mimeTypeB = new MimeType();
+        $mimeTypeB->setMimeType(array('image/gif', 'image/jpg','image/jpeg','image/png', 'inode/x-empty'));
+        $banner->getValidatorChain()->attach($mimeTypeB);
 
         /** Move File to Uploads/product **/
-        $nameFile = sprintf("%simg_%s",'./public/img/franchise/banner/', time());
-        $rename = new RenameUpload($nameFile);
+        $nameFileB = sprintf("%simg_%s",'./public/img/franchise/banner/', time());
+        $renameB = new RenameUpload($nameFileB);
         //$rename->setTarget($nameFile);
-        $rename->setUseUploadExtension(true);
+        $renameB->setUseUploadExtension(true);
         //$rename->setUseUploadName(true);
-        $rename->setRandomize(true);
-        $rename->setOverwrite(true);
+        $renameB->setRandomize(true);
+        $renameB->setOverwrite(true);
               
-        $banner->getFilterChain()->attach($rename);
+        $banner->getFilterChain()->attach($renameB);
         $this->add($banner);
         
         $this->add(array(
