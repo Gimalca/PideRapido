@@ -11,7 +11,7 @@
                 <form class="form-horizontal" action="<?php echo $this->url('catalog', array('controller' => 'franchise', 'action' => 'list')) ?>" method="post" >
                     <fieldset>
                         <h2> Busca tu franquicia preferida</h2>
-                        <div class="form-group">
+                       
 <!--                            <div class="col-md-3">
                                 <select id="selectbasic" name="selectbasic" class="form-control">
                                     <option value="0" selected>Seleccione Ciudad</option>
@@ -26,10 +26,13 @@
                                     <option value="2">Zona #2</option>
                                 </select>
                             </div>-->
-                            <div class="col-md-3">
-                                 <?php echo $this->formSelect($this->form->get('category_id')); ?>
+                            <div class="col-md-4">
+                                 <?php echo $this->formSelect($this->form->get('category_id')->setAttributes(['class' => 'form-control'])); ?>
                             </div>
-                            <div class="col-md-3">
+                           
+                                                   
+
+                            <div class="col-md-4">
                                 <input id="textinput" class="form-control input-md" type="text" placeholder="Nombre de franquicia" name="name"></input>
                                 <span class="help-block"></span>
                             </div>
