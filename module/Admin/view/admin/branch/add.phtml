@@ -156,6 +156,20 @@ $this->headlink()
                                     </div>
                                 </div>
                             </div>
+                            
+                        </div>
+                        <div class="section row mb10">
+                           <label class="field-label col-md-3 text-center">Banner:</label>
+                         <div class="col-md-9">
+                                <label class="field prepend-icon append-button file">
+                                    <span class="button">Subir Archivo</span>
+                                     <?php echo $this->formFile($this->form->get('banner')->setAttributes(['onChange' => "document.getElementById('uploader1').value = this.value;", 'class' => 'gui-file'])); ?>
+                                    <input type="text" class="gui-input" id="uploader1" placeholder="Cambiar Banner (Tamaño: 1200 x 350)">
+                                    <label class="field-icon"><i class="fa fa-upload"></i>
+                                    </label>
+                                </label>
+                            </div>
+                        </div>   
                         </div> 
 
                         <!--                    <div class="section row mb10">

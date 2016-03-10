@@ -1,18 +1,9 @@
-<div class="parallax-section parallax-fx parallax-image-aboutus parallaxOffset" style="margin:0px;">
-    <div class="w100"style="margin-top:-19px">
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <div class="parallax-content clearfix animated ">
-                        <h1 class="x2large"><?php echo $this->branch->name_franchise ?></h1>
-                        <h5 class="parallaxSubtitle">Aquí tendrás detalle de como funciona nuestra plataforma</h5>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+
 <div class="container main-container ">
+    <div class="w100 clearfix category-top">
+               
+                <div class="categoryImage"> <img src="<?php echo ($this->branch->banner != '') ? $this->basePath('img/franchise/banner/').$this->branch->banner :$this->basePath('img/franchise/banner/no-image.jpg') ?>" class="img-responsive" alt="img"> </div>
+            </div>
     <div class="row innerPage">
         <div class="col-lg-6 col-md-6 col-sm-12">
             <div class="row userInfo">

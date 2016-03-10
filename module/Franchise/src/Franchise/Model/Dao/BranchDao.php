@@ -311,49 +311,30 @@ class BranchDao {
         } else {
             // print_r($this->getById($id));die;
             if ($this->getById($id)) {
-                //print_r($this->getById($id));
-//                print_r($dataFilter);die;
-                $logoBranch = $this->getLogo($id);
-//                var_dump($logoBranch);die;
+              
                 if ($dataFilter['logo'] == "no-logo.jpg") {
-                    if($logoBranch->logo != "no-logo.jpg"){
-                      $dataFilter['logo'] = $logoBranch->logo;  
-                      $insert = $this->tableGateway->update($dataFilter, array('branch_id' => $id));
-                      $insert = $this->updateBranchContact($branchContact);
-                      return $insert;
-                    }else{
-                        $insert =  $this->tableGateway->update($dataFilter, array('branch_id' => $id));
-                        $insert = $this->updateBranchContact($branchContact);
-                        return $insert;
+                    $logoBranch = $this->getLogo($id);
+                    if ($logoBranch->logo != "no-logo.jpg") {
+                        $dataFilter['logo'] = $logoBranch->logo;
                     }
-                } else {
-                    $insert =  $this->tableGateway->update($dataFilter, array('branch_id' => $id));
-                    $insert = $this->updateBranchContact($branchContact);
-                    return $insert;
                 }
-                $bannerBranch = $this->getBanner($id);
-//                var_dump($logoBranch);die;
+
                 if ($dataFilter['banner'] == "no-logo.jpg") {
-                    if($bannerBranch->banner != "no-logo.jpg"){
-                      $dataFilter['banner'] = $bannerBranch->banner;  
+                    $bannerBranch = $this->getBanner($id);
+                    if ($bannerBranch->banner != "no-logo.jpg") {
+                        $dataFilter['banner'] = $bannerBranch->banner;
+                    }
+                }
+
+                //print_r($dataFilter);die;
                       $insert = $this->tableGateway->update($dataFilter, array('branch_id' => $id));
                       $insert = $this->updateBranchContact($branchContact);
                       return $insert;
-                    }else{
-                        $insert =  $this->tableGateway->update($dataFilter, array('branch_id' => $id));
-                        $insert = $this->updateBranchContact($branchContact);
-                        return $insert;
-                    }
-                } else {
-                    $insert =  $this->tableGateway->update($dataFilter, array('branch_id' => $id));
-                    $insert = $this->updateBranchContact($branchContact);
-                    return $insert;
-                }
-            } else {
-                throw new \Exception('El Formulario no Existe');
-            }
+                   
+                } 
+                
+            } 
         }
-    }
 
     public function saveProductHasBranch($branchProduct) {
         //print_r($branch);die;
