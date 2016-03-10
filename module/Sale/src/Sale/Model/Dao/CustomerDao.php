@@ -31,12 +31,16 @@ class CustomerDao {
         return $resultSet;
     }
 
-    public function getAllSimple() {
+    public function getAllSimple($email = null) {
         $query = $this->tableGateway->getSql()->select();
 
         $query->order("customer_id ASC");
         $query->columns(array('customer_id','firstname','lastname','email','telephone','document_identity'));
-        //echo $query->getSqlString();die;
+        
+        if($email){
+            $query->where(['email' => $email]);
+        }
+        
 
         $resultSet = $this->tableGateway->selectWith($query);
         //var_dump($resultSet);die;

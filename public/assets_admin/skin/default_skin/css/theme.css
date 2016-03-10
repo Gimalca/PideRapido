@@ -7813,7 +7813,7 @@ th {
 @media print {
   * {
     text-shadow: none !important;
-    color: #000 !important;
+    color: red !important;
     background: transparent !important;
     box-shadow: none !important;
   }
@@ -17151,6 +17151,7 @@ ol.timeline-list li.timeline-item .timeline-date {
   display: none !important;
 }
 @media print {
+ 
   .visible-print {
     display: block !important;
   }
@@ -19640,6 +19641,7 @@ ul.sidebar-nav ul#sideEight.sub-nav > li > a:hover {
   #skin-toolbox,
   .panel-heading,
   .invoice-buttons {
+     color:red !important;
     display: none !important;
     visibility: hidden;
     width: 0 !important;
@@ -19650,21 +19652,27 @@ ul.sidebar-nav ul#sideEight.sub-nav > li > a:hover {
     overflow: hidden;
   }
   /* Modify Primary Container */
-  #content_wrapper {
+  #content_wrapper  {
+
     background: 0;
     margin: 0 auto !important;
     padding: 0 !important;
-    left: auto !important;
+    left: 0 !important;
     right: auto !important;
     transition: none;
   }
   #content {
+    margin-left: -220px !important;
+    left: 0px !important;
     padding: 0;
     background: none;
   }
   #content_wrapper:after {
     margin: 0;
     display: none;
+  }
+  .admin-form{
+    display:none !important;
   }
   /* Shorten and center page */
   #main {
@@ -21474,7 +21482,7 @@ body.sb-l-m #sidebar_left.sidebar-light .sidebar-menu > li > a > .sidebar-title 
   overflow: hidden;
 }
 .sb-l-o #content_wrapper {
-  margin-left: 230px;
+  /* margin-left: 230px; */
 }
 /*left sidebar closed*/
 .sb-l-c #sidebar_left {

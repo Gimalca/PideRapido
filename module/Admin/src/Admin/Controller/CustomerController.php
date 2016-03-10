@@ -10,10 +10,22 @@ use Zend\View\Model\ViewModel;
 class CustomerController extends AbstractActionController {
 
     public function indexAction() {
+        $request = $this->getRequest();
+        
         $customerTableGateway = $this->getService('CustomerTableGateway');
         $customerDao = new CustomerDao($customerTableGateway);
+        
+        if($request->isPost()){
+            
+            $postData = $request->getPost(); 
+            $customer = $customerDao->getAllSimple($postData->email);
+            
+        }else{
+            
+            $customer = $customerDao->getAllSimple();
+        }
 
-        $customer = $customerDao->getAllSimple();
+        
 
         $view['customer'] = $customer;
 
