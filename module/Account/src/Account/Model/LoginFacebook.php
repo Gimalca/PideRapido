@@ -30,13 +30,14 @@ class LoginFacebook
         $this->permissions = $dataConfig['permissions'];
 
        $this->fb = new Facebook($config);
-       $this->loginHelper = $this->fb->getRedirectLoginHelper();
+      
     }
     
    
     public function accessToken()
     {
-      
+        $this->loginHelper = $this->fb->getRedirectLoginHelper();
+        
         $accessToken = $this->loginHelper->getAccessToken();
     
         if (isset($accessToken)) {
@@ -55,6 +56,7 @@ class LoginFacebook
     
      public function loginUrl($url, $permissions = null)
     {
+        $this->loginHelper = $this->fb->getRedirectLoginHelper();
         
         if(is_null($permissions)){
             $permissions = $this->permissions;
