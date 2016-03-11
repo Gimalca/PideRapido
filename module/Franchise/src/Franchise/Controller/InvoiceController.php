@@ -160,7 +160,10 @@ class InvoiceController extends AbstractActionController {
             $productOrder = $productOrder->fetchAll();
             $productOrder->buffer();
 
+            $price = $oderDetail->subtotal;
             $priceOption = 0;
+            $productOrderOptions = '';
+            
             foreach ($productOrder as $productOrderOption):
                 $productOptionsTableGateway = $this->getService('OrderHydratingTableGateway');
                 $orderDao = new OrderDao($productOrderTableGateway);

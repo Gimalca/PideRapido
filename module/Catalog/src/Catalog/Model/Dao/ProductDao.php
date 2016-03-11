@@ -254,7 +254,7 @@ class ProductDao {
             $columns = array('*');
         }
         $this->query->columns($columns);
-        //$this->query->order("product_id DESC");
+        //$this->query->where("status < 0");
 
         return $this;
     }
@@ -273,7 +273,7 @@ class ProductDao {
         $this->query->join(array(
             'f' => 'pr_franchise',
                 ), 'pr_product.franchise_id = f.franchise_id', $columns); // empty list of columns
-
+        //$this->query->where('f.status < 2');
         return $this;
     }
     

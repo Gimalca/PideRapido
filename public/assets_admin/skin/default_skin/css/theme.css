@@ -7813,7 +7813,6 @@ th {
 @media print {
   * {
     text-shadow: none !important;
-    color: red !important;
     background: transparent !important;
     box-shadow: none !important;
   }
@@ -19641,7 +19640,6 @@ ul.sidebar-nav ul#sideEight.sub-nav > li > a:hover {
   #skin-toolbox,
   .panel-heading,
   .invoice-buttons {
-     color:red !important;
     display: none !important;
     visibility: hidden;
     width: 0 !important;

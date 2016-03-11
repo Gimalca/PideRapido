@@ -90,7 +90,8 @@ class FranchiseDao {
     }
     public function getLast() {
         $query = $this->tableGateway->getSql()->select();
-
+        
+        $query->where(['status' => 1]);
         $query->order("franchise_id DESC");
         $query->limit(6);
         //echo $query->getSqlString();die;
