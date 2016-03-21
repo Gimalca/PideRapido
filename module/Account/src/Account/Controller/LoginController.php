@@ -75,8 +75,10 @@ class LoginController extends AbstractActionController
     {
         $globalConfig = $this->getService('config');
         $fb = new LoginFacebook($globalConfig['fbapi']);
- 
-        if ($fbLogin = $fb->getUser()) {
+        
+        try {
+            
+             $fbLogin = $fb->getUser();
             //$fbLogin = $fb->getUser();
             $fbLogin->asArray();
             $email = $fbLogin['email'];
@@ -95,13 +97,17 @@ class LoginController extends AbstractActionController
 
                 $this->login($email, $customerData->password);
             }
-        } else {
+            
+        } catch (Exception $e) {
+            
             $this->flashMessenger()->addMessage('No pudimos verificar sus datos, intente de nuevo!', 'error');
 
             return $this->redirect()->toRoute('account', array(
                         'controller' => 'login',
             ));
         }
+   
+     
     }
 
     public function resPasswordAction()

@@ -81,10 +81,10 @@ class LoginFacebook
             // Returns a `Facebook\FacebookResponse` object
             $response = $this->fb->get('/me?fields=id,name,email', $accessToken->getValue());
             
-        } catch (Facebook\Exceptions\FacebookResponseException $e) {
+        } catch (FacebookResponseException $e) {
             echo 'Graph returned an error: ' . $e->getMessage();
             exit;
-        } catch (Facebook\Exceptions\FacebookSDKException $e) {
+        } catch (FacebookSDKException $e) {
             echo 'Facebook SDK returned an error: ' . $e->getMessage();
             exit;
         }
