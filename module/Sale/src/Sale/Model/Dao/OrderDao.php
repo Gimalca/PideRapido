@@ -201,7 +201,7 @@ class OrderDao {
     }
 
     public function getBranchDailyOrders($branch_id) {
-        $sql = "SELECT `pr_order`.*, `ob`.`subtotal` AS `subtotal_order_branch`, `ob`.`order_status` AS `order_status`, `ob`.`invoice_number` AS `invoice_number`, `ob`.`customer_id` AS `customer_id`, `ob`.`date_added` AS `date_added`"
+        $sql = "SELECT `pr_order`.*, `ob`.`order_branch_id`, `ob`.`subtotal` AS `subtotal_order_branch`, `ob`.`order_status` AS `order_status`, `ob`.`invoice_number` AS `invoice_number`, `ob`.`customer_id` AS `customer_id`, `ob`.`date_added` AS `date_added`"
                 . "FROM `pr_order` "
                 . "INNER JOIN `pr_order_branch` AS `ob` ON `pr_order`.`order_id` = `ob`.`order_id` "
                 . "WHERE `ob`.`branch_id` = ? "
@@ -221,7 +221,7 @@ class OrderDao {
         $year = $date['year'];
         $day = $date['day'];
 
-        $sql = "SELECT `pr_order`.*, `ob`.`subtotal` AS `subtotal_order_branch`, `ob`.`order_status` AS `order_status`, `ob`.`invoice_number` AS `invoice_number`, `ob`.`customer_id` AS `customer_id`, `ob`.`date_added` AS `date_added`"
+        $sql = "SELECT `pr_order`.*, `ob`.`order_branch_id`, `ob`.`subtotal` AS `subtotal_order_branch`, `ob`.`order_branch_id`, `ob`.`order_status` AS `order_status`, `ob`.`invoice_number` AS `invoice_number`, `ob`.`customer_id` AS `customer_id`, `ob`.`date_added` AS `date_added`"
                 . "FROM `pr_order` "
                 . "INNER JOIN `pr_order_branch` AS `ob` ON `pr_order`.`order_id` = `ob`.`order_id` "
                 . "WHERE `ob`.`branch_id` = ? "
@@ -239,7 +239,7 @@ class OrderDao {
 
     public function getBranchMonthlyOrders($branch_id) {
 //        echo $branch_id;die;
-        $sql = "SELECT `pr_order`.*, `ob`.`subtotal` AS `subtotal_order_branch`, `ob`.`order_status` AS `order_status`, `ob`.`invoice_number` AS `invoice_number`, `ob`.`customer_id` AS `customer_id`, `ob`.`date_added` AS `date_added`"
+        $sql = "SELECT `pr_order`.*, `ob`.`order_branch_id`, `ob`.`subtotal` AS `subtotal_order_branch`, `ob`.`order_status` AS `order_status`, `ob`.`invoice_number` AS `invoice_number`, `ob`.`customer_id` AS `customer_id`, `ob`.`date_added` AS `date_added`"
                 . "FROM `pr_order` "
                 . "INNER JOIN `pr_order_branch` AS `ob` ON `pr_order`.`order_id` = `ob`.`order_id` "
                 . "WHERE `ob`.`branch_id` = ? "

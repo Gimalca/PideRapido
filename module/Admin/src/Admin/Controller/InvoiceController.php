@@ -152,6 +152,7 @@ class InvoiceController extends AbstractActionController {
                 $order = $orderDao->getBranchDailyOrders($branch_id);
             }
             $order->buffer();
+            //print_r($order->current());die;
             $price = 0;
             foreach ($order as $order_price):
                 $price = $price + $order_price->subtotal_order_branch;
@@ -215,6 +216,7 @@ class InvoiceController extends AbstractActionController {
 //                var_dump($order);die;
             }
             $order->buffer();
+            //print_r($order->current());die;
             $price = 0;
             foreach ($order as $order_price):
 //                echo $order_price->subtotal;
@@ -247,7 +249,7 @@ class InvoiceController extends AbstractActionController {
 
         $orderId = (int) $this->params()->fromRoute('id', 0);
         $branch_id = (int) $this->params()->fromRoute('idd', 0);
-//        echo $branch_id;die;
+        //echo $branch_id;die;
 
         $auth = $this->getService('Admin\Model\LoginAdmin');
         if ($auth->isLoggedIn()) {
@@ -255,8 +257,9 @@ class InvoiceController extends AbstractActionController {
 
             $productOrderTableGateway = $this->getService('OrderHydratingTableGateway');
             $orderDao = new OrderDao($productOrderTableGateway);
-            $oderDetail = $orderDao->getOrderDetail($orderId);
-            $oderDetail = $oderDetail->fetchAllCurrent();
+            $order = $orderDao->getOrderDetail($orderId);
+                   $order->where(['ob.order_branch_id' =>  $branch_id]);
+            $oderDetail = $order->fetchAllCurrent();
 //        var_dump($oderDetail);die;
 //        $productOrderTableGateway = $this->getService('OrderHydratingTableGateway');
             $orderDao = new OrderDao($productOrderTableGateway);

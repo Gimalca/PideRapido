@@ -127,7 +127,7 @@
                                         }
                                         ?>             
                                     </td>
-                                    <td><a href="<?php echo $this->basePath() . '/admin/invoice/orderDetail/' . $invoice->order_id; ?>">Ver Detalle</a></td>
+                                    <td><a href="<?php echo $this->basePath() . '/admin/invoice/orderDetail/' . $invoice->order_id .'/'.$invoice->order_branch_id; ?>">Ver Detalle</a></td>
                                     <td class="text-right pr10"><?php echo $invoice->subtotal_order_branch ?> Bs</td>
                                     <td class="text-right pr10"><?php echo $invoice->subtotal_order_branch * 0.12 ?> Bs</td>
                                     <td class="text-right pr10"><?php echo ($invoice->subtotal_order_branch * 0.12)+$invoice->subtotal_order_branch ?> Bs</td>
