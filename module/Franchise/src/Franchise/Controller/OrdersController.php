@@ -61,10 +61,11 @@ class OrdersController extends AbstractActionController {
             $orderTableGateway = $this->getService('OrderHydratingTableGateway');
             $orderDao = new OrderDao($orderTableGateway);
             $order = $orderDao->getOrderDetail($orderId);
-            $order = $order->fetchAllCurrent();
+                    $order->where(['ob.branch_id' => $branch_id]);
+            $order_detail = $order->fetchAllCurrent();
 
-            $view['order'] = $order;
-//            var_dump($view['order']);die;
+            $view['order'] = $order_detail;
+            //print_r($order_detail);die;
             $productOrderTableGateway = $this->getService('OrderHydratingTableGateway');
             $orderDao = new OrderDao($orderTableGateway);
             $productOrder = $orderDao->getProductOption($orderId, $branch_id);

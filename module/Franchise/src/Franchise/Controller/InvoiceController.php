@@ -154,8 +154,9 @@ class InvoiceController extends AbstractActionController {
 
             $productOrderTableGateway = $this->getService('OrderHydratingTableGateway');
             $orderDao = new OrderDao($productOrderTableGateway);
-            $oderDetail = $orderDao->getOrderDetail($orderId);
-            $oderDetail = $oderDetail->fetchAllCurrent();
+            $order = $orderDao->getOrderDetail($orderId);
+               $order->where(['ob.branch_id' => $branch_id]);
+               $oderDetail = $order->fetchAllCurrent();
      
 //        $productOrderTableGateway = $this->getService('OrderHydratingTableGateway');
             $orderDao = new OrderDao($productOrderTableGateway);
