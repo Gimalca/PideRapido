@@ -71,7 +71,7 @@
                             <?php foreach ($this->order as $invoice): ?>
                                 <tr>
                                     <td># <?php echo $invoice->invoice_number ?></td>
-                                    <td><?php echo $invoice->date_added ?></td>
+                                    <td><?php echo $invoice->date_modified ?></td>
                                     <td>
                                         <?php
                                         switch ($invoice->order_status) {

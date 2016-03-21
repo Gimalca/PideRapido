@@ -197,7 +197,7 @@ class BranchController extends AbstractActionController {
             ->setValue($product->product_has_branch_id);
 
         //var_dump($options->toArray());die;
-        if ($this->exists($categoryOptions[$OPTION_TYPE['SELECTBOX']])) {
+        if (@$this->exists($categoryOptions[$OPTION_TYPE['SELECTBOX']])) {
             $generalOptions = $this->setGeneralOptions(
                 $productForm,
                 $product,

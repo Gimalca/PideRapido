@@ -37,11 +37,11 @@ class OrderHistoryController extends AbstractActionController {
 
         $orderDao     = new OrderDao($orderTableGateway);
         $order        = $orderDao->getCustomerOrder($user, $id)->current();
-
+        //print_r($order); die;
         if ($order) {
 
             $orderProducts = $orderDao->getOrderProducts($order->order_id);
-            //print_r($order->current());die;
+            //print_r($orderProducts->current());die;
             $total         = $orderDao->orderTotal($order->order_id);
 
             return new ViewModel([

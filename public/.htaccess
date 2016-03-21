@@ -1,5 +1,5 @@
 #// Define application environment
-SetEnv APPLICATION_ENV "development"
+#SetEnv APPLICATION_ENV "development"
 ## EXPIRES CACHING ##
 <IfModule mod_expires.c>
 ExpiresActive On

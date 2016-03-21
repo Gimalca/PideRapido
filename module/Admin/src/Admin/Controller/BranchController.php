@@ -75,7 +75,7 @@ class BranchController extends AbstractActionController {
          $postData = array_merge_recursive(
                     $request->getPost()->toArray(), $request->getFiles()->toArray()
             );
-            $branch_id = $postData['branch_id'];
+            @$branch_id = $postData['branch_id'];
 
         if ($request->isPost() && $branch_id != '0') {
            

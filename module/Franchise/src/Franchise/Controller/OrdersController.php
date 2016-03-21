@@ -45,6 +45,7 @@ class OrdersController extends AbstractActionController {
                 $order = $orderDao->getBranchOrders($branch_id);
                 $order = $order->fetchAll();
             }
+            
             $view['order'] = $order;            
 //            var_dump($view['order']);die;
             return new ViewModel($view);
@@ -61,8 +62,6 @@ class OrdersController extends AbstractActionController {
             $orderDao = new OrderDao($orderTableGateway);
             $order = $orderDao->getOrderDetail($orderId);
             $order = $order->fetchAllCurrent();
-
-//        var_dump($order);die;
 
             $view['order'] = $order;
 //            var_dump($view['order']);die;

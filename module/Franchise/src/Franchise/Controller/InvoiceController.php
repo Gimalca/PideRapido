@@ -49,6 +49,7 @@ class InvoiceController extends AbstractActionController {
             } else {
                 $order = $orderDao->getBranchDailyOrders($branch_id);
             }
+            //print_r($order->current()); die;
             $order->buffer();
             $price = 0;
             foreach ($order as $order_price):
@@ -147,13 +148,15 @@ class InvoiceController extends AbstractActionController {
         $auth = $this->getService('Franchise\Model\LoginFranchise');
         if ($auth->isLoggedIn()) {
             $this->_user = $auth->getIdentity();
+            
+   
             $branch_id = $this->_user->branch_id;
 
             $productOrderTableGateway = $this->getService('OrderHydratingTableGateway');
             $orderDao = new OrderDao($productOrderTableGateway);
             $oderDetail = $orderDao->getOrderDetail($orderId);
             $oderDetail = $oderDetail->fetchAllCurrent();
-//        var_dump($oderDetail);die;
+     
 //        $productOrderTableGateway = $this->getService('OrderHydratingTableGateway');
             $orderDao = new OrderDao($productOrderTableGateway);
             $productOrder = $orderDao->getProductOption($orderId, $branch_id);
@@ -187,6 +190,7 @@ class InvoiceController extends AbstractActionController {
             $total = $subtotalBranch + $subtotalPr;
 //            echo $subtotalBranch;die;
 //            var_dump($productOrderOption);die;
+            $view['order'] = $service;
             $view['comision'] = $service;
             $view['subtotal_branch'] = $subtotalBranch;
             $view['subtotal_pr'] = $subtotalPr;

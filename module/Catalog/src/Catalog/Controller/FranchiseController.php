@@ -31,7 +31,7 @@ class FranchiseController extends AbstractActionController
                 ->setValue(0);
 
 
-        $franchies = $franchiseDao->getAll();
+        $franchies = $franchiseDao->getAll()->where(['status' => 1]);
 
 
         if ($request->isPost()) {

@@ -264,7 +264,7 @@ class ProductsController extends AbstractActionController {
 
         $options = $productDao->getAll(array('product_id'))
                 ->whithOptionsValue()
-                ->where(array('pr_product.product_id' => $id))
+                ->where(array('o.status' => '1', 'pov.status < 2', 'pr_product.product_id' => $id))
                 ->fetchAll();
         $options->buffer();
 //                var_dump($options);die;

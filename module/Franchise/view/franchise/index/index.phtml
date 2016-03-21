@@ -237,7 +237,7 @@ echo <<<JS
             var id = row.data('id');
 
                       $.ajax({
-                            url: '../public/franchise/index/status/'+id,
+                            url: '/franchise/index/status/'+id,
                             type: 'post',
                             data: {"id":id,"status":status},
                             dataType: 'json',

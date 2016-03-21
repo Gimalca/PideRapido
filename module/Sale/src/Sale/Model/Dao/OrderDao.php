@@ -122,8 +122,9 @@ class OrderDao {
 
         $this->query = $this->tableGateway->getSql()->select();
         $this->query->columns(array('order_id'));
-        $this->query->join(array('ob' => 'pr_order_branch'), 'pr_order.order_id = ob.order_id');
+        $this->query->join(array('ob' => 'pr_order_branch'), 'pr_order.order_id = ob.order_id', ['*' , 'ob_date_added' => 'date_added']);
         $this->query->join(array('c' => 'pr_customer'), 'pr_order.customer_id = c.customer_id');
+        $this->query->join(array('p' => 'pr_payment'), 'pr_order.invoice_number = p.invoice_number');
         $this->query->join(array('a' => 'pr_address'), 'c.address_default = a.address_id', array('address_1'));
         $this->query->where(array('pr_order.order_id' => $order_id));
 //        echo $this->query->getSqlString();die;
@@ -452,7 +453,7 @@ WHERE ob.invoice_number_branch = ? AND pop.order_product_id = ?";
             $this->joinCustomer($select);
             $this->joinOrderBranch($select, ['order_dispatch']);
             $this->joinOrderProduct($select);
-            $this->joinPayment($select, ['cod', 'tdc']);
+            $this->joinPayment($select, ['cod', 'tdc', 'payment_date_added' => 'date_added'  ]);
 
             $predicate = new Predicate();
 
@@ -551,11 +552,13 @@ WHERE ob.invoice_number_branch = ? AND pop.order_product_id = ?";
     }
 
     public function getCustomerOrder($customer, $order_id) {
-        return $this->tableGateway
+       return $this->tableGateway
                         ->select(function (Select $select) use ($customer, $order_id) {
-
+                            
+                            
                             $this->joinCustomer($select);
-
+                            $this->joinPayment($select, ['tdc', 'payment_date_added'  =>  'date_added' ]);
+                            
                             $select->where(array(
                                 'cu.customer_id' => $customer->customer_id,
                                 'pr_order.order_id' => $order_id

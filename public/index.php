@@ -23,6 +23,8 @@ if (getenv('APPLICATION_ENV') == 'development') {
     Zend\Mvc\Application::init(require 'config/application.config.dev.php')->run();
 
 }else{
+    // Desactivar toda notificación de error
+    //error_reporting(0);
     //run production
     Zend\Mvc\Application::init(require 'config/application.config.pro.php')->run();
 }

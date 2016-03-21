@@ -19,6 +19,8 @@ class IndexController extends AbstractActionController
 {
     public function indexAction()
     {
+        
+        $this->layout()->fbUrl = $this->getService('FacebookUrl');
    
         $this->layout()->slider = 1;
         $this->layout()->parallax = 1;
@@ -51,8 +53,9 @@ class IndexController extends AbstractActionController
         
         $franchiseTableGateway = $this->getService('FranchiseTableGateway');
         $franchiseDao = new FranchiseDao($franchiseTableGateway);
-
+    
         $franchies = $franchiseDao->getLast();
+        $view['franchieses'] = $franchies;
         $view['franchieses'] = $franchies;
 
         return new ViewModel($view);

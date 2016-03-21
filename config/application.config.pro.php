@@ -8,6 +8,7 @@
 return array(
     'modules' => array(
         'Application',
+        'Account',
         'Admin',
         'Franchise',
         'Catalog',
@@ -15,7 +16,7 @@ return array(
         'Api',
         'Dispatch',
         'Report',
-        'Account',
+        'Payment',
     ),
     'module_listener_options' => array(
         'module_paths' => array(

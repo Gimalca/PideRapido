@@ -56,6 +56,7 @@ class LoginAccount {
             switch ($result->getCode()) {
                 case Result::FAILURE_IDENTITY_NOT_FOUND:
                     throw new \Exception($this->messages[self::NOT_IDENTITY]);
+                    
                     break;
 
                 case Result::FAILURE_CREDENTIAL_INVALID:

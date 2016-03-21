@@ -42,19 +42,20 @@ class ProductDao {
     }
 
     public function saveProduct(Product $product, ProductOption $productOption = null) {
-        //print_r($branch);die;
+
         $idData = $product->product_id;
         $id = (int) $idData;
         $dataProduct = $product->getArrayCopy();
-        //print_r($dataProduct);die;
-        //echo $id;die;
+
         $dataFilter = array_filter($dataProduct);
-        //print_r($dataProduct);die;
-        //echo $id;die;
+
         if ($id == 0) {
             $insert = $this->tableGateway->insert($dataFilter);
-
-            $this->saveProductOption($productOption, $this->tableGateway->lastInsertValue);
+            
+            if($productOption != null){
+                $this->saveProductOption($productOption, $this->tableGateway->lastInsertValue);
+            }
+            
             return $insert;
         } else {
             // print_r($this->getById($id));die;
@@ -78,7 +79,10 @@ class ProductDao {
                 
                 if($insert){
                    
-                    $this->saveProductOption($productOption, $id);
+                     if($productOption != null){
+                        $this->saveProductOption($productOption, $id); 
+                     }
+                    
                 }
                 
                 return $insert;
@@ -323,6 +327,8 @@ class ProductDao {
         $this->query->join(array('ov' => 'pr_option_value'), 'pov.option_value_id = ov.option_value_id', array(
             'name_option_value' => 'name')
         ); // empty list of columns
+        
+        $this->where(['o.status < 2', 'pov.status < 2' ]);
         return $this;
     }
 

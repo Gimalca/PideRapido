@@ -10,8 +10,8 @@
             <div class="row mb30">
                 <div class="col-md-4">
                     <div class="pull-left">
-                        <h1 class="lh10 mt10"> Factura #<?php echo $this->producto->invoice_number_branch ?></h1>
-                        <h5 class="mn"> Creada: <?php echo $this->producto->date_added ?> </h5>
+                        <h1 class="lh10 mt10"> Factura # <?php echo $this->producto->invoice_number_branch ?></h1>
+                        <h5 class="mn"> Creada: <?php echo $this->producto->ob_date_added ?> </h5>
                         <h5 class="mn"> Status: <b class="text-success">Pagada</b> </h5>
                     </div>
                 </div>
@@ -29,10 +29,10 @@
                         </div>
                         <div class="panel-body">
                             <ul class="list-unstyled">
-                                <li> <b>Nombre:</b><?php echo $this->producto->firstname ?> <?php echo $this->producto->lastname ?></li>
-                                <li> <b>Cédula</b><?php echo $this->producto->document_identity ?></li>
-                                <li> <b>Dirección:</b><?php echo $this->producto->address_default ?></li>
-                                <li> <b>Teléfono</b><?php echo $this->producto->telephone ?></li>
+                                <li> <b>Nombre: </b><?php echo $this->producto->firstname ?> <?php echo $this->producto->lastname ?></li>
+                                <li> <b>Cédula </b><?php echo $this->producto->document_identity ?></li>
+                                <li> <b>Dirección: </b><?php echo $this->producto->address_1 ?></li>
+                                <li> <b>Teléfono: </b><?php echo $this->producto->telephone ?></li>
                             </ul>
                         </div>
                     </div>
@@ -45,8 +45,8 @@
                         </div>
                         <div class="panel-body">
                             <ul class="list-unstyled">
-                                <li> <b>Factura #:</b><?php echo $this->producto->invoice_number_branch ?></li>
-                                <li> <b>Tipo de Pago:</b>TDC</li>
+                                <li> <b>Factura #: </b><?php echo $this->producto->invoice_number_branch ?></li>
+                                <li> <b>Tipo de Pago: </b>TDC</li>
                             </ul>
                         </div>
                     </div>

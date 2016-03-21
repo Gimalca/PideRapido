@@ -23,6 +23,7 @@ class RegisterController extends AbstractActionController
 
     public function indexAction()
     {
+        $this->layout()->fbUrl = $this->getService('FacebookUrl');
        // $request = $this->getRequest();
         $registerForm = new RegisterForm();
         $loginForm = new LoginForm();
@@ -48,6 +49,8 @@ class RegisterController extends AbstractActionController
 
     public function addAction()
     {
+        $this->layout()->fbUrl = $this->getService('FacebookUrl');
+        
         $request = $this->getRequest();
         $registerForm = new RegisterForm();
         $loginForm = new LoginForm();

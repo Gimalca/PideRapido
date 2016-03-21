@@ -15,9 +15,11 @@
             </div>
 
             <div class="modal-body">
-
-                <div class="control-group"> <a class="fb_button btn  btn-block btn-lg " href="<?php echo $this->fbUrl ?>">Ingresa con Facebook</a> </div>
-                <h5 style="padding:10px 0 10px 0;" class="text-center">Ó</h5>
+                
+                <?php if($this->fbUrl) : ?>
+                    <div class="control-group"> <a class="fb_button btn  btn-block btn-lg " href="<?php echo $this->fbUrl ?>">Ingresa con Facebook</a> </div>
+                    <h5 style="padding:10px 0 10px 0;" class="text-center">Ó</h5>
+                <?php endif; ?>
                 <div class="form-group login-username">
 
                     <div>
@@ -198,9 +200,10 @@
             </div>
 
             <div class="modal-body">
-                <div class="control-group"> <a class="fb_button btn  btn-block btn-lg " href="<?php echo $this->fbUrl ?>">Ingresa con Facebook</a> </div>
-                <h5 style="padding:10px 0 10px 0;" class="text-center">Ó</h5>
-
+                <?php if($this->fbUrl) : ?>
+                    <div class="control-group"> <a class="fb_button btn  btn-block btn-lg " href="<?php echo $this->fbUrl ?>">Ingresa con Facebook</a> </div>
+                    <h5 style="padding:10px 0 10px 0;" class="text-center">Ó</h5>
+                <?php endif; ?>
                 <form action="<?php echo $this->url('account', array('controller' => 'register', 'action' => 'add')) ?>" method="post">
 
                 <!--div class="control-group"> <a class="fb_button btn  btn-block btn-lg " href="#"> Vía Facebook </a> </div>

@@ -55,11 +55,11 @@ class Module {
             $viewModel->userIdentity = $auth->getIdentity();
         }
         
-        if($module !== 'Account\Controller' || $controller === 'Account\Controller\Register' ){
-           
-            $viewModel = $e->getViewModel();
-            $viewModel->fbUrl = $sm->get('FacebookUrl');
-        }
+//        if($module !== 'Account\Controller' || $controller === 'Account\Controller\Register' ){
+//           
+//            $viewModel = $e->getViewModel();
+//            $viewModel->fbUrl = $sm->get('FacebookUrl');
+//        }
     }
     protected function initRegister($e) {
         $viewModel = $e->getViewModel();

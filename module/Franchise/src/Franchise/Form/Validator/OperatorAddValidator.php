@@ -9,10 +9,6 @@
 namespace Franchise\Form\Validator;
 
 use Zend\InputFilter\InputFilter;
-use Zend\Validator\EmailAddress;
-use Zend\Validator\Identical;
-use Zend\Validator\NotEmpty;
-use Zend\Validator\StringLength;
 
 class OperatorAddValidator extends InputFilter {
 

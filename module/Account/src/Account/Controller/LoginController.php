@@ -8,6 +8,7 @@ use Account\Form\RespasswordForm;
 use Account\Form\Validator\LoginValidator;
 use Account\Model\Dao\UserDao;
 use Account\Model\LoginFacebook;
+use Exception;
 use ReCaptcha\ReCaptcha;
 use Sale\Model\Dao\CustomerDao;
 use Zend\Mail\Message as MailMessage;

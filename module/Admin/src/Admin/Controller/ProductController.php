@@ -162,7 +162,7 @@ class ProductController extends AbstractActionController {
                 
                 $productEntity = New Product;
                 $productEntity->exchangeArray($prepareProductData);
-                print_r($productEntity);die;
+                //print_r($productEntity);die;
                 $productOptionEntity = New ProductOption();
                 $productOptionEntity->exchangeArray($productData);
 
